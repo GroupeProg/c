@@ -43,14 +43,20 @@ T_file enfiler(T_file file, int elem){
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 000b380ac528b5e0c6aa93eb222951f65bc71d16
 T_file defiler(T_file file)
 {
     if (file.tete == NULL)
     {
+<<<<<<< HEAD
 =======
 T_file defiler(T_file file) {
     if (file.tete == NULL) {
 >>>>>>> 3eb56bbe4ce1432f76cd03830cd7deeb036c701b
+=======
+>>>>>>> 000b380ac528b5e0c6aa93eb222951f65bc71d16
         printf("La file est vide\n");
         return file;
     }
@@ -58,11 +64,16 @@ T_file defiler(T_file file) {
     struct cellule *temp = file.tete;
     nouveau->tete = temp->suiv;
 <<<<<<< HEAD
+<<<<<<< HEAD
     if (nouveau->tete == NULL)
     {
 =======
     if (nouveau->tete == NULL) {
 >>>>>>> 3eb56bbe4ce1432f76cd03830cd7deeb036c701b
+=======
+    if (nouveau->tete == NULL)
+    {
+>>>>>>> 000b380ac528b5e0c6aa93eb222951f65bc71d16
         nouveau->queue = NULL;
     }
     free(temp);
