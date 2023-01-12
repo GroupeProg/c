@@ -1,13 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//
 struct cellule
 {
     int elem;
     struct cellule *suiv;
 };
 
+struct Pile
+{
+    struct celulle *premier;
+};
+
 typedef struct cellule *T_pile;
+
+typedef struct Pile *T_pile;
 
 T_pile creerVide() {
     T_pile p = NULL;
@@ -26,8 +34,11 @@ T_pile empiler(T_pile p, int val) {
         return newcase;
     }
 }
-// test
-T_pile depiler(T_pile p) {}
+
+T_pile depiler(T_pile p) {
+
+
+}
 
 int main()
 {
