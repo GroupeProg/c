@@ -16,7 +16,7 @@ T_pile creerVide() {
 
 T_pile empiler(T_pile p, int val) {
     T_pile newcase = (T_pile)malloc(sizeof(struct cellule));
-    if (newcase = NULL){
+    if (newcase == NULL){
         fprintf (stderr, "Memoire insuffisante\n");
         exit(EXIT_FAILURE);
     }
@@ -36,8 +36,3 @@ int main()
     a = empiler(a, 12);
     printf("%d", a->elem);
 }
-
-
-
-
-
