@@ -42,18 +42,27 @@ T_file enfiler(T_file file, int elem){
     return *nouveau;
 }
 
+<<<<<<< HEAD
 T_file defiler(T_file file)
 {
     if (file.tete == NULL)
     {
+=======
+T_file defiler(T_file file) {
+    if (file.tete == NULL) {
+>>>>>>> 3eb56bbe4ce1432f76cd03830cd7deeb036c701b
         printf("La file est vide\n");
         return file;
     }
     T_file *nouveau = (T_file *)malloc(sizeof(file));
     struct cellule *temp = file.tete;
     nouveau->tete = temp->suiv;
+<<<<<<< HEAD
     if (nouveau->tete == NULL)
     {
+=======
+    if (nouveau->tete == NULL) {
+>>>>>>> 3eb56bbe4ce1432f76cd03830cd7deeb036c701b
         nouveau->queue = NULL;
     }
     free(temp);
