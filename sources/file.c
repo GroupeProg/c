@@ -20,7 +20,7 @@ typedef struct {
     struct cellule *queue;
 }T_file;
 
-T_file creerFile() {
+T_file creerFile(void) {
     T_file file;
     file.tete = file.queue = NULL;
     return file;
