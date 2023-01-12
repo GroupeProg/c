@@ -1,5 +1,5 @@
 /**
- * La fonction enfiler fonctionne, mais pas la fonction défiler
+ * Les fonctions enfiler et défiler ne fonctionnent pas vraiment
 */
 
 #include <stdlib.h>
@@ -63,4 +63,8 @@ T_file defiler(T_file file)
 int main() {
     T_file a = creerFile();
     a = enfiler(a, 12);
+    a = enfiler(a, 15);
+    printf("%d", a.tete->elem);
+    a = defiler(a);
+    printf("%d", a.tete->elem);
 }
