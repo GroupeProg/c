@@ -27,12 +27,50 @@ T_pile empiler(T_pile p, int val) {
     }
 }
 
-T_pile depiler(T_pile p) {}
+T_pile depiler(T_pile p) {
+    if (p == NULL)
+    {
+        fprintf(stderr, "Vide\n");
+        exit(EXIT_FAILURE);
+    }
+    else {
+        T_pile newcase = (T_pile)malloc(sizeof(struct cellule));
+        T_pile suivant = p -> suiv;
+        newcase->suiv = suivant->suiv;
+        newcase->elem = suivant->elem;
+        free(p);
+        free(suivant);
+        return newcase;
+    }
+}
+
+void afficherPile(T_pile p) {
+    if (p == NULL)
+    {
+        fprintf(stderr, "Vide\n");
+        exit(EXIT_FAILURE);
+    }
+    else 
+    {
+        T_pile actuel = p;
+        while(actuel != NULL) {
+
+            printf("%d <- ", actuel->elem);
+            actuel = actuel -> suiv;
+        }
+        printf("FIN");
+    }
+}
 
 int main()
 {
     T_pile a;
     a = creerVide();
     a = empiler(a, 12);
-    printf("%d", a->elem);
+    printf("%d \n", a->elem);
+
+    a = empiler(a, 16);
+    printf("%d \n", a->elem);
+
+
 }
