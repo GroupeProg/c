@@ -52,7 +52,15 @@ git remote origin https://github.com/GroupeProg/c.git
 
 Ça permet de faire un alias, le projet s'appellera origin, nom commun utilisé pour les projet git
 
-## Comment faire pour récupérer le projet en ligne
+## Comment faire pour récupérer le projet en ligne, d'une banche annexe
+
+Après avoir tout réalisé au dessus, faire :
+
+```git
+git fetch origin <branch>
+```
+
+Tout simplement
 
 ## Comment faire pour mettre en ligne son projet
 
