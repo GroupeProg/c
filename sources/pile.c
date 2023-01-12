@@ -90,3 +90,23 @@ void afficherPile(T_pile p)
         printf("]");
     }
 }
+
+int lenPile(T_pile p)
+{
+    if (p == NULL)
+    {
+        return 0;
+    }
+    else 
+    {
+    int c = 1;
+    T_pile exit = p;
+    
+        while ( exit->suiv != NULL)
+        {
+            exit = depiler(exit);
+            c += 1;
+        }
+        printf("%d", c);
+    }
+}

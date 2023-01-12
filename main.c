@@ -10,7 +10,6 @@ int main(int argc, char *argv[])
     for (int i = 1; i <= 50; i++) {
         a = empiler(a, i);
     }
-
-    afficherPile(a);
+    lenPile(a);
 }
 
