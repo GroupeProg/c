@@ -10,6 +10,18 @@ Savoir utiliser un terminal et pas se tromper de dossier de travail, et surtout,
 
 Aller sur https://git-scm.com/download/win et prendre la version 64bits puis suivre l'instruction
 
+## Avant de démarrer après l'installation
+
+Git aime bien retracer les modifications ainsi que les changements suivant les personnes qui ont contribué au projet. Et pour cela, il faut qu'il sache qui vous êtes. C'est une procédure à faire en une seule fois et c'est pour paramétrer votre git tout simplement.
+
+```git
+git --global user.name <ton nom>
+git --global user.mail <ton mail>
+```
+
+Si tu ne veux renseigner ça que pour le projet en cours, fait le après le init (expliqué après) sans le --global.
+
+
 ## Comment faire pour clone ce projet
 
 ```git
@@ -29,10 +41,18 @@ git init
 Rien de plus simple. Pour ajouter le projet, faites :
 
 ```git
+git remote add <name> <lien_git>
+```
+
+En vérité, voici ce que vous taperez pour le projet `C`
+
+```git
 git remote origin https://github.com/GroupeProg/c.git
 ```
 
 Ça permet de faire un alias, le projet s'appellera origin, nom commun utilisé pour les projet git
+
+## Comment faire pour récupérer le projet en ligne
 
 ## Comment faire pour mettre en ligne son projet
 
@@ -54,6 +74,9 @@ Si ça ne marche pas, c'est qu'il y a un problème de synchronisation avec la br
 git pull origin <branch> --allow-unrelated-histories
 ```
 
+`git pull` fait deux choses en vérité, il va récupérer le projet (quitte à écraser les fichiers existants qui ont le même nom) avec `git fetch` et va `git merge` ce qui fait fusionner deux branches (Celle locale avec celle en ligne).
+
+
 ## Bonus
 
 ### C'est quoi .gitignore ?
@@ -65,6 +88,9 @@ Le fichier .gitignore va juste ignorer les fichiers séparés en allant à la li
 a.exe
 main.exe
 ```
+### A savoir
+
+Pour que le projeet soit viable, et que vous avez de grosses modifications, faites une nouvelle branche. Si vous êtes assez confiant, faites un `merge`, sinon, laissez les autres s'en occuper.
 
 ### Comment créer une nouvelle branche ou les fusionner ?
 
@@ -90,6 +116,14 @@ Renommer une branche
 git checkout <branch>
 git branch -m <new-name>
 ```
+
+Fusionner une branche avec la principale
+
+```git
+git checkout <branch>
+git merge
+```
+Qui ne fonctionne s'il y a vraiment des modifications
 
 Allez regarder ce cours, j'ai un peu la flemme d'en donner plus :
 https://git-scm.com/book/fr/v2/Commandes-Git-Cr%C3%A9ation-de-branches-et-fusion
