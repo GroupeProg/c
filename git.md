@@ -107,9 +107,14 @@ Créer une nouvelle branche
 git branch <branch>
 ```
 
-Supprimer une branche
+Supprimer une branche locale
 ```git
 git branch -d <branch>
+```
+
+Supprimer une branche remote
+```git
+git push origin --delete <branch>
 ```
 
 Basculer de branche
