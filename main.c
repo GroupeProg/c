@@ -26,7 +26,7 @@ T_pile empiler(T_pile p, int val) {
         return newcase;
     }
 }
-
+// test
 T_pile depiler(T_pile p) {}
 
 int main()
@@ -36,3 +36,4 @@ int main()
     a = empiler(a, 12);
     printf("%d", a->elem);
 }
+
