@@ -42,17 +42,25 @@ T_file enfiler(T_file file, int elem){
     return *nouveau;
 }
 
-T_file defiler(T_file file) {
-    if (file.tete == NULL) {
+T_file defiler(T_file file)
+{
+    if (file.tete == NULL)
+    {
         printf("La file est vide\n");
         return file;
     }
     T_file *nouveau = (T_file *)malloc(sizeof(file));
     struct cellule *temp = file.tete;
     nouveau->tete = temp->suiv;
-    if (nouveau->tete == NULL) {
+    if (nouveau->tete == NULL)
+    {
         nouveau->queue = NULL;
     }
     free(temp);
     return *nouveau;
+}
+
+int main() {
+    T_file a = creerFile();
+    a = enfiler(a, 12);
 }
