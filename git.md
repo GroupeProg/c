@@ -64,6 +64,19 @@ Tout simplement
 
 ## Comment faire pour mettre en ligne son projet
 
+Vous devez en premier ajouter les fichiers modifiés dans l'empaquetage. Le fichier `.gitignore` va être regardé en premier pour voir ce qu'il doit ignorer si un dossier est renseigné en entier.
+
+```git
+git add <fichiers_dossiers>
+```
+
+Mais si tout votre dossier c'est le projet, ne renseignez pas fichier par fichier :
+
+```git
+git add .
+```
+
+
 Sachez qu'il y a deux envoies en même temps pour envoyer un projet en ligne
 
  - Commit
