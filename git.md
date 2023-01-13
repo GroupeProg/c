@@ -143,7 +143,7 @@ https://git-scm.com/book/fr/v2/Commandes-Git-Cr%C3%A9ation-de-branches-et-fusion
 
 De préférence, cloner le projet autre part des deux branches pour éviter les pertes, même s'il est possible de revenir en arrière, d'où la puissance de git.
 
-![Texte sur ordinateur](http://www.netplume.net/wp-content/uploads/2021/01/clavier_0.jpg "Comment ajouter, modifier ou fusionner une branche").
+![Texte sur ordinateur](http://www.netplume.net/wp-content/uploads/2021/01/clavier_0.jpg "Comment ajouter, modifier ou fusionner une branche")
 
 ### Plus
 
