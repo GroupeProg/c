@@ -37,7 +37,9 @@ Puis double cliquer sur Path
 
 Et enfin en cliquant sur une nouvelle ligne, insérer le lien vers le dossier de `cygwin64` et `cygwin64\bin`
 
-![Renseigner le chemin vers cygwin64](./img/Variable3.png "Modifier les variables d'environnement système - Partie 4.")
+![Renseigner le chemin vers cygwin64](./img/Variable4.png "Modifier les variables d'environnement système - Partie 4.")
+
+Faites triplement `Ok` et redémarrez les programmes utilisant le path pour fonctionner si vous avez besoin d'accéder à `gcc` avec ceux-ci comme le Terminal ou encore Visual Studio Code dans notre cas. Redémarrez votre Ordinateur si Path n'est pas effetif de suite dans le pire des cas.
 
 ## Typedef créé
 
