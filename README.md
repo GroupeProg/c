@@ -41,7 +41,15 @@ Et enfin en cliquant sur une nouvelle ligne, insérer le lien vers le dossier de
 
 Faites triplement `Ok` et redémarrez les programmes utilisant le path pour fonctionner si vous avez besoin d'accéder à `gcc` avec ceux-ci comme le Terminal ou encore Visual Studio Code dans notre cas. Redémarrez votre Ordinateur si Path n'est pas effetif de suite dans le pire des cas.
 
-## Typedef créé
+- Pour Linux
+
+Naturellement disponible.
+
+- Pour Mac
+
+Malheureusement je n'en sais pas plus sur ce sujet à propos de Mac.
+
+## Typedef créés
 
 Dans ce projet, vous trouverez souvent des types non-objets listé comme ce qui suit en-dessous. Tous disponible dans le dossier sources. Sachez que pour les type `T_pile` et `T_file`, ils auront besoin au préalable de la structure `cellule`.
 
