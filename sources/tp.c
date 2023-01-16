@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include "tp.h"
 
 //Premiers programmes:
 //Un programme qui demande a l’utilisateur son prenom, puis son nom, et affiche 'Bonjour prenom nom'.
