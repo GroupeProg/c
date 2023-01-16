@@ -1,0 +1,11 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build GCC",
+            "type": "shell",
+            "command": "python .vscode/start.py",
+            "group": "build"
+        }
+    ]
+}

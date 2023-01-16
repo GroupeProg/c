@@ -107,6 +107,6 @@ int lenPile(T_pile p)
             exit = depiler(exit);
             c += 1;
         }
-        printf("%d", c);
+        return c;
     }
 }

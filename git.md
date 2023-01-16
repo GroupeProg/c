@@ -64,6 +64,19 @@ Tout simplement
 
 ## Comment faire pour mettre en ligne son projet
 
+Vous devez en premier ajouter les fichiers modifiés dans l'empaquetage. Le fichier `.gitignore` va être regardé en premier pour voir ce qu'il doit ignorer si un dossier est renseigné en entier.
+
+```git
+git add <fichiers_dossiers>
+```
+
+Mais si tout votre dossier c'est le projet, ne renseignez pas fichier par fichier :
+
+```git
+git add .
+```
+
+
 Sachez qu'il y a deux envoies en même temps pour envoyer un projet en ligne
 
  - Commit
@@ -143,7 +156,7 @@ https://git-scm.com/book/fr/v2/Commandes-Git-Cr%C3%A9ation-de-branches-et-fusion
 
 De préférence, cloner le projet autre part des deux branches pour éviter les pertes, même s'il est possible de revenir en arrière, d'où la puissance de git.
 
-![Texte sur ordinateur](http://www.netplume.net/wp-content/uploads/2021/01/clavier_0.jpg "Comment ajouter, modifier ou fusionner une branche").
+![Texte sur ordinateur](http://www.netplume.net/wp-content/uploads/2021/01/clavier_0.jpg "Comment ajouter, modifier ou fusionner une branche")
 
 ### Plus
 
