@@ -96,19 +96,14 @@ int pyramide() {
     return 0;
 }
 
-int factoriel_aux(n) {
-    if(n!=1){
-        return n * factoriel_aux(n-1);
-    }
-    else {
-        return 1;
-    }
-}
-
 int factoriel() {
-    int n;
+    int n, res = 1;
     printf("Valeur n! (positif) : ");
     scanf("%d", &n);
-    printf("Le resultat est %d !", factoriel_aux(n));
+    while(n >= 1) {
+        res *= n;
+        n--;
+    }
+    printf("Le resultat est %d !", res);
     return 0;
 }
