@@ -72,6 +72,8 @@ int multi() {
     printf("\nValeur de b (positif) : ");
     scanf("%d", &b);
     printf("Le résultat est %d !", multi_aux(a, b));
+    
+    return 0;
 }
 
 int pyramide() {
@@ -91,5 +93,22 @@ int pyramide() {
         }
         printf("\n");
     }
+    return 0;
+}
+
+int factoriel_aux(n) {
+    if(n!=1){
+        return n * factoriel_aux(n-1);
+    }
+    else {
+        return 1;
+    }
+}
+
+int factoriel() {
+    int n;
+    printf("Valeur n! (positif) : ");
+    scanf("%d", &n);
+    printf("Le resultat est %d !", factoriel_aux(n));
     return 0;
 }
