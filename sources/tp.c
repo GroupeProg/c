@@ -57,7 +57,7 @@ int division() {
 }
 
 //Un programme qui demande deux entiers a et b a l’utilisateur et calcule leur produit sans utiliser l’operateur ’*’.
-int multi_aux(a, b) {
+int multi_aux(int a, int b) {
     if (a==0) {
         return 0;
     }

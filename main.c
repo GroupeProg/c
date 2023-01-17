@@ -5,5 +5,5 @@
 
 
 int main(){
-    return year();
+    return factoriel();
 }
