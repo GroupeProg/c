@@ -91,4 +91,5 @@ int pyramide() {
         }
         printf("\n");
     }
+    return 0;
 }
