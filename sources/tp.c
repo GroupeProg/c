@@ -56,7 +56,8 @@ int division() {
     return 0;
 }
 
-int multi_aux(a, b) {
+//Un programme qui demande deux entiers a et b a l’utilisateur et calcule leur produit sans utiliser l’operateur ’*’.
+int multi_aux(int a, int b) {
     if (a==0) {
         return 0;
     }
@@ -76,6 +77,7 @@ int multi() {
     return 0;
 }
 
+//Un programme qui demande a l’utilisateur un entier h, et affiche une pyramide.
 int pyramide() {
     int h;
     printf("Valeur h (positif) : ");
@@ -96,6 +98,7 @@ int pyramide() {
     return 0;
 }
 
+//Un algorithme avec une boucle while qui realise le calcul de n! (factorielle).
 int factoriel() {
     int n, res = 1;
     printf("Valeur n! (positif) : ");
