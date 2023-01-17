@@ -16,12 +16,12 @@ int quisuisje(){
 
 //Un programme qui permute deux valeurs entieres et les affiche avant et apres permutation.
 int permute(){
-    int a,b,c;
-    printf("Un nombre? ");
+    int a, b, c;
+    printf("Un nombre ? ");
     scanf("%d", &a);
-    printf("Un autre nombre? ");
+    printf("Un autre nombre ? ");
     scanf("%d", &b);
-    printf("Dak, tes deux nombres sont: %d et %d.\n", a,b);
+    printf("Dak, tes deux nombres sont : %d et %d.\n", a,b);
     c = a;
     a = b;
     b = c;
