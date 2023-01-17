@@ -55,3 +55,40 @@ int division() {
 
     return 0;
 }
+
+int multi_aux(a, b) {
+    if (a==0) {
+        return 0;
+    }
+    else {
+        return b + multi_aux(a-1, b);
+    }
+}
+
+int multi() {
+    int a, b;
+    printf("Valeur a (positif) : ");
+    scanf("%d", &a);
+    printf("\nValeur de b (positif) : ");
+    scanf("%d", &b);
+    printf("Le résultat est %d !", multi_aux(a, b));
+}
+
+int pyramide() {
+    int h;
+    printf("Valeur h (positif) : ");
+    scanf("%d", &h);
+    for(int i = 0; i<=h; i++) {
+        int esp = h-i;
+        for(int e = 0; e < esp; e++) {
+            printf(" ");
+        }
+        for(int j = 0; j!=i; j++) {
+            printf("%d", j);
+        }
+        for(int k = i-2; k>=0; k--) {
+            printf("%d", k);
+        }
+        printf("\n");
+    }
+}
