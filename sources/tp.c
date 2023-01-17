@@ -107,6 +107,18 @@ int factoriel() {
         res *= n;
         n--;
     }
-    printf("Le resultat est %d !", res);
+    printf("Le resultat est %d ! \n", res);
+    return 0;
+}
+
+//un programme permettant de saisir une suite d’entiers et de faire leur somme. La saisie des entiers est interrompue lorsque l’utilisateur donne la valeur 0.
+int sum(){
+    int a, t = 0;
+    do {
+        printf("\nEntier: ");
+        scanf("%d", &a);
+        t += a;
+    }while (a != 0);
+    printf("\n La somme donne: %d \n", t);
     return 0;
 }

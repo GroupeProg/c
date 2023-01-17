@@ -6,3 +6,4 @@ int multi_aux(int a, int b);
 int multi();
 int pyramide();
 int factoriel();
+int sum();

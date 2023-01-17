@@ -5,5 +5,5 @@
 
 
 int main(){
-    return factoriel();
+    return sum();
 }
