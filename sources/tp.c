@@ -43,3 +43,15 @@ int year(){
     }
     return 0;
 }
+
+// Afficher division, remarquer que faire un int sur un float prend seulement la valeur entière.
+int division() {
+    int a, b;
+    printf("Valeur a : ");
+    scanf("%d", &a);
+    printf("\nValeur de b : ");
+    scanf("%d", &b);
+    printf("\n%d", (a/b));
+
+    return 0;
+}
