@@ -14,5 +14,7 @@ for i in folders:
 args = ""
 for i in files:
     args += i + " "
-print(f"Compile GCC for {args}...")
-system(f"gcc {args}-o main.exe && main.exe")
+
+print(f"Compile GCC for {args}")
+system(f"gcc -x c {args}-o main.exe && main.exe")
+print("\n")

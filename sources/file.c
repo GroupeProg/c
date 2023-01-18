@@ -28,7 +28,7 @@ T_file creerFile(void) {
 
 //fait une fonction pour enfiler un élément dans une file
 T_file enfiler(T_file file, int elem){
-    T_file *nouveau = (T_file *)malloc(sizeof(file));
+    T_file *nouveau = (T_file *)malloc(sizeof(T_file));
     struct cellule *cell = (struct cellule *)malloc(sizeof(struct cellule));
     cell->elem = elem;
     if(file.queue == NULL){
