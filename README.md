@@ -93,7 +93,36 @@ T_file enfiler(T_file file, int elem);
 T_file defiler(T_file file);
 ```
 
+Afin de comprendre Malloc, nous avons fait une fonction simplifiée qui n'appelle pas les pointeur au début mais qui doit être pointer tout du long sous la force de tableau `Array`.
+
+```c
+struct array
+{
+    int *elem;
+    int size;
+};
+
+typedef struct array Array;
+```
+
+Avec ses fonctions
+
+```c
+Array empty_Array();
+void append_int_array(Array *a, int e);
+void afficher_array(Array a);
+void free_array(Array *a);
+```
+
+
 # Logs
+
+## 18-01-2023
+    - Plus d'exemple de Malloc dans shaya.c (dans le dossier source) 
+
+## 17-01-2023
+    - Correction des exercices
+    - Importation des exercices de TD/TP
 
 ## 13-01-2023
 
