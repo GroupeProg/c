@@ -1,8 +1,8 @@
-![Programmation en C](./img/Programmation%20en%20C.png "Pseudo-logo du repository 'Programmation en C'.")
+![Programmation en C](./img/Programmation_en_C.png "Pseudo-logo du repository 'Programmation en C'.")
 
 # Code Groupe en C
 
-Ici seront ajouté tous les codes avec Hugo Allano, Wail Ait Hamedate, Daniel Alves Araujo, Antony 'Kiwi' et Lucas Espinar.
+Ici seront ajouté tous les codes avec Wail Ait Hamedate, Daniel Alves Araujo, Antony 'Kiwi' et Lucas Espinar.
 Ce groupe a été créé dans le but de pouvoir partager le code normalement ce qui sera bien pour les groupe plus tard en projet.
 
 ## Licence
