@@ -115,6 +115,18 @@ Pour que le projeet soit viable, et que vous avez de grosses modifications, fait
 
 ### Comment créer une nouvelle branche ou les fusionner ?
 
+Ecraser la branche distante avec la sienne /!\\
+```git
+git push --force origin <branch>
+```
+
+Ecraser la branche distante avec sécurité
+```git
+git push --force-with-lease <branch>
+```
+
+Je vous conseile en démarrant votre projet si vous êtes sur la branche principale de `pull` avant pour se synchroniser pour modifier sereinement, un `up-to-date` affirme que le projet n'a pas été modifié depuis.
+
 Créer une nouvelle branche 
 ```git
 git branch <branch>
