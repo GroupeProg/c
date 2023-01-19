@@ -7,19 +7,13 @@
 
 int main(){
 
-    Array a;
-    a = empty_Array();
-    append_int_array(&a, 9);
-    append_int_array(&a, 8);
-    append_int_array(&a, 8);
-    append_int_array(&a, 5);
-    append_int_array(&a, 8);
-    append_int_array(&a, 8);
-    append_int_array(&a, 6);
-    append_int_array(&a, 8);
-    append_int_array(&a, 8);
-    afficher_array(a);
-    free_array(&a);
+    T_file a;
+    enfiler(&a, 6);
+    enfiler(&a, 8);
+    enfiler(&a, 9);
+    afficher_tete_queue(a);
+    defiler(&a);
+    afficher_tete_queue(a);
     return 0;
     
 }

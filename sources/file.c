@@ -1,7 +1,3 @@
-/**
- * Les fonctions enfiler et défiler ne fonctionnent pas vraiment
-*/
-
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -20,42 +16,76 @@ typedef struct {
     struct cellule *queue;
 }T_file;
 
+
+/**
+ * Fonction qui renvoi un T_file vide
+ */
 T_file creerFile(void) {
     T_file file;
     file.tete = file.queue = NULL;
     return file;
 }
 
-//fait une fonction pour enfiler un élément dans une file
-T_file enfiler(T_file file, int elem){
-    T_file *nouveau = (T_file *)malloc(sizeof(T_file));
-    struct cellule *cell = (struct cellule *)malloc(sizeof(struct cellule));
+/**
+ * Enfile un élément sans en créer un nouveau.
+ * Rappelons que c'est la tête qui pointe la suivante
+ * 
+ * Quand nous ajoutons un élément, nous poussons NULL vers le dernier de la queue,
+ * la tête pointe vers le second et quand nous ajoutons un élément, l'ancien dernier éleément de la queue pointe vers le nouveau avant que ce nouveau ne devinne le dernier de la queue.
+ * 
+ * Dans le cas particulier où la file est vide, le dernier de la queue est aussi la tête
+ */
+void enfiler(T_file *file, int elem) {
+    struct cellule *cell = malloc(sizeof(struct cellule));
+
+    cell->suiv = NULL;
     cell->elem = elem;
-    if(file.queue == NULL){
-        cell->suiv = NULL;
-        nouveau->tete = cell;
+
+    if ((*file).tete == NULL)
+    {
+        file->tete = cell;
+        file->queue = cell; // cas particulier où la file est vide
     }
-    else{
-        cell->suiv = file.queue;
+    else {
+        file->queue->suiv = cell; // Le suivant de l'ancien dernier de la queue pointe vers cell
+        file->queue = cell; // cell devient le dernier de la queue
     }
-    nouveau->tete = cell;
-    return *nouveau;
 }
 
-T_file defiler(T_file file)
+/**
+ * Pour défiler, la fonction s'occuper de récupérer 
+ */
+void defiler(T_file *file)
 {
-    if (file.tete == NULL)
+    if (file->queue != NULL)
     {
-        printf("La file est vide\n");
-        return file;
+        struct cellule *cell = file->tete->suiv;  // Récupération du second après la tête
+        free(file->tete); // On libère la mémoire de l'ancienne tête
+        file->tete = cell; // Le second devient premier
     }
-    T_file *nouveau = (T_file *)malloc(sizeof(file));
-    struct cellule *temp = file.tete;
-    nouveau->tete = temp->suiv;
-    if (nouveau->tete == NULL)
-    {
-        nouveau->queue = NULL;
-    }
-    free(temp);
-    return *nouveau;
+}
+
+/**
+ * Afficher l'élément de la queue
+ */
+void afficher_queue(T_file file) {
+    struct cellule *cell = file.queue;
+    printf("QUEUE : %d\n", cell->elem);
+}
+
+/**
+ * Afficher l'élément de la tete
+ */
+void afficher_tete(T_file file) {
+    struct cellule *cell = file.tete;
+    printf("TETE : %d\n", cell->elem);
+}
+
+/**
+ * Afficher l'élément de la tete et l'élément de la queue
+ */
+void afficher_tete_queue(T_file file) {
+    struct cellule *tete = file.tete;
+    struct cellule *queue = file.queue;
+    printf("TETE : %d <> QUEUE : %d\n", tete->elem, queue->elem);
 }
