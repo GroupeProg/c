@@ -53,6 +53,8 @@ Malheureusement je n'en sais pas plus sur ce sujet à propos de Mac.
 
 Dans ce projet, vous trouverez souvent des types non-objets listé comme ce qui suit en-dessous. Tous disponible dans le dossier sources. Sachez que pour les type `T_pile` et `T_file`, ils auront besoin au préalable de la structure `cellule`.
 
+### Pile
+
 `cellule`
 ```c
 struct cellule
@@ -76,6 +78,7 @@ T_pile depiler(T_pile p);
 void afficherPile(T_pile p);
 int lenPile(T_pile p);
 ```
+### File
 
 `T_file`
 ```c
@@ -92,6 +95,8 @@ T_file creerFile(void);
 T_file enfiler(T_file file, int elem);
 T_file defiler(T_file file);
 ```
+
+### Array
 
 Afin de comprendre Malloc, nous avons fait une fonction simplifiée qui n'appelle pas les pointeur au début mais qui doit être pointer tout du long sous la force de tableau `Array`.
 
@@ -114,8 +119,45 @@ void afficher_array(Array a);
 void free_array(Array *a);
 ```
 
+### Arbres Binaires
+
+Pour conclure et compléter les cours appris au Semestre 3 en Algorithme et Programmation, nous avons rajouté les arbres binaires limité à 25 de profondeurs avec le type `T_btree`.
+```c
+struct tree
+{
+    int elem;
+    struct tree *subleft;
+    struct tree *subright;
+};
+
+typedef struct tree *T_btree;
+```
+
+Avec ses fonctions
+
+```c
+T_btree creer_arbre_vide();
+T_btree creer_arbre(int val);
+T_btree creer_arbre_test(int profondeur);
+T_btree subleft(T_btree tree);
+void afficher_arbre(T_btree tree);
+int free_branch(T_btree tree);
+void free_tree(T_btree tree);
+void cut(T_btree tree, char l_or_r);
+unsigned long long get_nbr_leaf(T_btree tree);
+unsigned long long get_nbr_noeuds(T_btree tree);
+bool isleaf(T_btree tree);
+int test_tree();
+```
 
 # Logs
+
+## 19-01-2023
+    - Correction des pile/files qui ne fonctionnaient pas avant
+    - Création des arbres (limité à une profondeur de 25 testé)
+    - Ajouts de fonctions via les exercices de TD/TP
+    - Corrections et ajouts de paragraphes dans les markdown
+    - Changement des images
 
 ## 18-01-2023
     - Plus d'exemple de Malloc dans shaya.c (dans le dossier source) 

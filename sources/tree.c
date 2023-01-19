@@ -2,10 +2,10 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-    /**
-     * Comparé à Ocaml ou Python, on ne peut pas faire des inclusion dans des inclusions, pour cela, on pointe vers une case
-     */
-    struct tree
+/**
+ * Comparé à Ocaml ou Python, on ne peut pas faire des inclusion dans des inclusions, pour cela, on pointe vers une case
+ */
+struct tree
 {
     int elem;
     struct tree *subleft;
