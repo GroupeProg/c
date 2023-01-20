@@ -192,10 +192,11 @@ unsigned long long get_nbr_leaf(T_btree tree) {
 
 int test_tree()
 {
-    T_btree tree = creer_arbre_test(25);
+    T_btree tree = creer_arbre_test(4);
     unsigned long long nbr = get_nbr_noeuds(tree);
     printf("\n----\n%d", nbr);
     nbr = get_nbr_leaf(tree);
     printf("\n----\n%d", nbr);
+    afficher_arbre(tree);
     return 0;
 }
