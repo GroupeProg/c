@@ -149,34 +149,3 @@ unsigned long long get_nbr_noeuds(T_btree tree);
 bool isleaf(T_btree tree);
 int test_tree();
 ```
-
-# Logs
-
-## 19-01-2023
-    - Correction des pile/files qui ne fonctionnaient pas avant
-    - Création des arbres (limité à une profondeur de 25 testé)
-    - Ajouts de fonctions via les exercices de TD/TP
-    - Corrections et ajouts de paragraphes dans les markdown
-    - Changement des images
-
-## 18-01-2023
-    - Plus d'exemple de Malloc dans shaya.c (dans le dossier source) 
-
-## 17-01-2023
-    - Correction des exercices
-    - Importation des exercices de TD/TP
-
-## 13-01-2023
-
-    - Création d'une excecution automatique pour tout le projet sous pyton pour Visual Studio Code.
-    - Rendu de ce Repository public pour un meilleur partage mais seulement les membres-contributeurs peuvent intéragir directement avec les fichiers.
-    - Impossible de régler le problème du dépilage des files.
-
-## 12-01-2023
-
-    - Ajout d'une programmation modulaire au "projet" de base.
-
-## 11-01-2023
-
-    - Support Git ajouté
-    - Création du projet d'apprentissage du C pour L2 Infos. Ajout des structs T_pile, T_file et de leur fonction de modification
