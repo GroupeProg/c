@@ -149,3 +149,90 @@ unsigned long long get_nbr_noeuds(T_btree tree);
 bool isleaf(T_btree tree);
 int test_tree();
 ```
+
+## Travaux Pratiques
+
+Sachez qu'en parallèle, nous travaillons en groupe, et que nos fonctions créées à partir des exercices demandés sont aussi présent sous la forme des TP.
+
+### TP1
+
+```c
+//Premières commandes
+int quisuisje(void);
+int permute(void);
+int year(void);
+int division(void);
+
+// Structures de controles
+int multi_aux(int a, int b);
+int multi(void);
+int pyramide(void);
+int factoriel(void);
+int sum(void);
+int longue_cons(void);
+int nombre_parfait(void);
+int fibonacci(void);
+
+//tableaux
+int tableau(void);
+int tableau_paire(void);
+int random(void);
+int randint(int min, int max);
+int time_time(void);
+int *tab_rand(void);
+int *tab_rand_without_print(void);
+int *tab_rand_without_print_limited(int limite);
+int *tab_rand_without_print_double_limited(int limite_int, int limite_elem);
+float moyenne_tab(void);
+int *sep_pos_neg(void);
+int power(int a, int b);
+int int_to_bin(int nbr);
+void print_tab(int *tab);
+void print_tab_with_size(int *tab, size_t size);
+void print_tab_bin_loop(int limite, int milliseconds);
+void tri_tab(int *tab, size_t size);
+
+//chaînes de caractères
+void stringcmp(void);
+void stringcopy(void);
+char *stringcatenation(void);
+void str_print(char *str);
+void printc(void);
+void triangle_word(char *mot, int nbr);
+char *str_upside_down(char *str);
+int palindrome(char *str);
+```
+
+### TP2
+
+```c
+void inversions(int *tab, size_t size);
+
+//Fonctions
+void ligne(int nbr);
+float moyenne_3(int a, int b, int c);
+int racine_polynome(int a, int b, int c);
+void etudiant_matiere(int **tab, size_t n, size_t m);
+int **tab_rand_double_dimensions(int number_max, int limite_elem_d1, int limite_elem_d2);
+int **notetest(int nbr_eleve, int nbr_matiere);
+void print_tab_double_dimension(int **tab, size_t d1, size_t d2);
+void test_ultime_moyenne_etudiants();
+void print_tab_with_size_float(float *tab, size_t size);
+int *meilleureNoteMatiere(int **tab, size_t n, size_t m);
+float *moyenneGeneraleEleve(int **tab, size_t n, size_t m);
+float *moyenneGeneraleMatiere(int **tab, size_t n, size_t m);
+float moyenne(int a, int b);
+int facto(int n);
+void facto_afficheur();
+int fibonacci_tp2(int u0, int u1, int n);
+void fibonacci_tp2_afficheur();
+```
+
+### TP3
+
+Le TP3 vient tout juste de débuter, il n'y a aucune réelle fonction pour l'instant
+
+```c
+typedef struct date Date;
+void afficheDate(Date D);
+```

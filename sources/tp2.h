@@ -2,7 +2,7 @@
 
 void inversions(int *tab, size_t size);
 
-//Fonctions
+// Fonctions
 void ligne(int nbr);
 float moyenne_3(int a, int b, int c);
 int racine_polynome(int a, int b, int c);
