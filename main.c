@@ -5,12 +5,12 @@
 #include "sources/file.h"
 #include "sources/tp1.h"
 #include "sources/tp2.h"
+#include "sources/tp3.h"
 #include "sources/shaya.h"
 #include "sources/tree.h"
 
 // TP2
 int main(){
-    fibonacci_tp2_afficheur();
-    fibonacci();
+    
     return 0;
 }

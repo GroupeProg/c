@@ -267,5 +267,5 @@ void fibonacci_tp2_afficheur() {
     printf("\nNombre pour n : ");
     scanf("%lu", &n);
     int fib = fibonacci_tp2(u0, u1, n);
-    printf("FIBO : %d", fib);
+    printf("FIBO : %d\n", fib);
 }
