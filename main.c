@@ -6,6 +6,13 @@
 #include "sources/shaya.h"
 #include "sources/tree.h"
 
+
 int main(){
-    return tableau_paire();
+    int limite = 20;
+    int *tab = tab_rand_without_print_limited(limite);
+    print_tab_with_size(tab, limite);
+    printf("\n");
+    tri_tab(tab, limite);
+    print_tab_with_size(tab, limite);
+    return 0;
 }

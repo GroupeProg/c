@@ -1,3 +1,5 @@
+#include <stdlib.h>
+
 int quisuisje();
 int permute();
 int year();
@@ -14,4 +16,15 @@ int tableau();
 int tableau_paire();
 int random();
 int randint(int min, int max);
-int tab_rand();
+int time_time();
+int *tab_rand();
+int *tab_rand_without_print();
+int *tab_rand_without_print_limited(int limite);
+float moyenne();
+int *sep_pos_neg();
+int power(int a, int b);
+int int_to_bin(int nbr);
+void print_tab(int *tab);
+void print_tab_with_size(int *tab, size_t size);
+void print_tab_bin_loop(int limite, int milliseconds);
+void tri_tab(int *tab, size_t size);
