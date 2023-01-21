@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <windows.h>
+#include <math.h>
 #include "tp1.h"
 
 
@@ -222,7 +223,7 @@ int fibonacci(){
         u1 = u2;
         u0 = u1;
         i++;
-        printf("%llu, ", u2);
+        printf("%lu, ", u2);
 
     }while(i != 100);
     printf("\n\nu2 = %lu", u2);

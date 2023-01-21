@@ -10,6 +10,7 @@
 
 // TP2
 int main(){
-    test_ultime_moyenne_etudiants();
+    fibonacci_tp2_afficheur();
+    fibonacci();
     return 0;
 }

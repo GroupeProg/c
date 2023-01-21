@@ -18,3 +18,5 @@ float *moyenneGeneraleMatiere(int **tab, size_t n, size_t m);
 float moyenne(int a, int b);
 int facto(int n);
 void facto_afficheur();
+int fibonacci_tp2(int u0, int u1, int n);
+void fibonacci_tp2_afficheur();

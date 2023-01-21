@@ -1,5 +1,7 @@
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <time.h>
+#include <windows.h>
 #include <math.h>
 #include "tp2.h"
 #include "tp1.h"
@@ -225,9 +227,45 @@ void test_ultime_moyenne_etudiants() {
 
 
 int facto(int n) {
-
+    if(n > 0){
+        return n * facto(n-1);
+    }
+    else{
+        return 1;
+    }
 }
 
 void facto_afficheur()
+{   
+    int n;
+    printf("Cette fonction va donner un factoriel d'un nombre n.\nNombre n : ");
+    scanf("%d", &n);
+    int f = facto(n);
+    printf("\nCe qui donne : %d", f);
+}
+
+int fibonacci_tp2(int u0, int u1, int n)
 {
+    __int64 u2 = 0;
+    if(n > 0) {
+        int i = 1;
+        u2 = u1 + u0;
+        u1 = u2;
+        u0 = u1;
+        return fibonacci_tp2(u0, u1, n-1);
+    } else {
+        return u1;
+    }
+}
+
+void fibonacci_tp2_afficheur() {
+    int u0, u1, n = 0;
+    printf("Nombre pour U0 : ");
+    scanf("%lu", &u0);
+    printf("\nNombre pour U1 : ");
+    scanf("%lu", &u1);
+    printf("\nNombre pour n : ");
+    scanf("%lu", &n);
+    int fib = fibonacci_tp2(u0, u1, n);
+    printf("FIBO : %d", fib);
 }
