@@ -5,14 +5,13 @@
 #include "sources/tp1.h"
 #include "sources/shaya.h"
 #include "sources/tree.h"
+#include <string.h>
 
 
 int main(){
-    int limite = 20;
-    int *tab = tab_rand_without_print_limited(limite);
-    print_tab_with_size(tab, limite);
-    printf("\n");
-    tri_tab(tab, limite);
-    print_tab_with_size(tab, limite);
+    char *str;
+    printf("Choisir un mot : ");
+    scanf("%s", str);
+    printf("%d", palindrome(str));
     return 0;
 }

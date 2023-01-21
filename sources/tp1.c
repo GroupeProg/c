@@ -482,9 +482,87 @@ void tri_tab(int *tab, size_t size) {
 
     strcat = Rassembler deux chaines de caractères en une et une seule
 
+    strlen = Affiche la taille de la chaine de caractère
+
 */
 
+//Print 0 si c'est juste, Print -1 si c'est faux
 void stringcmp(void) {
     char ch1[20];
     char ch2[20];
+    printf("Veuillez ecrire ch1 : ");
+    scanf("%s", ch1);
+    printf("\nVeuillez ecrire ch2 : ");
+    scanf("%s", ch2);
+
+    printf("\n%d ", strcmp(ch1, ch2));
+}
+
+void stringcopy(void) {
+    char ch1[20];
+    char ch2[20];
+
+    printf("Veuillez ecrire ch1 : ");
+    scanf("%s", ch1);
+
+    strcpy(ch2, ch1);
+}
+
+char *stringcatenation() {
+    char ch1[20];
+    char ch2[20];
+    printf("Veuillez ecrire ch1 : ");
+    scanf("%s", ch1);
+    printf("\nVeuillez ecrire ch2 : ");
+    scanf("%s", ch2);
+
+    char *ch3 = strcat(ch1, ch2);
+    return (char *)ch3;
+}
+
+void str_print(char *str) {
+    printf("%s", str);
+}
+
+//Q4 - Si on écrit plus que ce qui est prévu à l'origine, le printf s'arrête à la limite du str ou s'arrête au premier espace
+void printc(void) {
+    char ch1[20];
+    printf("Veuillez ecrire ch1 : ");
+    scanf("%s", ch1);
+    printf("\n%s", ch1);
+}
+
+void triangle_word(char *mot, int nbr){
+    for(int i = 1; i <= nbr; i++) {
+        if (i >= strlen(mot))
+        {
+            printf("Valeur de nombre de lignes trop grande.");
+            break;
+        }
+        printf("%3d : ", i);
+        for(int j = 0; j < i; j++) {
+            printf("%c", mot[j]);
+        }
+        printf("\n");
+    }
+}
+
+char *str_upside_down(char *str) {
+    size_t size = strlen(str);
+    char *strud = malloc(size-1);
+    char *strsup = malloc(size-1);
+    strsup = str;
+    int index = 0;
+    for (int i = size; i > 0; i--) {
+        strud[index] = strsup[i-1];
+        index++;
+    }
+    if(strlen(strud) > size) {
+        strud[size] = '\0';
+    }
+    return (char *)strud;
+}
+
+int palindrome(char *str) {
+    return strcmp(str, str_upside_down(str));
 }
