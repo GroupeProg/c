@@ -10,6 +10,6 @@
 
 // TP2
 int main(){
-    
+    test_ultime_moyenne_etudiants();
     return 0;
 }

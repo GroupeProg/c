@@ -25,7 +25,7 @@ void ligne(int nbr) {
     printf("\n");
 }
 
-float moyenne(int a, int b, int c){
+float moyenne_3(int a, int b, int c){
     return (a+b+c)/3;
 }
 
@@ -105,27 +105,129 @@ int **notetest(int nbr_eleve, int nbr_matiere) {
  * 20 sera la note maximale disponible
  */
 
-float *moyenneGeneraleMatiere(int **tab, size_t n, size_t m) {
-    float *moy_mat = malloc(sizeof(float*) * m);
-    
+float moyenne(int a, int b) {
+    return (float)a/(float)b;
 }
 
-void moyenneParMatiere(int **tab, size_t n, size_t m)
-{   
+float *moyenneGeneraleMatiere(int **tab, size_t n, size_t m) {
+    float *moy_mat = malloc(sizeof(float*) * m* n);
+    for(int i = 0; i < m; i++) { // Attention, ici on selectionne en premier la matière
+        float moye = 0.0;
+        int somme = 0;
+        for(int j = 0; j < n; j++) { // Par nombre d'élèves
 
-    for(int i = 0; i < n; i++) {
-        tri_tab(tab[i], m);
+            somme += tab[j][i];
+        }
+        moye = moyenne(somme, n);
+        moy_mat[i] = moye;
     }
-    
+    return moy_mat;
+}
+
+float *moyenneGeneraleEleve(int **tab, size_t n, size_t m){
+    float *moy_ge = malloc(sizeof(float *) * m * n);
+    for (int i = 0; i < n; i++)
+    { // Attention, ici on selectionne en premier la matière
+        float moye = 0.0;
+        int somme = 0;
+        for (int j = 0; j < m; j++)
+        { // Par nombre d'élèves
+
+            somme += tab[i][j];
+        }
+        moye = moyenne(somme, m);
+        moy_ge[i] = moye;
+    }
+    return moy_ge;
+}
+
+int *meilleureNoteMatiere(int **tab, size_t n, size_t m) {
+
+    int *m_mat = malloc(sizeof(int *) * m * n);
+    for (int i = 0; i < m; i++)
+    { // Attention, ici on selectionne en premier la matière
+        int best = 0;
+        int note = 0;
+        for (int j = 0; j < n; j++)
+        { // Par nombre d'élèves
+
+            note = tab[j][i];
+            if(note > best) {
+                best = note;
+            }
+        }
+        m_mat[i] = best;
+    }
+    return m_mat;
+}
+
+
+
+void print_tab_with_size_float(float *tab, size_t size)
+{
+    printf("[");
+    for (int i = 0; i < size; i++)
+    {
+        if (i != 0)
+        {
+            printf(", ");
+        }
+        printf("%f", tab[i]);
+    }
+    printf("]");
+}
+
+void etudiant_matiere(int **tab, size_t n, size_t m)
+{
+    // 1. Les notes moyennes des matières
+
+    float *moyenne = moyenneGeneraleMatiere(tab, n, m);
+    printf("Moyenne Generale par Matiere : ");
+    print_tab_with_size_float(moyenne, m);
+    printf("\n");
+
+    // 2. Les moyennes générales des étudiants
+
+    float *moyenne_eleve = moyenneGeneraleEleve(tab, n, m);
+    printf("Moyenne Generale par Eleve : ");
+    print_tab_with_size_float(moyenne_eleve, n);
+    printf("\n");
+
+    // 3. La meilleure note d'une matière
+
+    int *bests_notes = meilleureNoteMatiere(tab, n, m);
+    printf("Meilleure Note par Matiere : ");
+    print_tab_with_size(bests_notes, n);
+    printf("\n");
+
+    // La meilleure note tout confondu (meilleure note des élèves dans une matière , afficher matière, élève, et la note)
+    // -> Un peu la flemme
+
 }
 
 /**
  * Pas de réflexion, on lance et tout est fait pour nous l'afficher
 */
-void testultime_moyenne_etudiants() {
-    int nbr_eleve = 20;
-    int nbr_matiere = 10;
+void test_ultime_moyenne_etudiants() {
+    int nbr_eleve = 2;
+    int nbr_matiere = 3;
     int **enotes = notetest(nbr_eleve, nbr_matiere);
     print_tab_double_dimension(enotes, nbr_eleve, nbr_matiere);
-    moyenneParMatiere(enotes, nbr_eleve, nbr_matiere);
+    etudiant_matiere(enotes, nbr_eleve, nbr_matiere);
+}
+
+
+/**
+ * 
+ * Fonctions Réccurcives
+ * 
+*/
+
+
+int facto(int n) {
+
+}
+
+void facto_afficheur()
+{
 }
