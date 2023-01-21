@@ -340,7 +340,19 @@ int *tab_rand_without_print_limited(int limite)
     return (int *)tab;
 }
 
-float moyenne() {
+int *tab_rand_without_print_double_limited(int limite_int, int limite_elem)
+{
+
+    int *tab = malloc(limite_elem * sizeof(int));
+    srand(time_time());
+    for (int i = 0; i < limite_elem; i++)
+    {
+        tab[i] = rand() % limite_int;
+    }
+    return (int *)tab;
+}
+
+float moyenne_tab() {
     int *tab = tab_rand_without_print();
     float moy = tab[0];
     for (int i = 1; i < 100; i++)
@@ -401,7 +413,10 @@ void print_tab_with_size(int *tab, size_t size) {
     printf("[");
     for (int i = 0; i < size; i++)
     {
-        printf("%d, ", tab[i]);
+        if(i != 0) {
+            printf(", ");
+        }
+        printf("%3d", tab[i]);
     }
     printf("]");
 }
