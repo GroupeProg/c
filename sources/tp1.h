@@ -7,3 +7,8 @@ int multi();
 int pyramide();
 int factoriel();
 int sum();
+int longue_cons();
+int nombre_parfait();
+int fibonacci();
+int tableau();
+int tableau_paire();

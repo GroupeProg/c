@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "tp.h"
+#include "tp1.h"
 
 //Premiers programmes:
 //Un programme qui demande a l’utilisateur son prenom, puis son nom, et affiche 'Bonjour prenom nom'.
@@ -115,10 +115,131 @@ int factoriel() {
 int sum(){
     int a, t = 0;
     do {
-        printf("\nEntier: ");
+        printf("\nEntier : ");
         scanf("%d", &a);
         t += a;
     }while (a != 0);
     printf("\n La somme donne: %d \n", t);
     return 0;
+}
+
+int longue_cons(){
+    int nbr, sum, temp_nbr;
+    nbr = 0;
+    sum = 0;
+    temp_nbr = 0;
+    int winner[2] = {0, 0};
+
+    do {
+        printf("\nEntier : ");
+        scanf("%d", &nbr);
+        if(nbr == temp_nbr) {
+            sum += 1;
+        }
+        else {
+            if(winner[1] < sum) {
+                winner[0] = nbr;
+                winner[1] = sum;
+            }
+            temp_nbr = nbr;
+            sum = 1;
+        }
+    } while (nbr != 0);
+    printf("Le nombre avec le plus d'appels est %d avec %d fois renseign&.", winner[0], winner[1]);
+
+    return 0;
+}
+
+int nombre_parfait() {
+    //Un nombre est parfait si la somme de ses diviseur vaut son nombre
+    int nbr, sum, index;
+    printf("\nEntier : ");
+    scanf("%d", &nbr);
+
+    int *parfait = (int *)malloc(nbr * sizeof(int));
+    index = 0;
+    sum = 0;
+
+    for(int i = 1; i <= nbr; i++) {
+
+        for(int j = 1; j < i; j++) {
+            if(i%j == 0) {
+                sum += j;
+            }
+        }
+
+        if(i == sum){
+            
+            parfait[index] = i;
+            index++;
+        }
+        sum = 0;
+    }
+    printf("\n");
+    //Afficher les nombres parfaits
+    printf("<%d> => ", index);
+    for(int k = 0; k < index; k++) {
+        if (k!=0)
+        {
+            printf(", ");
+        }
+        printf("%d", parfait[k]);
+    }
+
+    free(parfait);
+
+    return 0;
+}
+
+
+
+//Fibonacci => Ui = Ui-1 + U1-2 -> Ui+1 = Ui + Ui-1, cependant je n'ai pas encore la technique pour pouvoir afficher d'énormes nombres
+int fibonacci(){
+    unsigned long long u0, u1, u2 = 0;
+    printf("Nombre pour U0 : ");
+    scanf("%lu", &u0);
+    printf("\nNombre pour U1 : ");
+    scanf("%lu", &u1);
+    int i = 1;
+
+    do{
+        unsigned u2 = u1 + u0;
+        u1 = u2;
+        u0 = u1;
+        i++;
+        printf("%lu, ", u2);
+
+    }while(i != 100);
+    printf("\n\nu2 = %lu", u2);
+
+    return 0;
+}
+
+int tableau() {
+    int tab[100];
+    for(int i = 0; i<100; i++) {
+        tab[i] = i+1;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        printf("%d, ",tab[i]);
+    }
+}
+
+int tableau_paire()
+{
+    int tab[100];
+    for (int i = 0; i < 100; i++)
+    {
+        tab[i] = i + 1;
+    }
+    for (int i = 0; i < 100; i += 2)
+    {
+        printf("Attention, ca affiche des nombres impaires car sur les index paires, on a n+1.\n");
+        printf("%d, ", tab[i]);
+    }
+}
+
+int random() {
+    
 }
