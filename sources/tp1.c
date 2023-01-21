@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
 #include "tp1.h"
 
 //Premiers programmes:
@@ -241,5 +242,42 @@ int tableau_paire()
 }
 
 int random() {
-    
+    int min, max, val = 0;
+    printf("Min : ");
+    scanf("%d", &min);
+    printf("\nMax : ");
+    scanf("%d", &max);
+    srand(time(NULL));
+
+    while(val < min && val > max) {
+        val = rand();
+    }
+
+    print("%d", val);
+    return 0;
+}
+int randint(int min, int max)
+{
+    int val = 0;
+    srand(time(NULL));
+
+    while (val < min && val > max)
+    {
+        val = rand();
+    }
+
+    return val;
+}
+
+int tab_rand() {
+
+    int tab[100];
+    for (int i = 0; i < 100; i++)
+    {
+        tab[i] = randint(0, 999);
+    }
+    for (int i = 0 ; i < 100; i++) {
+        
+    }
+    return 0;
 }

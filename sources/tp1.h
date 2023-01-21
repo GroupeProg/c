@@ -12,3 +12,6 @@ int nombre_parfait();
 int fibonacci();
 int tableau();
 int tableau_paire();
+int random();
+int randint(int min, int max);
+int tab_rand();
