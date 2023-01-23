@@ -1,5 +1,9 @@
 #include <stdlib.h>
 
+#ifndef TP1_H_INCLUDED
+#define TP1_H_INCLUDED
+
+
 //Première commandes
 int quisuisje(void);
 int permute(void);
@@ -44,3 +48,5 @@ void printc(void);
 void triangle_word(char *mot, int nbr);
 char *str_upside_down(char *str);
 int palindrome(char *str);
+
+#endif
