@@ -11,6 +11,8 @@
 
 // TP2
 int main(){
-    
+
+    T_date date = saisieDate(1, fevrier, 2020);
+    afficheDateWithDay(date);
     return 0;
 }
