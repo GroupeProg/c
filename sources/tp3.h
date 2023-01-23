@@ -54,5 +54,10 @@ void calendar(T_mois mois, int annee);
 // Pointeurs
 
 void pointeurs();
+void tab_with_pointeur();
+
+// Tableaux bis repetita
+
+float *allocTabFloat(int size);
 
 #endif

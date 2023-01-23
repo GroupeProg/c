@@ -230,9 +230,71 @@ void fibonacci_tp2_afficheur();
 
 ### TP3
 
-Le TP3 vient tout juste de débuter, il n'y a aucune réelle fonction pour l'instant
-
 ```c
-typedef struct date Date;
-void afficheDate(Date D);
+// Structures de données
+
+typedef enum{
+    lundi       = 1,
+    mardi       = 2,
+    mercredi    = 3,
+    jeudi       = 4,
+    vendredi    = 5,
+    samedi      = 6,
+    dimanche    = 7
+}T_jour;
+
+typedef enum {
+    janvier     = 1,
+    fevrier     = 2,
+    mars        = 3,
+    avril       = 4,
+    mai         = 5,
+    juin        = 6,
+    juillet     = 7,
+    aout        = 8,
+    septembre   = 9,
+    octobre     = 10,
+    novembre    = 11,
+    decembre    = 12
+}T_mois;
+
+typedef struct{
+
+    T_jour jour;
+    T_mois mois;
+    int jour_mois;
+    int annee;
+
+} T_date;
+
+void afficheDate(T_date d);
+T_date saisieDate(int jour_du_mois, T_mois mois, int annee);
+void afficheDateWithDay(T_date date);
+T_date date_zero(void);
+int bissextile(int annee);
+int get_nbr_jour(T_jour mois, int annee);
+const char *get_day_name(T_jour jour);
+const char *get_mounth_name(T_jour mois);
+int get_days_from_date_zero(T_date date);
+int get_day_enum(T_date date);
+T_date saisieDate_with_prompt(void);
+void modifie_annee(T_date *date, int annee);
+void calendar(T_mois mois, int annee);
+
+// Pointeurs
+
+void pointeurs();
+void tab_with_pointeur();
+
+// Tableaux bis repetita
+
+float *allocTabFloat(int size);
 ```
+
+### TP4
+
+Le TP4 a été déjà traité avec `Pile`, `File` et `Arbre Binaires`.
+
+### Mini Projet - Opérations sur les images
+
+Il vient d'être débuté, plus de détails viendront au fur et à mesure du temps.

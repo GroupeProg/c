@@ -5,6 +5,7 @@
 #include <math.h>
 
 #include "tp3.h"
+#include "tp2.h"
 #include "tp1.h"
 
 #define annee_zero 1970
@@ -292,5 +293,36 @@ void pointeurs() {
     //Adresse de la variable pointée
     printf("\n%p", *p);
 
+    int *ptr = p;
+    printf("\n%d", *ptr);
+    *ptr = 1212;
+
+    printf("\n%d", *ptr);
+}
+
+//Fonction pour tester la navigation d'un tableau sans utiliser le dit tableau, seulement avec un autre pointeur
+void tab_with_pointeur() {
 
 }
+
+//Pointeurs à finir plus tard$
+
+/**
+ * 
+ * 
+ * Tableaux bis repetita
+ * 
+ * 
+*/
+
+float *allocTabFloat(int size) {
+    return (float *)malloc(sizeof(float *) * size);
+}
+
+void allocTabFloatPrompt() {
+    int size;
+    printf("Donnez la taille du tableau : ");
+    scanf("%d", &size);
+    float *tab = allocTabFloat(size);
+}
+

@@ -12,6 +12,6 @@
 // TP2
 int main(){
 
-    calendar(fevrier, 201);
+    pointeurs();
     return 0;
 }
