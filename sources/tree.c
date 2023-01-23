@@ -19,7 +19,7 @@ typedef struct tree *T_btree; // Pourquoi *T_btree au lieu de T_btree, car les b
 */
 T_btree creer_arbre_vide() {
     T_btree tree = malloc(3*sizeof(T_btree));
-    tree->elem = (int)NULL;
+    tree->elem = 0;
     tree->subleft = NULL;
     tree->subright = NULL;
 

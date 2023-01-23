@@ -282,7 +282,7 @@ int random_rand() {
 
 int time_time()
 {
-    return difftime(time(NULL), (int)NULL);
+    return difftime(time(NULL), 0);
 }
 
 int randint(int min, int max)
