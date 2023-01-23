@@ -25,3 +25,4 @@ T_date date_jma(T_jour jour, T_mois mois, int annee){
     return date;
 }
 
+//Sans besoin de faire la Q6, on voit normalement que celui retourné n'a pas la même valeur-espace mémoire
