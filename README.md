@@ -2,7 +2,7 @@
 
 # Code Groupe en C
 
-Ici seront ajouté tous les codes avec Wail Ait Hamedate, Daniel Alves Araujo, Antony 'Kiwi' et Lucas Espinar.
+Ici seront ajouté tous les codes avec Daniel Alves Araujo, Antony 'Kiwi' et Lucas Espinar.
 Ce groupe a été créé dans le but de pouvoir partager le code normalement ce qui sera bien pour les groupe plus tard en projet.
 
 ## Licence

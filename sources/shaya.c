@@ -5,24 +5,17 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "shaya.h"
 
-struct array
+T_Array init_Array(int taille)
 {
-    int *elem;
-    int size;
-};
-
-typedef struct array Array;
-
-Array empty_Array()
-{
-    Array a;
-    a.elem = (int *)malloc(sizeof(int));
+    T_Array a;
+    a.elem = (int *)malloc(sizeof(int) * taille);
     a.size = 0;
     return a;
 }
 
-void afficher_array(Array a) {
+void afficher_array(T_Array a) {
     printf("[");
     for(int i = 0; i <= a.size - 1; i++) {
         printf("%d", a.elem[i]);
@@ -33,9 +26,9 @@ void afficher_array(Array a) {
     printf("]");
 }
 
-void append_int_array(Array *a, int e)
+void append_int_array(T_Array *a, int e)
 {
-    // ici on va pointer vers le pointeur Array en prio
+    // ici on va pointer vers le pointeur T_Array en prio
     (*a).size += 1;
     int *temp = (int *)malloc((*a).size * sizeof(int));
     if ((*a).size-1!=0) {
@@ -51,6 +44,6 @@ void append_int_array(Array *a, int e)
     }
 }
 
-void free_array(Array *a) {
+void free_array(T_Array *a) {
     free((*a).elem);
 }
