@@ -273,7 +273,7 @@ int random() {
     srand(clock()+time(NULL)*CLOCKS_PER_SEC);
 
     while(val < min && val > max) {
-        val = rand();
+        val = (rand()*power(10, 4)+rand()) % max;
     }
 
     printf("%d", val);
@@ -291,7 +291,7 @@ int randint(int min, int max)
     srand(clock()+time(NULL)*CLOCKS_PER_SEC);
 
     do {
-        val = rand();
+        val = (rand()*power(10, 4)+rand()) % max;
     }while((val < min) || (val > max));
 
     return val;
