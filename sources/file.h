@@ -1,3 +1,7 @@
+#ifndef FILE_H_INCLUDED
+#define FILE_H_INCLUDED
+
+
 typedef struct cellule{
     struct cellule *tete;
     struct cellule *queue;
@@ -9,3 +13,5 @@ void defiler(T_file *file);
 void afficher_queue(T_file file);
 void afficher_tete_queue(T_file file);
 void afficher_tete(T_file file);
+
+#endif
