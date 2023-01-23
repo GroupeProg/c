@@ -9,14 +9,19 @@
 
 
 void afficheDate(T_date d) {
-    printf("%d/", d.annee);
-    printf("%d/", (int)d.mois);
-    printf("%d/", (int)d.jour);
+
+    printf("%d/", d.jour);
+    printf("%d/", d.mois);
+    printf("%d", d.annee);
 }
 
 
-/*
-T_date dateVide( void ){
+T_date date_jma(T_jour jour, T_mois mois, int annee){
+    T_date date;
+    date.annee = annee;
+    date.mois = mois;
+    date.jour = jour;
 
+    return date;
 }
-*/
+
