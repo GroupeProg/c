@@ -270,7 +270,7 @@ int random() {
     scanf("%d", &min);
     printf("\nMax : ");
     scanf("%d", &max);
-    srand(time(NULL));
+    srand(clock()+time(NULL)*CLOCKS_PER_SEC);
 
     while(val < min && val > max) {
         val = rand();
@@ -288,7 +288,7 @@ int time_time()
 int randint(int min, int max)
 {
     int val = 0;
-    srand(time_time());
+    srand(clock()+time(NULL)*CLOCKS_PER_SEC);
 
     do {
         val = rand();
