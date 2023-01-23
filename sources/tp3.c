@@ -41,8 +41,8 @@ T_date saisieDate(int jour_du_mois, T_mois mois, int annee)
 // Retourne la
 T_date date_zero()
 {
-    T_date date0 = saisieDate(1, janvier, 1970);
-    date0.jour = jeudi;
+    T_date date0 = saisieDate(1, janvier, 1);
+    date0.jour = lundi;
     return date0;
 }
 

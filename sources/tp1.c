@@ -264,7 +264,7 @@ int tableau_paire()
     }
 }
 
-int random() {
+int random_rand() {
     int min, max, val = 0;
     printf("Min : ");
     scanf("%d", &min);

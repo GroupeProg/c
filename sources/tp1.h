@@ -23,7 +23,7 @@ int fibonacci(void);
 //tableaux
 int tableau(void);
 int tableau_paire(void);
-int random(void);
+int random_rand(void);
 int randint(int min, int max);
 int time_time(void);
 int *tab_rand(void);

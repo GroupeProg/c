@@ -12,7 +12,7 @@
 // TP2
 int main(){
 
-    T_date date = saisieDate(1, fevrier, 2020);
+    T_date date = saisieDate(23, janvier, 900);
     afficheDateWithDay(date);
     return 0;
 }
