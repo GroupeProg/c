@@ -143,6 +143,9 @@ void cut(T_btree tree, char l_or_r) {
     }
 };
 
+/**
+ * Vérifie si un arbre est une feuille.
+*/
 bool isleaf(T_btree tree) {
     if(tree->subleft == NULL && tree->subright == NULL) {
         return true;
@@ -190,6 +193,9 @@ unsigned long long get_nbr_leaf(T_btree tree) {
     }
 }
 
+/**
+ * Cette fonction permet de tester les autres fonctions.
+*/
 int test_tree()
 {
     T_btree tree = creer_arbre_test(4);

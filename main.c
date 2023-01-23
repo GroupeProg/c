@@ -12,7 +12,6 @@
 // TP2
 int main(){
 
-    T_date date = saisieDate(23, janvier, 900);
-    afficheDateWithDay(date);
+    random_rand();
     return 0;
 }

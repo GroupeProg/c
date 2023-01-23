@@ -84,6 +84,7 @@ int multi_aux(int a, int b) {
     }
 }
 
+// Un programme qui demande deux entiers a et b a l’utilisateur et calcule leur produit sans utiliser l’operateur ’*’.
 int multi() {
     int a, b;
     printf("Valeur a (positif) : ");
@@ -168,6 +169,7 @@ int longue_cons(){
     return 0;
 }
 
+//Fonction qui permet d'avoir une liste de nombres parfaits compris entre 1 et l'entier à renseigner
 int nombre_parfait() {
     //Un nombre est parfait si la somme de ses diviseur vaut son nombre
     int nbr, sum, index;
@@ -239,6 +241,7 @@ int fibonacci(){
  */
 
 
+//Créé un tableau de taille 100 avec tab[i] = i+1
 int tableau() {
     int tab[100];
     for(int i = 0; i<100; i++) {
@@ -250,6 +253,7 @@ int tableau() {
     }
 }
 
+// Exercice qui permet d'afficher les cases d'indices paires d'un tableau
 int tableau_paire()
 {
     int tab[100];
@@ -264,6 +268,7 @@ int tableau_paire()
     }
 }
 
+// Permet de demander à l'utilisateur deux intervalle, une valeur au hasard en sera tirée.
 int random_rand() {
     int min, max, val = 0;
     printf("Min : ");
@@ -272,7 +277,8 @@ int random_rand() {
     scanf("%d", &max);
     srand(clock()+time(NULL)*CLOCKS_PER_SEC);
 
-    while(val < min && val > max) {
+    while(val <= min) {
+        printf("%d\r", val);
         val = (rand()*power(10, 4)+rand()) % max;
     }
 
@@ -280,11 +286,13 @@ int random_rand() {
     return 0;
 }
 
+// Time ne permet pas d'avoir comme il faut le temps que nous demandions, cette fonction permet de forcer la récupération de time.
 int time_time()
 {
     return difftime(time(NULL), 0);
 }
 
+//Comme Random_rand mais en fonction, permet de retourner un nombre au hasard compris entre min et max.
 int randint(int min, int max)
 {
     int val = 0;
@@ -297,6 +305,7 @@ int randint(int min, int max)
     return val;
 }
 
+//Imprime un tableau de 100 cases, avec des valeurs au hasard comprises entre 0 et 999.
 int *tab_rand() {
 
     int *tab = malloc(100 * sizeof(int));
@@ -317,6 +326,7 @@ int *tab_rand() {
     return (int *)tab;
 }
 
+// Comme tab_rand, renvoit un tableau de 100 cases, avec des valeurs au hasard comprises entre 0 et 999.
 int *tab_rand_without_print()
 {
 
@@ -329,6 +339,7 @@ int *tab_rand_without_print()
     return (int *)tab;
 }
 
+// Comme tab_rand, renvoit un tableau de 100 cases, avec des valeurs au hasard comprises entre 0 et limite. (tab_rand_without_print avait une limite définie)
 int *tab_rand_without_print_limited(int limite)
 {
 
@@ -341,6 +352,7 @@ int *tab_rand_without_print_limited(int limite)
     return (int *)tab;
 }
 
+// Comme tab_rand, renvoit un tableau de n cases, avec des valeurs au hasard comprises entre 0 et limite. (tab_rand_without_print avait une limite définie et tab_rand_without_print_limited avait une limite de cases)
 int *tab_rand_without_print_double_limited(int limite_int, int limite_elem)
 {
 
@@ -353,6 +365,7 @@ int *tab_rand_without_print_double_limited(int limite_int, int limite_elem)
     return (int *)tab;
 }
 
+// Renvoie la moyenne des valeurs d'un tableau
 float moyenne_tab() {
     int *tab = tab_rand_without_print();
     float moy = tab[0];
@@ -365,6 +378,7 @@ float moyenne_tab() {
     return moy;
 }
 
+// Sépare les négatifs des positifs d'un tableau, et renvoie le tableau.
 int *sep_pos_neg(){
     int *tab = tab_rand_without_print();
     int *pos = malloc(100 * sizeof(int));
@@ -384,6 +398,8 @@ int *sep_pos_neg(){
     return (int *)tab;
 }
 
+
+// Permet de faire des puissances de a puissance n
 int power(int a, int b) {
     int result = 1;
     for(int i = 0; i < b; i++) {
@@ -392,6 +408,7 @@ int power(int a, int b) {
     return result;
 }
 
+// Permet de faire des puissances de a puissance n en unsigned
 unsigned int unsigned_power(unsigned int a, unsigned int b) {
     unsigned int result = 1;
     for (int i = 0; i < b; i++)
@@ -401,6 +418,7 @@ unsigned int unsigned_power(unsigned int a, unsigned int b) {
     return result;
 }
 
+// Permet d'imprimer un tableau de 1 seule dimension. Attention, cependant cela ne parche qu'avec des tableaux à dimensions définies. Avec malloc cette fonction ne sert à rien, préférer print_tab_with_size
 void print_tab(int *tab) {
     size_t size = sizeof(tab)/sizeof(tab[0]);
     printf("[");
@@ -410,6 +428,7 @@ void print_tab(int *tab) {
     printf("]");
 }
 
+// Permet d'imprimer sur l'écran un tableau de une et une seule dimension. Elle est recommandée pour les tableaux utilisant malloc. En échange, il faut renseigner la taille du dit tableau.
 void print_tab_with_size(int *tab, size_t size) {
     printf("[");
     for (int i = 0; i < size; i++)
@@ -422,6 +441,8 @@ void print_tab_with_size(int *tab, size_t size) {
     printf("]");
 }
 
+
+// Imprime sur l'écran le tableau binaire créé à partur d'un nombre renseigné en paramètre.
 int int_to_bin(int nbr) {
     int pow = 0;
     int nbr10 = 0;
@@ -450,6 +471,7 @@ int int_to_bin(int nbr) {
     return 0;
 }
 
+// Cette fonction ne sert qu'à tester Sleep de la bibliothèque <windows.h> qui affiche au fur et à mesure le tableau binaire de 0 à limite.
 void print_tab_bin_loop(int limite, int milliseconds) {
     for (int i = 0; i <= limite; i++)
     {
@@ -460,6 +482,7 @@ void print_tab_bin_loop(int limite, int milliseconds) {
     }
 }
 
+// Cette fonction trie un tableau. Attention, cette fonction écrase les données au départ
 void tri_tab(int *tab, size_t size) {
 
     int temp = 0;
@@ -502,7 +525,7 @@ void tri_tab(int *tab, size_t size) {
 
 */
 
-//Print 0 si c'est juste, Print -1 si c'est faux
+//Demande à l'utilisateur deux STR et vérifie leur égalité, et cela print 0 si c'est juste, print -1 si c'est faux. Ne retourne rien.
 void stringcmp(void) {
     char ch1[20];
     char ch2[20];
@@ -514,6 +537,7 @@ void stringcmp(void) {
     printf("\n%d ", strcmp(ch1, ch2));
 }
 
+//Copie un str dans un autre. Ne retourne rien
 void stringcopy(void) {
     char ch1[20];
     char ch2[20];
@@ -524,6 +548,7 @@ void stringcopy(void) {
     strcpy(ch2, ch1);
 }
 
+// Somme deux strings pour n'en faire qu'un, et retourne le résultat.
 char *stringcatenation() {
     char ch1[20];
     char ch2[20];
@@ -540,7 +565,10 @@ void str_print(char *str) {
     printf("%s", str);
 }
 
-//Q4 - Si on écrit plus que ce qui est prévu à l'origine, le printf s'arrête à la limite du str ou s'arrête au premier espace
+/**
+ * Cette fonction n'a d'utilité que pour la question Q4 Chaine de caractères :
+ * Q4 - Si on écrit plus que ce qui est prévu à l'origine, le printf s'arrête à la limite du str ou s'arrête au premier espace.
+ */
 void printc(void) {
     char ch1[20];
     printf("Veuillez ecrire ch1 : ");
@@ -548,6 +576,7 @@ void printc(void) {
     printf("\n%s", ch1);
 }
 
+//Comme avec pyramide, il s'agit d'une pyramide sans espace des caractères d'un mot.
 void triangle_word(char *mot, int nbr){
     for(int i = 1; i <= nbr; i++) {
         if (i >= strlen(mot))
@@ -563,6 +592,7 @@ void triangle_word(char *mot, int nbr){
     }
 }
 
+//Inverse une chaine de caractère et renvoie le résultat.
 char *str_upside_down(char *str) {
     size_t size = strlen(str);
     char *strud = malloc(size-1);
@@ -579,6 +609,7 @@ char *str_upside_down(char *str) {
     return (char *)strud;
 }
 
+// Palindrome teste si une chaine de caractère et son "upside_down" (récupérable avec la fonction str_upside_down) sont égales.
 int palindrome(char *str) {
     return strcmp(str, str_upside_down(str));
 }

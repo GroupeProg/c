@@ -40,11 +40,12 @@ T_date saisieDate(int jour_du_mois, T_mois mois, int annee);
 void afficheDateWithDay(T_date date);
 T_date date_zero(void);
 int bissextile(int annee);
-int nbr_jour(T_jour mois, int annee);
+int get_nbr_jour(T_jour mois, int annee);
 const char *get_day_name(T_jour jour);
 const char *get_mounth_name(T_jour mois);
 int get_days_from_date_zero(T_date date);
 int get_day_enum(T_date date);
 T_date saisieDate_with_prompt(void);
+void modifie_annee(T_date *date, int annee);
 
 #endif

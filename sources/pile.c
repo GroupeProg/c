@@ -91,6 +91,9 @@ void afficherPile(T_pile p)
     }
 }
 
+/**
+ * Renvoie la taille de la pile.
+*/
 int lenPile(T_pile p)
 {
     if (p == NULL)

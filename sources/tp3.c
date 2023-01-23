@@ -7,8 +7,11 @@
 #include "tp3.h"
 #include "tp1.h"
 
+#define annee_zero 1970
+#define jour_zero jeudi
 
 
+// Permet d'afficher une date créée à partir de T_date.
 void afficheDate(T_date d) {
 
     printf("%d/", d.jour);
@@ -16,6 +19,8 @@ void afficheDate(T_date d) {
     printf("%d", d.annee);
 }
 
+
+// Permet d'afficher une date avec le jour, le numéro de jour, le mois et l'année.
 void afficheDateWithDay(T_date date) {
 
     date.jour = get_day_enum(date);
@@ -27,7 +32,7 @@ void afficheDateWithDay(T_date date) {
 
 //Sans besoin de faire la Q6, on voit normalement que celui retourné n'a pas la même valeur-espace mémoire
 
-
+// Renvoie une date avec le jour du mois, le mois et l'année.
 T_date saisieDate(int jour_du_mois, T_mois mois, int annee)
 {
     T_date date;
@@ -38,15 +43,15 @@ T_date saisieDate(int jour_du_mois, T_mois mois, int annee)
     return date;
 }
 
-// Retourne la
+// Retourne la date du premier jour de l'ordinateur.
 T_date date_zero()
 {
-    T_date date0 = saisieDate(1, janvier, 1);
-    date0.jour = lundi;
+    T_date date0 = saisieDate(1, janvier, annee_zero);
+    date0.jour = jour_zero;
     return date0;
 }
 
-//Sert à déterminer si une année est Bissextile ou non
+//Sert à déterminer si une année est Bissextile ou non.
 int bissextile(int annee)
 {
     if ((annee % 4 == 0 && annee % 100 != 0) || (annee % 400 == 0))
@@ -59,7 +64,8 @@ int bissextile(int annee)
     }
 }
 
-int nbr_jour(T_jour mois, int annee) {
+// Renvoie le nombre de jour pour un mois en particulier. Ne pas oublier de renseigner l'année.
+int get_nbr_jour(T_jour mois, int annee) {
 
     switch (mois)
     {
@@ -96,6 +102,7 @@ int nbr_jour(T_jour mois, int annee) {
     }
 }
 
+// Renvoie en string le jour avec l'énumération de son propre jour.
 const char *get_day_name(T_jour jour) {
     switch(jour) {
         case lundi: 
@@ -116,6 +123,7 @@ const char *get_day_name(T_jour jour) {
     }
 }
 
+// Renvoie en string le mois avec l'énumération de son propre mois.
 const char *get_mounth_name(T_jour mois)
 {
     switch (mois)
@@ -149,18 +157,19 @@ const char *get_mounth_name(T_jour mois)
     }
 }
 
+// Renvoie le nombre de jour écoulé depuis le jour 1 de l'ordinateur.
 int get_days_from_date_zero(T_date date) {
     T_date zero = date_zero();
     int cumul = 0;
     
     for(int i = zero.annee; i < date.annee; i++) {
         for(int j = 1; j <= decembre; j++) {
-            cumul += nbr_jour(j, i);
+            cumul += get_nbr_jour(j, i);
         }
     }
 
     for(int mounth = 1; mounth < date.mois; mounth++) {
-        cumul += nbr_jour(mounth, date.annee);
+        cumul += get_nbr_jour(mounth, date.annee);
     }
 
     cumul += date.jour_mois;
@@ -168,14 +177,44 @@ int get_days_from_date_zero(T_date date) {
     return cumul-1;
 }
 
+// Renvoie le numéro du jour de la semaine avec une date.
 int get_day_enum(T_date date) {
     T_date zero = date_zero();
     int jour = zero.jour + get_days_from_date_zero(date);
     return ((jour-1)%7)+1;
 }
 
+
+// Modifie l'année de la date
+void modifie_annee(T_date *date, int annee) {
+    date->annee = annee;
+}
+
+// Demande à l'utilisateur avec un petit programme la date qu'il souhaite en tatonant
 T_date saisieDate_with_prompt()
 {
-    printf("Bonjour, selectionner jour dans le mois");
-    //flemme pour l'instant
+    
+    int annee;
+    T_mois mois;
+    printf("Bonjour, selectionnez l'annee : ");
+    scanf("%d", &annee);
+    printf("\nQuel mois ? : ");
+    scanf("\nLu Ma Me Je Ve Sa Di");
+    int jour_max = get_nbr_jour(mois, annee);
+
+    T_date date = saisieDate(1, mois, annee);
+    T_jour jour = get_day_enum(date);
+    printf("JOUR : %d, JOUR_MAX : %d", jour, jour_max);
+    /*
+    int i = 1;
+    for(int i; i < jour; i++) {
+        printf("   ");
+    }
+    for(int j = 1; j < jour_max; j++) {
+        if((j+i-1)%7 == 0) {
+            printf("\n");
+        }
+        printf("%d ", i-jour_max);
+    }
+    */
 }
