@@ -1,6 +1,8 @@
 #ifndef TP3_H_INCLUDED
 #define TP3_H_INCLUDED
 
+// Structures de données
+
 typedef enum{
     lundi       = 1,
     mardi       = 2,
@@ -47,5 +49,10 @@ int get_days_from_date_zero(T_date date);
 int get_day_enum(T_date date);
 T_date saisieDate_with_prompt(void);
 void modifie_annee(T_date *date, int annee);
+void calendar(T_mois mois, int annee);
+
+// Pointeurs
+
+void pointeurs();
 
 #endif

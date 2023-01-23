@@ -199,22 +199,98 @@ T_date saisieDate_with_prompt()
     printf("Bonjour, selectionnez l'annee : ");
     scanf("%d", &annee);
     printf("\nQuel mois ? : ");
-    scanf("\nLu Ma Me Je Ve Sa Di");
+    scanf("%d", &mois);
+    printf("\n\n     %s %4d", get_mounth_name(mois), annee);
+    printf("\n Lu Ma Me Je Ve Sa Di");
     int jour_max = get_nbr_jour(mois, annee);
 
     T_date date = saisieDate(1, mois, annee);
     T_jour jour = get_day_enum(date);
-    printf("JOUR : %d, JOUR_MAX : %d", jour, jour_max);
-    /*
+
+    printf("\n");
     int i = 1;
-    for(int i; i < jour; i++) {
+    for (i; i < (int)(jour); i++)
+    {
         printf("   ");
     }
-    for(int j = 1; j < jour_max; j++) {
-        if((j+i-1)%7 == 0) {
+    for(int j = 1; j <= jour_max; j++){
+        if((j+i-1)%7 == 1) {
             printf("\n");
         }
-        printf("%d ", i-jour_max);
+        printf("%3d", j);
     }
-    */
+
+    printf("\n\nQuel jour dans le mois de %s %d ? : ", get_mounth_name(mois), annee);
+    
+    int jour_renseigne = 285;
+
+    while((jour_renseigne <= 0) || (jour_renseigne > jour_max)) {
+        scanf("%d", &jour_renseigne);
+        if ((jour_renseigne <= 0) || (jour_renseigne > jour_max)) {
+            printf("\nRenseignez un jour valide ! : ");
+        }
+        else {
+            break;
+        }
+    }
+
+    date.jour_mois = jour_renseigne;
+    printf("Vous avez selectionne ");
+    afficheDateWithDay(date);
+
+    return date;
+}
+
+//Afficher un calendrier d'un mois de l'année, les deux sont choisis. 
+void calendar(T_mois mois, int annee) {
+
+    printf("\n     %s %4d", get_mounth_name(mois), annee);
+    printf("\n Lu Ma Me Je Ve Sa Di");
+    int jour_max = get_nbr_jour(mois, annee);
+
+    T_date date = saisieDate(1, mois, annee);
+    T_jour jour = get_day_enum(date);
+
+    printf("\n");
+    int i = 1;
+    for (i; i < (int)(jour); i++)
+    {
+        printf("   ");
+    }
+    for (int j = 1; j <= jour_max; j++)
+    {
+        if ((j + i - 1) % 7 == 1)
+        {
+            printf("\n");
+        }
+        printf("%3d", j);
+    }
+}
+
+/**
+ * 
+ * 
+ * Pointeurs
+ * 
+ * 
+*/
+
+//Initialise un pointeur, le modifie, et pointe vers un pointeur
+void pointeurs() {
+    int a = 6;
+    int *p = &a;
+    
+    //Adresse de a
+    printf("%p\n", a);
+
+    //Adresse de p
+    printf("%p", p);
+
+    //Valeur à la valeur pointée
+    printf("\n%d", *p);
+
+    //Adresse de la variable pointée
+    printf("\n%p", *p);
+
+
 }

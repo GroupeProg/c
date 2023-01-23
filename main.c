@@ -12,6 +12,6 @@
 // TP2
 int main(){
 
-    random_rand();
+    calendar(fevrier, 201);
     return 0;
 }
