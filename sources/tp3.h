@@ -35,6 +35,6 @@ typedef struct{
 } T_date;
 
 void afficheDate(T_date d);
-T_date dateVide( void );
+T_date date_jma(T_jour jour, T_mois mois, int annee);
 
 #endif
