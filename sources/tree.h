@@ -1,4 +1,9 @@
 #include <stdbool.h>
+
+#ifndef TREE_H_INCLUDED
+#define TREE_H_INCLUDED
+
+#include <stdbool.h>
 typedef struct tree *T_btree;
 
 T_btree creer_arbre_vide();
@@ -13,3 +18,5 @@ unsigned long long get_nbr_leaf(T_btree tree);
 unsigned long long get_nbr_noeuds(T_btree tree);
 bool isleaf(T_btree tree);
 int test_tree();
+
+#endif
