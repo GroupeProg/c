@@ -1,3 +1,7 @@
+#ifndef TP2_H_INCLUDED
+#define TP2_H_INCLUDED
+
+
 #include <stdlib.h>
 
 void inversions(int *tab, size_t size);
@@ -20,3 +24,5 @@ int facto(int n);
 void facto_afficheur();
 int fibonacci_tp2(int u0, int u1, int n);
 void fibonacci_tp2_afficheur();
+
+#endif
