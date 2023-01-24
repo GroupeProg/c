@@ -9,6 +9,7 @@
  *  Exemple :
  *  Afin d'afficher une échelle de gris avec le ppm, les valeurs des pixels vont être les suivants
  *
+ *  P2
  *  24 7 <- La taille longueur largeur
  *  15 <- Les graduations de gris
  *  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
