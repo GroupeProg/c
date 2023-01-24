@@ -5,7 +5,7 @@ typedef struct{
     int rouge;
     int vert;
     int blue;
-    unsigned char;
+    unsigned char *cha;
 } pixel;
 
 typedef struct{
@@ -14,10 +14,8 @@ typedef struct{
     int Y;
 }image;
 
-typedef struct{
-    int **pixel_tab;
-    int X;
-    int Y;
-}image_gris;
+char *int_to_str(int a);
+pixel creerPiexel(int r, int v, int b);
+void afficherPixel(pixel pix);
 
 #endif // MP_H_INCLUDED
