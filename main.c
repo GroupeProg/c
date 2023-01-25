@@ -9,9 +9,12 @@
 #include "sources/shaya.h"
 #include "sources/tree.h"
 
+#include "mini_projet/image.h"
+
 // TP2
 int main(){
 
-    pointeurs();
+    pixel pix = creerPiexel(125, 125, 6);
+    afficherPixel(pix);
     return 0;
 }

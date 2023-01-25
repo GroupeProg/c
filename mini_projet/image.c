@@ -3,6 +3,10 @@
 #include <string.h>
 #include "image.h"
 
+#define PIXEL_TYPE "p3"
+
+#include "../sources/tp1.h"
+
 /**
  *
  *  Les images seront dans le format PPM :
@@ -20,59 +24,63 @@
  *  0  3  0  0  0  0  0  7  7  7  7  0  0 11 11 11 11  0  0 15  0  0  0  0
  *  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
  *
- * On ne peut travailler qu'avec des fichiers ppm.
+ *  On ne peut travailler qu'avec des fichiers ppm.
 */
 
+//Transforme un nombre en chaine de caractère
 char *int_to_str(int a) {
-    char *chr = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+    char chr[10] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
     int puissance = 0;
+
     while(power(10, puissance) < a) {
         puissance++;
     }
+
     puissance--;
-    char *chr_return = (char *)malloc(puissance * sizeof(char *));
+    int taille  = puissance+1;
+    char *chr_return = malloc(taille * sizeof(char));
 
     int b = a/power(10, puissance);
 
-    chr_return[-1] = chr[b];
+    chr_return[puissance] = chr[b];
     puissance--;
-
-    while(puissance >= 0){
-        a -= b*power(10, puissance+1);
-        b = a/power(10, puissance);
+    while (puissance >= 0)
+    {
+        a -= b * power(10, puissance + 1);
+        b = a / power(10, puissance); // Diviser pour n'avoir que la 10 puissance voulu
         chr_return[puissance] = chr[b];
+        puissance--;
     }
 
-    str_upside_down(chr_return);
+    if(strlen(chr_return) > taille) {
+        chr_return[taille] = '\0';
+    }
+    chr_return = str_upside_down(chr_return);
     return chr_return;
 }
 
+//Créé un pixel rvb
 pixel creerPiexel(int r, int v, int b) {
     pixel pix;
 
-    if(b+r+v <= 255){
+    if(b + r + v <= 255){
         pix.blue = b;
         pix.rouge = r;
         pix.vert = v;
-        char c = " ";
-        char rc = (char)r;
-        char bc = (char)b;
-        char vc = (char)v;
-        //strcat(c, rc);
-        //strcat(c, bc);
-       // strcat(c, vc);
-        pix.cha = c;
         return pix;
     }
     else {
-        pix.blue = 0;
-        pix.rouge = 0;
-        pix.vert = 0;
-        pix.cha = "Error";
+        pix.blue = -1;
+        pix.rouge = -1;
+        pix.vert = -1;
         return pix;
     }
 }
 
 void afficherPixel(pixel pix) {
-    printf("Rouge : %d\nVert : %d\nBleu : %d", pix.rouge, pix.vert, pix.blue);
+    printf("Rouge : %3d\nVert : %3d\nBleu : %3d", pix.rouge, pix.vert, pix.blue);
+}
+
+void creerImage(image Img) {
+    
 }
