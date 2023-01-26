@@ -134,11 +134,12 @@ pixel creerPixel(int r, int v, int b) {
 // Créer un pixel avec des valeurs aléatoires
 pixel creerPixelRandom()
 {
-        int r, v, b = 0;
+        int r, v, b, test = 0;
+        test = rand() % 12;
 
-        r = rand() % 255;
-        v = rand() % (255 - r);
-        b = rand() % (255 - v - r);
+        r = rand() % 256;
+        v = rand() % 256;
+        b = rand() % 256;
 
         pixel pix;
         pix.rouge = r;
