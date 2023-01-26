@@ -16,7 +16,7 @@
 // TP2
 int main(){
     
-    image img = creerImageRandom(1920,1080);
+    image img = creerImageRandom(3040,1440);
     saveToPPM(img);
     return 0;
 }

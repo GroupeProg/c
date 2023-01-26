@@ -30,6 +30,8 @@
  *  On ne peut travailler qu'avec des fichiers ppm.
 */
 
+
+// Deuxième version d'inversion des caractères
 char *str_upside_down_2(char *str_para)
 {
     char *str = malloc(sizeof(str_para)-1);
@@ -47,6 +49,7 @@ char *str_upside_down_2(char *str_para)
     return str;
 }
 
+// Additionne 3 chaines de caractères avec un espace au milieu
 char *strcat3(char *a, char *b, char *c)
 {
     int size = sizeof(a)*2 + sizeof(b)*2 + sizeof(c)*2 + sizeof(" ") * 3;
@@ -128,6 +131,7 @@ pixel creerPixel(int r, int v, int b) {
     }
 }
 
+// Créer un pixel avec des valeurs aléatoires
 pixel creerPixelRandom()
 {
         int r, v, b = 0;
@@ -162,6 +166,7 @@ image creerImage(int X, int Y) {
     return img;
 }
 
+// Crééer une image avec des pixel random
 image creerImageRandom(int X, int Y)
 {
     srand(clock() + time(NULL) * CLOCKS_PER_SEC);
@@ -179,29 +184,31 @@ image creerImageRandom(int X, int Y)
     return img;
 }
 
+// Permet de sauvegarder des fichier au format pixel-image en PPM
 int saveToPPM(image img) {
     FILE *fichier = fopen("mini_projet/img.ppm", "w");
     int nbr_pixel = img.X * img.Y;
 
-    fputs(PIXEL_TYPE, fichier);
+    fputs(PIXEL_TYPE, fichier); // On inscrit le type de PPM
     fputc('\n', fichier);
-    fputs(int_to_str(img.X), fichier);
+    fputs(int_to_str(img.X), fichier); // On renseigne les dimensions
     fputc(' ', fichier);
     fputs(int_to_str(img.Y), fichier);
     fputc('\n', fichier);
-    fputs("255", fichier);
+    fputs("255", fichier); // Le 255 indique qu'on travaille sur du RVB
     fputc('\n', fichier);
 
     for (int i = 0; i < nbr_pixel; i++)
     {
 
-        //if ((i % img.X == 0) && (i >= img.X))
-        //{
+        if ((i % img.X == 0) && (i >= img.X))
+        {
             fputc('\n', fichier);
-        //}
+        }
 
         if(errno != 0) {
             printf("ERREUR ! %d", errno);
+            return errno;
         }
 
         fputs(img.pixel_tab[i].chr, fichier);
@@ -209,3 +216,7 @@ int saveToPPM(image img) {
     fclose(fichier);
     return 0;
 }
+
+// A faire -> loadFromPPM
+// Transformer en Sepia et placer un filtre
+// Se concentrer sur les contour pour faire un cadre
