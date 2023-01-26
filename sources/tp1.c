@@ -594,18 +594,21 @@ void triangle_word(char *mot, int nbr){
 
 //Inverse une chaine de caractère et renvoie le résultat.
 char *str_upside_down(char *str) {
-    size_t size = strlen(str);
-    char *strud = malloc(size-1);
-    char *strsup = malloc(size-1);
+    size_t size = strlen(str)-1;
+    char *strud = malloc(size);
+    char *strsup = malloc(size);
     strsup = str;
     int index = 0;
     for (int i = size; i > 0; i--) {
         strud[index] = strsup[i-1];
         index++;
     }
+
     if(strlen(strud) > size) {
+        printf(strud);
         strud[size] = '\0';
     }
+    printf("\n");
     return (char *)strud;
 }
 

@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <errno.h>
+
 #include "sources/pile.h"
 #include "sources/file.h"
 #include "sources/tp1.h"
@@ -13,8 +15,8 @@
 
 // TP2
 int main(){
-
-    pixel pix = creerPiexel(125, 125, 6);
-    afficherPixel(pix);
+    
+    image img = creerImageRandom(1920,1080);
+    saveToPPM(img);
     return 0;
 }
