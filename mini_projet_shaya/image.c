@@ -4,8 +4,8 @@
 #include <Windows.h>
 #include <time.h>
 #include <errno.h>
-#include "image.h"
 
+#include "image.h"
 #define PIXEL_TYPE "P3"
 
 #include "../sources/tp1.h"
@@ -181,7 +181,7 @@ int str_to_int(char *str) {
 pixel creerPixel(int r, int v, int b) {
     pixel pix;
 
-    if(b + r + v <= 255){
+    if(b + r + v <= 255*3){
         pix.blue = b;
         pix.rouge = r;
         pix.vert = v;
@@ -198,6 +198,7 @@ pixel creerPixel(int r, int v, int b) {
         pix.blue = -1;
         pix.rouge = -1;
         pix.vert = -1;
+        pix.chr = "Error";
         return pix;
     }
 }
@@ -216,7 +217,7 @@ pixel creerPixelRandom()
         pix.rouge = r;
         pix.vert = v;
         pix.blue = b;
-            pix.chr = strcat3(
+        pix.chr = strcat3(
             int_to_str(r),
             int_to_str(v),
             int_to_str(b));
@@ -245,11 +246,11 @@ image creerImageRandom(int X, int Y)
     image img;
     img.X = X;
     img.Y = Y;
-    img.pixel_tab = malloc(X * Y * sizeof(pixel) + 1);
+    img.pixel_tab = malloc(X * Y * sizeof(pixel) - 1);
+    img.nbrPix = 0;
 
-    int i;
-    for(i = 0; i < img.X * img.Y; i++) {
-
+    for(int i = 0; i < (img.X * img.Y); i++) {
+        img.nbrPix++;
         img.pixel_tab[i] = creerPixelRandom();
     }
 
@@ -257,8 +258,8 @@ image creerImageRandom(int X, int Y)
 }
 
 // Permet de sauvegarder des fichier au format pixel-image en PPM
-int saveToPPM(image img) {
-    FILE *fichier = fopen("mini_projet/img.ppm", "w");
+int saveToPPM(image img, char *path) {
+    FILE *fichier = fopen(path, "w");
     int nbr_pixel = img.X * img.Y;
 
     fputs(PIXEL_TYPE, fichier); // On inscrit le type de PPM
@@ -279,7 +280,7 @@ int saveToPPM(image img) {
         }
 
         if(errno != 0) {
-            printf("ERREUR ! %d", errno);
+            printf("ERREUR ! %d\n", errno);
             return errno;
         }
 
@@ -289,9 +290,10 @@ int saveToPPM(image img) {
     return 0;
 }
 
+// Fonction permettant de récupérer un fichier PPM et de le charger
 image loadFromPPM(char *path) {
     image img;
-    FILE *fichier = fopen(path, "r");
+    FILE *fichier = fopen(path, "r+");
     if(errno == 22) {
         perror("Erreur 22 : Impossible d'ouvrir le fichier !");
     }
@@ -316,10 +318,12 @@ image loadFromPPM(char *path) {
     i = 3;
 
     char type[] = {contenu[0], contenu[1], '\0'};
-    char *xi, *yi = malloc(10 * sizeof(char));
+    char *xi = (char *)malloc(10 * sizeof(char));
+    char *yi = (char *)malloc(10 * sizeof(char));
     int x, y;
 
     recup = contenu[i];
+
     while(recup != ' ') {
         xi[i-3] = recup;
         i++;
@@ -328,9 +332,140 @@ image loadFromPPM(char *path) {
     xi[i-3] = '\0';
     x = str_to_int(xi);
 
-    printf("\"%s\" -> %d", xi, strlen(xi));
+    i++;
+    recup = contenu[i];
+    while(recup != '\n') {
+        yi[i-4-strlen(xi)] = contenu[i];
+        i++;
+        recup = contenu[i];
+    }
+    yi[i - 4 - strlen(xi)] = '\0';
+    y = str_to_int(yi);
 
+    img.X = x;
+    img.Y = y;
+
+    int decalage = 5 + strlen(xi) + strlen(yi);
+
+    i++;
+
+    char *nuance_str = malloc(3 * sizeof(char));
+    int nuance;
+
+    recup = contenu[i];
+    while (recup != '\n')
+    {
+        nuance_str[i - decalage] = recup;
+        i++;
+        recup = contenu[i];
+    }
+    nuance_str[i - decalage] = '\0';
+
+    nuance = str_to_int(nuance_str);
+
+    decalage += 4;
+
+    char *a = malloc(sizeof(char));
+
+    pixel *pixtab = malloc(x * y * sizeof(pixel)*2);
+
+    int index = 0;
+
+    while(recup != '\0') {
+        pixel pix;
+        int r, v, b = 0;
+        char *rc = malloc(3 * sizeof(char));
+        char *vc = malloc(3 * sizeof(char));
+        char *bc = malloc(3 * sizeof(char));
+
+        recup = contenu[i];
+        
+        if (recup == ' ' || recup == '\n' || recup == '\0')
+        {
+            i++;
+            recup = contenu[i];
+        }
+
+        for(int j = 0; j < 4; j++) {
+            recup = contenu[i];
+            if (recup == ' ')// || recup == '\n' || recup == '\0')
+            {
+                rc[j] = '\0';
+                break;
+            }
+            rc[j] = recup;
+            i++;
+        }
+
+        recup = contenu[i];
+
+        if (recup == ' ')// || recup == '\n')
+        {
+            i++;
+            recup = contenu[i];
+        }
+
+        for (int k = 0; k < 4; k++)
+        {
+            recup = contenu[i];
+            if (recup == ' ')// || recup == '\n')
+            {
+                vc[k] = '\0';
+                break;
+            }
+            vc[k] = recup;
+            i++;
+        }
+
+        recup = contenu[i];
+
+        if (recup == ' ')// || recup == '\n')
+        {
+            i++;
+            recup = contenu[i];
+        }
+
+        for (int l = 0; l < 4; l++)
+        {
+            recup = contenu[i];
+            if (recup == ' ')// || recup == '\n')
+            {
+                bc[l] = '\0';
+                break;
+            }
+            bc[l] = recup;
+            i++;
+        }
+
+        r = str_to_int(rc);
+        v = str_to_int(vc);
+        b = str_to_int(bc);
+
+        pix = creerPixel(r, v, b);
+        if(pix.rouge == -1) {
+            printf("ERROR ON PIX NUMBER %d\n", index);
+            break;
+        }
+
+        pixtab[index] = pix;
+
+        if(index == (x * y)-1) {
+            break;
+        }
+        index++;
+    }
+    index++;
+    img.nbrPix = index;
+    img.pixel_tab = pixtab;
+    fclose(fichier);
     return img;
+}
+
+void imagePixel(image img) {
+    for(int i = 0; i < img.X * img.Y; i++) {
+        afficherPixel(img.pixel_tab[i]);
+        printf("\n---------\n");
+    }
 }
 
 // Transformer en Sepia et placer un filtre

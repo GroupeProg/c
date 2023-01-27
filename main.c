@@ -11,15 +11,20 @@
 #include "sources/shaya.h"
 #include "sources/tree.h"
 
-#include "mini_projet/image.h"
+#include "mini_projet_shaya/image.h"
 
 // TP2
 int main(){
+
     
-    image img = creerImageRandom(20, 150);
-    saveToPPM(img);
-    loadFromPPM("./mini_projet/img.ppm");
-    printf("\nDone.");
+    image img = creerImageRandom(1920, 1080);
+    saveToPPM(img, "mini_projet_shaya/img.ppm");
+    printf("SUIVANT !");
+    free(img.pixel_tab);
+
+    image img2 = loadFromPPM("./mini_projet_shaya/img.ppm");
+    printf("\n%d", img2.nbrPix);
+    //imagePixel(img);
 
     return 0;
 }
