@@ -16,7 +16,10 @@
 // TP2
 int main(){
     
-    image img = creerImageRandom(3040,1440);
+    image img = creerImageRandom(20, 150);
     saveToPPM(img);
+    loadFromPPM("./mini_projet/img.ppm");
+    printf("\nDone.");
+
     return 0;
 }

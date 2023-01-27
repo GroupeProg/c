@@ -106,6 +106,77 @@ char *int_to_str(int a) {
     return chr_return;
 }
 
+/**
+ * Fonction qui permet de retourner un nombre à partir d'une chaine de caractère.
+ * Il est possible de renseigner des nombre pour un char afin de donner un nombre ascii
+ * 1 = 49
+ * 2 = 50
+ * ...
+ * 9 = 57
+*/
+int str_to_int(char *str) {
+
+    int int_return = 0;
+    int taille = strlen(str);
+    char *chr_ud = str_upside_down_2(str);
+
+    for(int i = 0; i < strlen(str); i++){
+        int str = (int)(chr_ud[i]);
+        int current_int;
+
+        switch (str)
+        {
+        case 48:
+            current_int = 0;
+            break;
+
+        case 49:
+            current_int = 1;
+            break;
+
+        case 50:
+            current_int = 2;
+            break;
+
+        case 51:
+            current_int = 3;
+            break;
+
+        case 52:
+            current_int = 4;
+            break;
+
+        case 53:
+            current_int = 5;
+            break;
+
+        case 54:
+            current_int = 6;
+            break;
+
+        case 55:
+            current_int = 7;
+            break;
+
+        case 56:
+            current_int = 8;
+            break;
+
+        case 57:
+            current_int = 9;
+            break;
+
+        default:
+            return int_return;
+            break;
+        }
+
+        int_return += current_int * power(10, i);
+    }
+    return int_return;
+
+}
+
 //Créé un pixel rvb
 pixel creerPixel(int r, int v, int b) {
     pixel pix;
@@ -218,6 +289,36 @@ int saveToPPM(image img) {
     return 0;
 }
 
-// A faire -> loadFromPPM
+image loadFromPPM(char *path) {
+    image img;
+    FILE *fichier = fopen(path, "r");
+    if(errno == 22) {
+        perror("Erreur 22 : Impossible d'ouvrir le fichier !");
+    }
+
+    char recup;
+
+    // Avoir la taille du fichier
+    fseek(fichier, 0L, SEEK_END);
+    size_t size_file = ftell(fichier);
+    fseek(fichier, 0L, 0);
+
+    char *contenu = (char *)malloc(size_file * sizeof(char));
+    int i = 0;
+
+    while (recup != EOF)
+    {
+        recup = fgetc(fichier); // On lit le caractère
+        contenu[i] = recup;
+        i++;
+    }
+    contenu[i] = '\0';
+    
+    printf(contenu);
+    i = 2;
+
+    return img;
+}
+
 // Transformer en Sepia et placer un filtre
 // Se concentrer sur les contour pour faire un cadre
