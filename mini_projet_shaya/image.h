@@ -12,6 +12,7 @@ typedef struct{
     pixel *pixel_tab;
     int X;
     int Y;
+    int nbrPix;
 }image;
 
 char *int_to_str(int a);
@@ -25,7 +26,8 @@ image creerImageRandom(int X, int Y);
 pixel creerPixelRandom(void);
 
 void afficherPixel(pixel pix);
-int saveToPPM(image img);
+int saveToPPM(image img, char *path);
 image loadFromPPM(char *path);
+void imagePixel(image img);
 
 #endif // MP_H_INCLUDED
