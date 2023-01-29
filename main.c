@@ -13,6 +13,7 @@
 #include "mini_projet_kaez/image.h"
 
 
+#include "mini_projet_shaya/image.h"
 
 int main(){
 
