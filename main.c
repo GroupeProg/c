@@ -10,16 +10,15 @@
 #include "sources/tp3.h"
 #include "sources/shaya.h"
 #include "sources/tree.h"
+#include "mini_projet_kaez/image.h"
 
-#include "mini_projet/image.h"
 
-// TP2
+
 int main(){
-    
-    image img = creerImageRandom(20, 150);
-    saveToPPM(img);
-    loadFromPPM("./mini_projet/img.ppm");
-    printf("\nDone.");
 
+    image azer = init_image(10,1);
+    image *pimage = &azer;
+    save(pimage, "mini_projet_kaez/img.ppm");
+   
     return 0;
 }
