@@ -1,6 +1,6 @@
 from os import listdir, system
 
-folders = [".","sources", "mini_projet_shaya_shaya", "mini_projet_kaez"]
+folders = [".","sources", "mini_projet_kaez", "mini_projet_shaya"]
 authorized = ['.h', '.c']
 files = []
 
