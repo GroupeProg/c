@@ -113,25 +113,26 @@ return 0;
     int db = img1.img[1][1].b;
 */
 
-
-    image *abc = init_image(1,1);
+    
+    image abc = init_image(1920,1080);
+    
     int Y,X;
-    Y = abc->sizeY;
-    X = abc->sizeX;
-    pixel **tab = malloc(sizeof(pixel) * X * Y);
-    tab = abc->img;
-
+    Y = abc.sizeY;
+    X = abc.sizeX;
+    
     for( int i = 0; i < Y; i++ ){
-            for(int j = 0; j < X; j++){
+        for(int j = 0; j < X; j++){
 
-                unsigned char ar = tab[i][j].r;
-                unsigned char av = tab[i][j].v;
-                unsigned char ab = tab[i][j].b;
-                printf("%d %d %d\n", ar, av, ab);
-            }
-            printf("\n");
+            unsigned char ar = abc.img[i][j].r;
+            unsigned char av = abc.img[i][j].v;
+            unsigned char ab = abc.img[i][j].b;
+            printf("i = %d, j = %d :%d %d %d\n", i, j, ar, av, ab);
         }
-
+        printf("\n");
+    }
+    
+    
+    return 0;
     //image *pimage = &azer;
     //save(pimage, "mini_projet_kaez/img.ppm");
 

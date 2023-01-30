@@ -20,7 +20,7 @@ typedef struct{
 /* Prototypes. */
 pixel init_pixel(unsigned char rouge, unsigned char vert, unsigned char bleu);//Fonction qui initialise un pixel.
 pixel random_pixel(void);//Fonction qui initialise un pixel avec des valeurs random entre 0 et 256.
-image *init_image(int sx, int sy);//Fonction qui initialise une image.
+image init_image(int sx, int sy);//Fonction qui initialise une image.
 int writePixel(FILE *fichier, pixel);//Fonction qui un pixel dans une fonction donnee.
 image supLine(image pimg);//Fonction qui supprime la premiere ligne d'une image donnee.
 int writeLine(FILE *fichier, image pimg);//Fonction qui la premiere ligne d'une image dans un fichier donnee.

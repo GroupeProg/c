@@ -118,30 +118,33 @@ pixel random_pixel(){
 }
 
 //fonction qui initialise une image avec des pixels de couleur aleatoire en lui donnant les dimensions de sa hauteur et sa largeur.
-image *init_image(int sx, int sy){
+image init_image(int sx, int sy){
     int len = sx * sy; //len est un entier qui contient le nombre de pixels de l'image.(hauteur * largeur)
 
     image img1; //on cree une image img1.
 
-    img1.img = malloc(sizeof(pixel) * len); //on alloue de la memoire pour la nouvelle image cpimg.
+    img1.img = malloc(sizeof(pixel*) * sy); //on alloue de la memoire pour la nouvelle image cpimg.
+
+    for (int i=0; i < sy; i++){
+        // allocation de chaque tableau à 1 dimension
+        img1.img[i] = malloc(sizeof(pixel) * sx);
+    } 
 
     img1.sizeX = sx; //on affecte a la largeur de img1, sx.
     img1.sizeY = sy; //on affecte a la hauteur de img1, sy.
 
-    pixel **tab = malloc(sizeof(pixel) * len);
 
+    
     for(int i = 0; i < sy ; i++){ //on itere du nombre de pixels de l'image.
         for(int j = 0; j < sx ; j++){
-
             pixel actpix = random_pixel(); //on cree un pixel actpix et lui affecte un pixel avec des valeurs aleatoires.
-            tab[i][j] = actpix;//on affecte au pixel de la case i du tableau de pixels de img1, le pixel actpix.
+            img1.img[i][j] = actpix;//on affecte au pixel de la case i du tableau de pixels de img1, le pixel actpix.
 
         }
     }
-    img1.img = tab;
-    free(tab);
-    image *imgr = &img1;
-    return imgr; //on renvoi l'image
+    
+
+    return img1; //on renvoi l'image
 }
 
 
