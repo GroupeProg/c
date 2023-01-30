@@ -24,7 +24,7 @@ image init_image(int sx, int sy);//Fonction qui initialise une image.
 int writePixel(FILE *fichier, pixel);//Fonction qui un pixel dans une fonction donnee.
 image supLine(image pimg);//Fonction qui supprime la premiere ligne d'une image donnee.
 int writeLine(FILE *fichier, image pimg);//Fonction qui la premiere ligne d'une image dans un fichier donnee.
-int save(image *p, char *name);//Fonction qui ecrit une image entiere donnee dans un fichier donnee dans le format .ppm.
+int save(image img, char *name);//Fonction qui ecrit une image entiere donnee dans un fichier donnee dans le format .ppm.
 
 
 

@@ -4,90 +4,6 @@
 #include "image.h"
 
 
-//Fonction qui ecrit dans un fichier un pixel.
-int writePixel(FILE *fichier, pixel pix){
-    fprintf(fichier, "%d %d %d\n", pix.r, pix.v, pix.b);
-    //si pix.r = 255, pix.v = 255, pix.b = 255 :
-    //cela devrait ecrire dans le fichier: 255 255 255
-    return 0;
-}
-
-/*fonction qui supprime la premiere ligne d'une image.
-image supLine(image pimg){
-    int X = pimg.sizeX; //on affecte la largeur de l'image pimg a X.
-    int Y = pimg.sizeY; //on affecte la hauteur de l'image pimg a Y.
-
-    int len = (X * Y)-(X); //len sera la taille en pixels de la nouvelle image; X * Y  c'est la taille total de pixels dans l'image, et -X pour enlever une ligne.
-
-    image *cpimg = (image *)malloc(sizeof(image)); //on alloue de la memoire pour la nouvelle image cpimg.
-
-    assert( cpimg != NULL ); //on teste si le malloc a bien pu allouer la memoire demandee.
-
-    for(int i = 0; i < len; i++){ //on parcoure le tableau de pixels de l'image originale le meme nombre de fois que de cases dans le tableau de la nouvelle image.
-
-        cpimg->img[i] = pimg.img[i + X]; //la case i de la nouvelle image va prendre la case i + la largeur de l'image originale.
-
-        //exemple: tab_original = {pixel1, pixel2, pixel3, pixel4, pixel5, pixel6} pour X = 3 et Y = 2.
-        //concretement dans le fichier cela serait : pixel1
-        //                                           pixel2
-        //                                           pixel3
-        //
-        //                                           pixel4
-        //                                           pixel5
-        //                                           pixel6
-        //quand i = 0 la case i du nouveau tableau vaudra la case i du tableau original + X, donc elle vaudra p4
-        //quand i = 1 elle vaudra p5 et quand i = 2, p6
-        //donc new_tab =  {pixel4, pixel5, pixel6}
-        //et on a effectue cette operation 3 fois car (X * Y)-X = (3 * 2)-3 = (6)-3 = 3
-        //en gros, on veut que le nouveau tableau fasse le meme nombre de pixel que l'original moins le nombre de pixel de une ligne
-    }
-    cpimg->sizeY = Y - 1; //la hauteur de la nouvelle image est donc la meme que celle d'origine - 1
-    cpimg->sizeX = X; //la largeur ne change pas, mais on est obliger de l'affecter car nous ne l'avons pas fait precedemment dans la fonction. nous avons juste touche au tableau et la hauteur
-    free(pimg.img); //on libere la memoire du tableau originale qui avait ete alloue dans la fonction init_image.
-    return *cpimg; //on renvoi la nouvelle image.
-}*/
-
-//fonction qui ecrit dans un fichier la premiere ligne de pixels d'une image.
-int writeLine(FILE *fichier, image pimg){
-    int X = pimg.sizeX; //on affecte la largeur de l'image pimg a X.
-
-    for(int i = 0; i < X; i++){ //on parcoure autant de fois qu'il y a de pixels dans la premiere ligne.
-        pixel pix = pimg.img[0][i]; //on cree un pixel pix qui contient le pixel de la case i.
-        writePixel(fichier, pix); //on ecrit le pixel pix dans le fichier.
-    }
-    fprintf(fichier, "\n");//on revient a la ligne dans le fichier pour que ce soit pret pour ecrire la prochaine ligne.
-    return 0;
-}
-/**
-
-//Fonction qui ecrit dans fichier une image de pixels au format .ppm.
-int save(image *pimg, char *name){
-
-    image img2 = *pimg; //on cree une nouvelle image dans laquelle on met l'image originale.
-    int X = img2.sizeX; //on affecte la largeur de l'image img2 a X.
-    int Y = img2.sizeY; //on affecte la hauteur de l'image img2 a Y.
-
-    FILE *fichier = NULL; //on cree un pointeur sur fichier qui point vers NULL.
-    fichier = fopen(name, "w"); //on ouvre le fichier pour ecrire dedans.
-
-    if (fichier != NULL){ //si le fichier s'est bien ouvert, donc il ne pointe pas vers NULL.
-
-        fprintf(fichier, "P3\n%d %d\n255\n", X, Y); on ecrit dans le fichier la base des fichier .ppm, ce qui ferait:  P3
-        *                                                                                                                X Y (hauteur et largeur)
-        *                                                                                                                255
-
-        writeLine(fichier, img2); //on ecrit dans le fichier la premiere ligne de img2.
-
-        for(int i = 1; i < Y ; i++){ //on repete autant de fois qu'il y a de lignes (hauteur)
-            img2 = supLine(img2); //img2 maintennt contient l'image originale moins la premiere ligne.
-            writeLine(fichier, img2); //on ecrit la premier ligne de img2 dans le fichier (qui serait en fait la deuxieme ligne de l'image originale)
-
-        }
-        fclose(fichier); //on ferme le fichier
-    }else printf("Le pointeur vers le fichier est null");//sinon on print dans la console que le fichier pointe vers NULL.
-    return 0;
-}
-**/
 //fonction qui initialise un pixel en lui donnant les valeurs de rvb.
 pixel init_pixel(unsigned char rouge, unsigned char vert, unsigned char bleu){
     pixel pix; // on cree le pixel pix.
@@ -151,9 +67,8 @@ image init_image(int sx, int sy){
 
 
 //Fonction qui ecrit dans fichier une image de pixels au format .ppm.
-int save(image *pimg, char *name){
+int save(image img2, char *name){
 
-    image img2 = *pimg; //on cree une nouvelle image dans laquelle on met l'image originale.
     int X = img2.sizeX; //on affecte la largeur de l'image img2 a X.
     int Y = img2.sizeY; //on affecte la hauteur de l'image img2 a Y.
 
@@ -164,7 +79,12 @@ int save(image *pimg, char *name){
     if (fichier != NULL){ //si le fichier s'est bien ouvert, donc il ne pointe pas vers NULL.
         for( int i = 0; i < Y; i++ ){
             for(int j = 0; j < X; j++){
-                fprintf(fichier, "%d %d %d\n", img2.img[i][j].r, img2.img[i][j].v, img2.img[i][j].b);
+
+                unsigned char ar = img2.img[i][j].r;
+                unsigned char av = img2.img[i][j].v;
+                unsigned char ab = img2.img[i][j].b;
+
+                fprintf(fichier, "%d %d %d\n", ar, av, ab);
             }
             fprintf(fichier, "\n");
         }

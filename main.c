@@ -113,8 +113,8 @@ return 0;
     int db = img1.img[1][1].b;
 */
 
-    
-    image abc = init_image(1920,1080);
+    /*
+    image abc = init_image(20,10);
     
     int Y,X;
     Y = abc.sizeY;
@@ -130,12 +130,12 @@ return 0;
         }
         printf("\n");
     }
+    */
     
-    
-    return 0;
-    //image *pimage = &azer;
-    //save(pimage, "mini_projet_kaez/img.ppm");
 
+    image randimage = init_image(1920,1080);
+    save(randimage, "mini_projet_kaez/img.ppm");
+    return 0;
    
 
 
