@@ -9,4 +9,5 @@ int tq1();
 
 /* Fonctions */
 
-int ligne();
+int tab2dim();
+int moy_gen_etu();
