@@ -15,6 +15,7 @@ pixel init_pixel(unsigned char rouge, unsigned char vert, unsigned char bleu){
     return pix; //on renvoi le pixel.
 }
 
+
 //fonction qui initalise un pixel avec des valeurs aleatoires.
 pixel random_pixel(){
     int tab_of_colors[3]; //on cree un tableau avec 3 cases pour y stocker la valeur de r, v et b.
@@ -33,37 +34,33 @@ pixel random_pixel(){
     return pix; //on renvoi le pixel.
 }
 
+
 //fonction qui initialise une image avec des pixels de couleur aleatoire en lui donnant les dimensions de sa hauteur et sa largeur.
 image init_image(int sx, int sy){
     int len = sx * sy; //len est un entier qui contient le nombre de pixels de l'image.(hauteur * largeur)
 
     image img1; //on cree une image img1.
 
-    img1.img = malloc(sizeof(pixel*) * sy); //on alloue de la memoire pour la nouvelle image cpimg.
+    img1.img = malloc(sizeof(pixel*) * sy); //on alloue de la memoire pour le tableau de sous tableaux.
 
-    for (int i=0; i < sy; i++){
-        // allocation de chaque tableau à 1 dimension
-        img1.img[i] = malloc(sizeof(pixel) * sx);
+    for (int i=0; i < sy; i++){// le nombre de sous tableaux     
+        img1.img[i] = malloc(sizeof(pixel) * sx);//allocation pour chaque tableau dans le gros tableau.
     } 
 
     img1.sizeX = sx; //on affecte a la largeur de img1, sx.
     img1.sizeY = sy; //on affecte a la hauteur de img1, sy.
-
-
     
     for(int i = 0; i < sy ; i++){ //on itere du nombre de pixels de l'image.
         for(int j = 0; j < sx ; j++){
+
             pixel actpix = random_pixel(); //on cree un pixel actpix et lui affecte un pixel avec des valeurs aleatoires.
-            img1.img[i][j] = actpix;//on affecte au pixel de la case i du tableau de pixels de img1, le pixel actpix.
+            img1.img[i][j] = actpix;//on affecte au pixel de la case i,j du tableau de pixels de img1, le pixel actpix.
 
         }
     }
     
-
     return img1; //on renvoi l'image
 }
-
-
 
 
 //Fonction qui ecrit dans fichier une image de pixels au format .ppm.
@@ -72,24 +69,113 @@ int save(image img2, char *name){
     int X = img2.sizeX; //on affecte la largeur de l'image img2 a X.
     int Y = img2.sizeY; //on affecte la hauteur de l'image img2 a Y.
 
-    FILE *fichier = NULL; //on cree un pointeur sur fichier qui point vers NULL.
+    FILE *fichier = NULL; //on cree un pointeur sur fichier qui pointe vers NULL.
     fichier = fopen(name, "w"); //on ouvre le fichier pour ecrire dedans.
     fprintf(fichier, "P3\n%d %d\n255\n", X, Y); //on ecrit dans le fichier la base des fichier .ppm
 
     if (fichier != NULL){ //si le fichier s'est bien ouvert, donc il ne pointe pas vers NULL.
-        for( int i = 0; i < Y; i++ ){
-            for(int j = 0; j < X; j++){
+        for( int i = 0; i < Y; i++ ){ // on parcoure la hauteur
+            for(int j = 0; j < X; j++){ // on parcoure la largeur
 
-                unsigned char ar = img2.img[i][j].r;
-                unsigned char av = img2.img[i][j].v;
-                unsigned char ab = img2.img[i][j].b;
+                unsigned char ar = img2.img[i][j].r;//on met le r du pixel a la case i,j dans ar
+                unsigned char av = img2.img[i][j].v;//on met le v du pixel a la case i,j dans av
+                unsigned char ab = img2.img[i][j].b;//on met le b du pixel a la case i,j dans ab
 
-                fprintf(fichier, "%d %d %d\n", ar, av, ab);
+                fprintf(fichier, "%d %d %d\n", ar, av, ab);// on ecrit dans le fichier le pixel
             }
-            fprintf(fichier, "\n");
+            fprintf(fichier, "\n");// on change de ligne
         }
 
         fclose(fichier); //on ferme le fichier
     }else printf("Le pointeur vers le fichier est null");//sinon on print dans la console que le fichier pointe vers NULL.
     return 0;
 }
+
+//fonction qui compte de combien de chiffre est fait un nombre, 9 = 1 chiffre, 99 = 2, 98738746 = 8.
+int howMany (int nb){
+
+    int retour;
+
+    int tab[4] = {9, 99, 999, 9999};
+    int tab_aux[4] = {1, 2, 3, 4};
+
+    for(int i = 0; i < 4; i++){
+        if (nb - tab[i] <= 0){
+            retour = tab_aux[i];
+            return retour;
+        }
+    }
+
+    
+}
+
+// image qui charge une image au format .ppm
+image load(char *name, int x, int y){
+
+    int pos = 9 + howMany(x) + howMany(y);
+
+
+
+    image loaded;
+    loaded.sizeX = x;
+    loaded.sizeY = y;
+
+
+    
+    loaded.img = malloc(sizeof(pixel*) * y); //on alloue de la memoire pour le tableau de sous tableaux.
+
+    for (int i=0; i < y; i++){// le nombre de sous tableaux     
+        loaded.img[i] = malloc(sizeof(pixel) * x);//allocation pour chaque tableau dans le gros tableau.
+    } 
+
+    FILE *fichier = NULL; //on cree un pointeur sur fichier qui pointe vers NULL.
+    fichier = fopen(name, "r"); //on ouvre le fichier pour lire dedans.
+
+    
+    if (fichier != NULL)
+    {
+        fseek(fichier, pos, SEEK_SET);
+
+
+
+
+        for(int i = 0; i < y ; i++){ //on itere du nombre de pixels de l'image.
+            for(int j = 0; j < x ; j++){
+
+
+
+
+                pixel actpix; //on cree un pixel actpix et lui affecte un pixel avec des valeurs aleatoires.
+
+                unsigned char a;
+                unsigned char b;
+                unsigned char c;
+
+                fscanf(fichier, "%d %d %d", &c, &b, &a);
+
+                actpix.b = a; 
+                actpix.v = b;
+                actpix.r = c;
+
+
+
+
+
+
+                loaded.img[i][j] = actpix;//on affecte au pixel de la case i,j du tableau de pixels de img1, le pixel actpix.
+
+            }
+        }
+    
+ 
+        fclose(fichier);
+    }
+
+    
+    
+    return loaded;
+}
+
+
+
+
