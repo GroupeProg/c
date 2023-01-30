@@ -5,17 +5,18 @@
 
 /* Tableaux */
 
-int random() {
+int* random(int n1, int n2, int nbr) {
     srand(time(NULL));
+    int* tab = malloc(nbr * sizeof(int));
     int a = 0;
-    for(int i=0; i<10; i++) {
-        while(a<10 || a>99) {
-            a = rand();
+    for(int i=0; i<nbr; i++) {
+        while(tab[i]<n1 || tab[i]>n2) {
+            tab[i] = rand();
         }
-        printf("%d\n",a);
+        printf("%d\n",tab[i]);
         a = rand();
     }
-    return 0;
+    return tab;
 }
 
 int tq1() {
@@ -49,10 +50,13 @@ int tq1() {
 
 /* Fonctions */
 
-int ligne() {
-    int n;
-    printf("Saisir une valeur : ");
-    scanf("%d", &n);
-    printf("*");
-    n * ligne();
+int tab2dim(int n, int m) {
+    return 0;
+}
+
+int moy_gen_etu(int nb) {
+    int *a = random(0,20, nb);
+    printf("Premiere valeur : %d",a[0]);
+    printf("\nDeuxieme valeur : %d",a[1]);
+    return 0;
 }
