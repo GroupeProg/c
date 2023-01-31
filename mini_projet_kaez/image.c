@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <assert.h>
 #include "image.h"
+#include "string.h"
 
 
 //fonction qui initialise un pixel en lui donnant les valeurs de rvb.
@@ -110,40 +111,44 @@ int howMany (int nb){
 }
 
 // image qui charge une image au format .ppm
-image load(char *name, int x, int y){
+image load(char *name){
+
+    int x,y;
+
+    //savoir les dimension de l'image
+
+    FILE *fichier = NULL; //on cree un pointeur sur fichier qui pointe vers NULL.
+    fichier = fopen(name, "r"); //on ouvre le fichier pour lire dedans.
+
+    if (fichier != NULL);
+    {
+        //on lit les dimensions
+        fseek(fichier, 3, SEEK_SET);
+        fscanf(fichier, "%d %d", &x, &y);
+    }
 
     int pos = 9 + howMany(x) + howMany(y);
-
-
 
     image loaded;
     loaded.sizeX = x;
     loaded.sizeY = y;
-
-
-    
+ 
     loaded.img = malloc(sizeof(pixel*) * y); //on alloue de la memoire pour le tableau de sous tableaux.
 
     for (int i=0; i < y; i++){// le nombre de sous tableaux     
         loaded.img[i] = malloc(sizeof(pixel) * x);//allocation pour chaque tableau dans le gros tableau.
     } 
+    fclose(fichier);
 
-    FILE *fichier = NULL; //on cree un pointeur sur fichier qui pointe vers NULL.
+    fichier = NULL; //on cree un pointeur sur fichier qui pointe vers NULL.
     fichier = fopen(name, "r"); //on ouvre le fichier pour lire dedans.
-
     
     if (fichier != NULL)
     {
         fseek(fichier, pos, SEEK_SET);
 
-
-
-
         for(int i = 0; i < y ; i++){ //on itere du nombre de pixels de l'image.
             for(int j = 0; j < x ; j++){
-
-
-
 
                 pixel actpix; //on cree un pixel actpix et lui affecte un pixel avec des valeurs aleatoires.
 
@@ -157,25 +162,157 @@ image load(char *name, int x, int y){
                 actpix.v = b;
                 actpix.r = c;
 
-
-
-
-
-
                 loaded.img[i][j] = actpix;//on affecte au pixel de la case i,j du tableau de pixels de img1, le pixel actpix.
 
             }
         }
     
- 
         fclose(fichier);
     }
-
-    
-    
     return loaded;
 }
 
+//Fonction qui transforme une image en niveau de rouge, vert ou bleu
+int levels (char *name,char *newname, char *level){
+
+    image img1 = load(name);
+
+    int x,y;
+    x = img1.sizeX;
+    y = img1.sizeY;
 
 
+    unsigned char new = 0;
+
+    for( int i = 0; i < y; i++ ){ // on parcoure la hauteur
+        for(int j = 0; j < x; j++){ // on parcoure la largeur
+
+            if(strcmp(level,"rouge") == 0)
+            {
+
+                img1.img[i][j].v = new;//le pixel vert devient 0
+                img1.img[i][j].b = new;//le pixel bleu devient 0
+            }
+
+            if(strcmp(level,"vert") == 0)
+            {
+                img1.img[i][j].r = new;//le pixel rouge devient 0
+                img1.img[i][j].b = new;//le pixel bleu devient 0                
+                
+            }
+
+            if(strcmp(level,"bleu") == 0)
+            {
+                img1.img[i][j].v = new;//le pixel vert devient 0
+                img1.img[i][j].r = new;//le pixel rouge devient 0
+            }
+        }
+    }
+
+    save(img1, newname);
+    return 0;
+}
+
+
+//Fonction qui transforme une image en noir et blanc
+int greymoy (char *name,char *newname){
+
+    image img1 = load(name);
+
+    int x,y;
+    x = img1.sizeX;
+    y = img1.sizeY;
+
+    for( int i = 0; i < y; i++ ){ // on parcoure la hauteur
+        for(int j = 0; j < x; j++){ // on parcoure la largeur
+
+
+            unsigned char r,v,b;
+            r = img1.img[i][j].r;
+            v = img1.img[i][j].v;
+            b = img1.img[i][j].b;
+
+            unsigned char moy = (r+v+b)/3;
+
+            img1.img[i][j].r = moy;
+            img1.img[i][j].v = moy;
+            img1.img[i][j].b = moy;
+
+        }
+    }
+
+    save(img1, newname);
+    return 0;
+}
+
+unsigned char max(unsigned char a, unsigned char b){
+    if (a > b)
+        return a;
+    else return b;
+}
+
+//Fonction qui transforme une image en noir et blanc
+int greymax (char *name,char *newname){
+
+    image img1 = load(name);
+
+    int x,y;
+    x = img1.sizeX;
+    y = img1.sizeY;
+
+    for( int i = 0; i < y; i++ ){ // on parcoure la hauteur
+        for(int j = 0; j < x; j++){ // on parcoure la largeur
+
+
+            unsigned char r,v,b;
+            r = img1.img[i][j].r;
+            v = img1.img[i][j].v;
+            b = img1.img[i][j].b;
+
+            unsigned char rv = max(r,v);
+
+            unsigned char maxOfRvb = max(rv,b);
+
+            img1.img[i][j].r = maxOfRvb;
+            img1.img[i][j].v = maxOfRvb;
+            img1.img[i][j].b = maxOfRvb;
+
+        }
+    }
+
+    save(img1, newname);
+    return 0;
+}
+
+//Fonction qui transforme une image en noir et blanc
+int sepia (char *name,char *newname){
+
+    image img1 = load(name);
+
+    int x,y;
+    x = img1.sizeX;
+    y = img1.sizeY;
+
+    for( int i = 0; i < y; i++ ){ // on parcoure la hauteur
+        for(int j = 0; j < x; j++){ // on parcoure la largeur
+
+
+            unsigned char v,b;
+
+            v = img1.img[i][j].v;
+            b = img1.img[i][j].b;
+
+
+            unsigned char maxOfVb = max(v,b);
+
+
+            img1.img[i][j].v = maxOfVb;
+            img1.img[i][j].b = maxOfVb;
+
+        }
+    }
+
+    save(img1, newname);
+    return 0;
+}
 

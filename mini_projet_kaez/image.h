@@ -23,7 +23,12 @@ pixel random_pixel(void);//Fonction qui initialise un pixel avec des valeurs ran
 image init_image(int sx, int sy);//Fonction qui initialise une image.
 int save(image img, char *name);//Fonction qui ecrit une image entiere donnee dans un fichier donnee dans le format .ppm.
 int howMany (int nb);
-image load(char *name, int x, int y);
+image load(char *name);
+int levels (char *name,char *newname, char *level);
+int greymoy (char *name,char *newname);
+unsigned char max(unsigned char a, unsigned char b);
+int greymax (char *name,char *newname);
+int sepia (char *name,char *newname);
 
 
 

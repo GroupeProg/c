@@ -24,5 +24,6 @@ int facto(int n);
 void facto_afficheur();
 int fibonacci_tp2(int u0, int u1, int n);
 void fibonacci_tp2_afficheur();
+int minOfTab(int tab[], int n);
 
 #endif

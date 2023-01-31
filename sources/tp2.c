@@ -297,3 +297,18 @@ void fibonacci_tp2_afficheur() {
     int fib = fibonacci_tp2(u0, u1, n);
     printf("FIBO : %d\n", fib);
 }
+
+int minOfTab(int tab[], int n){
+
+    if (n == 0){
+        return tab[0];
+    }
+    
+    if (tab[n-1] < minOfTab(tab, n-1) )
+    {
+        return tab[n-1];
+    }else{
+        return minOfTab(tab, n-1);
+    } 
+
+}
