@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1675092405 source:c:\users\hallano\documents\hugo allano\tp2_en_c\main.c
+	<stdio.h>
+	<stdlib.h>
+	"mylib.h"
+	<math.h>
+
+1674569945 c:\users\hallano\documents\hugo allano\tp2_en_c\mylib.h
+
+1675092805 source:c:\users\hallano\documents\hugo allano\tp2_en_c\mylib.c
+	"mylib.h"
+	<math.h>
+
