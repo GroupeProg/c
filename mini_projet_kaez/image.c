@@ -284,7 +284,7 @@ int greymax (char *name,char *newname){
     return 0;
 }
 
-//Fonction qui transforme une image en noir et blanc
+//Fonction qui transforme une image en sepia
 int sepia (char *name,char *newname){
 
     image img1 = load(name);
@@ -297,17 +297,36 @@ int sepia (char *name,char *newname){
         for(int j = 0; j < x; j++){ // on parcoure la largeur
 
 
-            unsigned char v,b;
-
+            unsigned char r,v,b;
+            r = img1.img[i][j].r;
             v = img1.img[i][j].v;
             b = img1.img[i][j].b;
 
+            unsigned char tr = ((0.393 * r) + (0.769 * v) + (0.189 * b));
 
-            unsigned char maxOfVb = max(v,b);
+            unsigned char tv = ((0.349 * r) + (0.686 * v) + (0.168 * b));
+
+            unsigned char tb = ((0.272 * r) + (0.534 * v) + (0.131 * b));
 
 
-            img1.img[i][j].v = maxOfVb;
-            img1.img[i][j].b = maxOfVb;
+
+            if (tr > 255){
+                img1.img[i][j].r = 255;
+            }
+            else { img1.img[i][j].r = tr;
+            }
+
+            if (tv > 255){
+                img1.img[i][j].v = 255;
+            }
+            else { img1.img[i][j].v = tv;
+            }
+
+            if (tb > 255){
+                img1.img[i][j].b = 255;
+            }
+            else { img1.img[i][j].b = tb;
+            }
 
         }
     }
