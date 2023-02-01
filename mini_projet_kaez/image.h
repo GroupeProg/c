@@ -29,7 +29,10 @@ int greymoy (char *name,char *newname);
 unsigned char max(unsigned char a, unsigned char b);
 int greymax (char *name,char *newname);
 int sepia (char *name,char *newname);
-
+pixel moy4pix (pixel pix1, pixel pix2, pixel pix3, pixel pix4);
+pixel moy6pix (pixel pix1, pixel pix2, pixel pix3, pixel pix4, pixel pix5, pixel pix6);
+pixel moy9pix (pixel pix1, pixel pix2, pixel pix3, pixel pix4, pixel pix5, pixel pix6, pixel pix7, pixel pix8, pixel pix9);
+int lissage (char *name,char *newname);
 
 
 
