@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1674929661 source:c:\users\abonn\desktop\cours c\tp2\tp2.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<math.h>
+
+1674928913 source:c:\users\abonn\desktop\cours c\tp2\main.c
+	<stdio.h>
+	<stdlib.h>
+	"tp2.h"
+
+1674809185 c:\users\abonn\desktop\cours c\tp2\tp2.h
+

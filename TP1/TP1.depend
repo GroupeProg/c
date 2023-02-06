@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1674807775 source:c:\users\abonn\desktop\cours c\tp1\main.c
+	<stdio.h>
+	<stdlib.h>
+	"TP1.h"
+
+1674808580 source:c:\users\abonn\desktop\cours c\tp1\tp1.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1674807775 c:\users\abonn\desktop\cours c\tp1\tp1.h
+

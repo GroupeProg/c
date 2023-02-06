@@ -1,0 +1,34 @@
+# depslib dependency file v1.0
+1675095842 source:c:\users\abonn\desktop\cours c\tp3\tp3.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"TP3.h"
+
+1675095846 c:\users\abonn\desktop\cours c\tp3\tp3.h
+
+1675282031 source:c:\users\abonn\desktop\cours c\tp3\main.c
+	<stdio.h>
+	<stdlib.h>
+	"TP3.h"
+	"tableau.h"
+	"miniprojet_images.h"
+
+1675098195 c:\users\abonn\desktop\cours c\tp3\tableau.h
+
+1675098873 source:c:\users\abonn\desktop\cours c\tp3\tableau.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"tableau.h"
+
+1675269718 c:\users\abonn\desktop\cours c\tp3\miniprojet_images.h
+
+1675282007 source:c:\users\abonn\desktop\cours c\tp3\miniprojet_images.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"miniprojet_images.h"
+

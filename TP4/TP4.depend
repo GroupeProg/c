@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1675681272 source:c:\users\abonn\desktop\cours c\tp4\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<stdbool.h>
+	"Listechainee.h"
+
+1675681324 c:\users\abonn\desktop\cours c\tp4\listechainee.h
+
+1675681185 source:c:\users\abonn\desktop\cours c\tp4\listechainee.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<stdbool.h>
+	"Listechainee.h"
+
