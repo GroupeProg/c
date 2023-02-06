@@ -1,0 +1,37 @@
+# depslib dependency file v1.0
+1675184404 source:c:\users\hallano\documents\hugo allano\image_en_c\imageproject\image.c
+	<stdio.h>
+	<stdlib.h>
+	"image.h"
+
+1675180655 c:\users\hallano\documents\hugo allano\image_en_c\imageproject\image.h
+
+1675180716 source:c:\users\hallano\documents\hugo allano\image_en_c\imageproject\main.c
+	<stdio.h>
+	<stdlib.h>
+	"image.h"
+
+1675193928 source:c:\users\halla\documents\code\c\projet&tp\main.c
+	<stdio.h>
+	<stdlib.h>
+	"image.h"
+
+1675193440 c:\users\halla\documents\code\c\projet&tp\image.h
+
+1675193928 source:c:\users\halla\documents\code\c\projet&tp\image.c
+	<stdio.h>
+	<stdlib.h>
+	"image.h"
+
+1675703313 source:c:\users\etusfa\documents\random-pixel-img-main\projet&tp\image.c
+	<stdio.h>
+	<stdlib.h>
+	"image.h"
+
+1675703269 c:\users\etusfa\documents\random-pixel-img-main\projet&tp\image.h
+
+1675703396 source:c:\users\etusfa\documents\random-pixel-img-main\projet&tp\main.c
+	<stdio.h>
+	<stdlib.h>
+	"image.h"
+
