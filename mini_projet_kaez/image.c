@@ -16,7 +16,6 @@ pixel init_pixel(unsigned char rouge, unsigned char vert, unsigned char bleu){
     return pix; //on renvoi le pixel.
 }
 
-
 //fonction qui initalise un pixel avec des valeurs aleatoires.
 pixel random_pixel(){
     int tab_of_colors[3]; //on cree un tableau avec 3 cases pour y stocker la valeur de r, v et b.
@@ -34,7 +33,6 @@ pixel random_pixel(){
 
     return pix; //on renvoi le pixel.
 }
-
 
 //fonction qui initialise une image avec des pixels de couleur aleatoire en lui donnant les dimensions de sa hauteur et sa largeur.
 image init_image(int sx, int sy){
@@ -62,7 +60,6 @@ image init_image(int sx, int sy){
     
     return img1; //on renvoi l'image
 }
-
 
 //Fonction qui ecrit dans fichier une image de pixels au format .ppm.
 int save(image img2, char *name){
@@ -212,7 +209,6 @@ int levels (char *name,char *newname, char *level){
     save(img1, newname);
     return 0;
 }
-
 
 //Fonction qui transforme une image en noir et blanc
 int greymoy (char *name,char *newname){
@@ -383,11 +379,7 @@ pixel moy9pix (pixel pix1, pixel pix2, pixel pix3, pixel pix4, pixel pix5, pixel
     return res;
 }
 
-
-
-
-//Fonction qui lisse une image
-int lissage (char *name,char *newname){
+int lissage_aux (char *name,char *newname){
 
     image img1 = load(name);
 
@@ -431,7 +423,7 @@ int lissage (char *name,char *newname){
             //si on est en haut
             if (i == 0){
 
-                 //si on est au bord de gauche
+                //si on est au bord de gauche
                 if (j == 0){  
 
                     //on definit chaque pixel actuel dans la fenetre.
@@ -520,9 +512,9 @@ int lissage (char *name,char *newname){
                     imglisse.img[i+2][j+1] = moy9pix(pix4,pix5,pix6,pix7,pix8,pix9,pixDelta,pixEpsilon,pixZeta);
                     //le pix9
                     imglisse.img[i+2][j+2] = moy9pix(pix5,pix6,pix8,pix9,pixGama,pixBeta,pixEpsilon,pixZeta,pixEta);
- 
+
                 }
-                 //si on est au bord de droite
+                //si on est au bord de droite
                 if (j == x - 3){
 
                     //on definit chaque pixel actuel dans la fenetre.
@@ -611,9 +603,9 @@ int lissage (char *name,char *newname){
                     imglisse.img[i+2][j+1] = moy9pix(pix4,pix5,pix6,pix7,pix8,pix9,pixDelta,pixEpsilon,pixZeta);
                     //le pix9
                     imglisse.img[i+2][j+2] = moy6pix(pix5,pix6,pix8,pix9,pixEpsilon,pixZeta);
- 
+
                 }
-                 //sinon on est juste en haut
+                //sinon on est juste en haut
                 else{
                     //sinon on est juste en haut
 
@@ -722,10 +714,10 @@ int lissage (char *name,char *newname){
                 }
             }
             
-             //si on est en bas
+            //si on est en bas
             if (i == y - 3){
 
-                 //si on est au bord de gauche
+                //si on est au bord de gauche
                 if (j == 0){
 
                     //on definit chaque pixel actuel dans la fenetre.
@@ -817,7 +809,7 @@ int lissage (char *name,char *newname){
 
                     
                 }
-                 //si on est au bord de droite
+                //si on est au bord de droite
                 if (j == x - 3){
 
                     //on definit chaque pixel actuel dans la fenetre.                    
@@ -907,7 +899,7 @@ int lissage (char *name,char *newname){
                     //le pix9
                     imglisse.img[i+2][j+2] = moy4pix(pix5,pix6,pix8,pix9);                    
                 }
-                 //sinon on est juste en bas
+                //sinon on est juste en bas
                 else{
                     //si on est juste en bas
                     pixel pix1,pix2,pix3,pix4,pix5,pix6,pix7,pix8,pix9,pixAlpha,pixBeta,pixGama,pixDelta,pixEpsilon,pixZeta,pixEta,pixTheta,pixIota,pixKappa,pixLambda;
@@ -1348,7 +1340,7 @@ int lissage (char *name,char *newname){
 
                 }
             }
-             
+            
         }
         
     }
@@ -1356,5 +1348,12 @@ int lissage (char *name,char *newname){
     return 0;
 
 }
-
+//Fonction qui lisse une image
+int lissage(char *name,char *newname, int niveau){
+    lissage_aux (name,newname);
+    for(int i = 0; i < niveau-1; i++){
+        lissage_aux (newname,newname);
+    }
+    return 0;
+}
 

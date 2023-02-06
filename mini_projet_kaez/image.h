@@ -32,7 +32,8 @@ int sepia (char *name,char *newname);
 pixel moy4pix (pixel pix1, pixel pix2, pixel pix3, pixel pix4);
 pixel moy6pix (pixel pix1, pixel pix2, pixel pix3, pixel pix4, pixel pix5, pixel pix6);
 pixel moy9pix (pixel pix1, pixel pix2, pixel pix3, pixel pix4, pixel pix5, pixel pix6, pixel pix7, pixel pix8, pixel pix9);
-int lissage (char *name,char *newname);
+int lissage_aux (char *name,char *newname);
+int lissage(char *name,char *newname, int niveau);
 
 
 
