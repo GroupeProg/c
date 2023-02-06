@@ -384,10 +384,8 @@ pixel moy9pixl (pixel pix1, pixel pix2, pixel pix3, pixel pix4, pixel pix5, pixe
 }
 
 
-
-
 //Fonction qui lisse une image
-int lissage (char *name,char *newname){
+int lissage_aux(char *name,char *newname){
 
     image img1 = load(name);
 
@@ -1357,18 +1355,60 @@ int lissage (char *name,char *newname){
 
 }
 
+//Fonction qui lisse une image avec un iveau de lissage
+int lissage(char *name,char *newname, int niveau){
+    lissage_aux (name,newname);
+    for(int i = 0; i < niveau-1; i++){
+        lissage_aux (newname,newname);
+    }
+}
 
 
 //fonction qui renvoi un pixel avec la moyenne de 3 autres.
 pixel moy4pixc (pixel pix1, pixel pix2, pixel pix3, pixel pix4){
     pixel res;
-    unsigned char moyr = (pix1.r + pix2.r + pix3.r + pix4.r)/4;
-    unsigned char moyv = (pix1.v + pix2.v + pix3.v + pix4.v)/4;
-    unsigned char moyb = (pix1.b + pix2.b + pix3.b + pix4.b)/4;
 
-    res.r = moyr;
-    res.v = moyv;
-    res.b = moyb;
+    unsigned char moyr = ((5 * pix1.r) + ((-0.5) * pix2.r) + ((-0.5) * pix3.r) + ((-0.5) * pix4.r))/4;
+    unsigned char moyv = ((5 * pix1.v) + ((-0.5) * pix2.v) + ((-0.5) * pix3.v) + ((-0.5) * pix4.v))/4;
+    unsigned char moyb = ((5 * pix1.b) + ((-0.5) * pix2.b) + ((-0.5) * pix3.b) + ((-0.5) * pix4.b))/4;
+    printf("le rouge du pixel %d \n", pix1.r);
+    printf("le vert du pixel %d \n", pix1.v);
+    printf("le bleu du pixel %d \n", pix1.b);
+    if(moyr >=255)
+    {
+        res.r = 255;
+    }else{
+        if(moyr <= 0)
+        {
+            res.r = 0;
+        }else {res.r = moyr;}
+        }
+
+    if (moyv >=255)
+    {
+        res.v = 255;
+    }else{
+        if(moyv <= 0)
+        {
+            res.v = 0;
+        }else {res.v = moyv;}
+        }
+
+    if (moyb >=255)
+    {
+        res.b = 255;
+    } else{
+        if(moyb <= 0)
+        {
+            res.b = 0;
+        }else {res.b = moyb;}
+        }
+    printf("lamoyenne : \n");
+    printf("le rouge du pixel %d \n", moyr);
+    printf("le vert du pixel %d \n", moyv);
+    printf("le bleu du pixel %d \n", moyb);
+    printf("\n");
+
 
     return res;
 }
@@ -1376,13 +1416,46 @@ pixel moy4pixc (pixel pix1, pixel pix2, pixel pix3, pixel pix4){
 //fonction qui renvoi un pixel avec la moyenne de 6 autres.
 pixel moy6pixc (pixel pix1, pixel pix2, pixel pix3, pixel pix4, pixel pix5, pixel pix6){
     pixel res;
-    unsigned char moyr = (pix1.r + pix2.r + pix3.r + pix4.r + pix5.r + pix6.r)/6;
-    unsigned char moyv = (pix1.v + pix2.v + pix3.v + pix4.v + pix5.v + pix6.v)/6; 
-    unsigned char moyb = (pix1.b + pix2.b + pix3.b + pix4.b + pix5.b + pix6.b)/6;
+    unsigned char moyr = ((5 * pix1.r) + ((-0.5) * pix2.r) + ((-0.5) * pix3.r) + ((-0.5) * pix4.r) + ((-0.5) * pix5.r) + ((-0.5) * pix6.r))/6;
+    unsigned char moyv = ((5 * pix1.v) + ((-0.5) * pix2.v) + ((-0.5) * pix3.v) + ((-0.5) * pix4.v) + ((-0.5) * pix5.v) + ((-0.5) * pix6.v))/6; 
+    unsigned char moyb = ((5 * pix1.b) + ((-0.5) * pix2.b) + ((-0.5) * pix3.b) + ((-0.5) * pix4.b) + ((-0.5) * pix5.b) + ((-0.5) * pix6.b))/6;
+    printf("le rouge du pixel %d \n", pix1.r);
+    printf("le vert du pixel %d \n", pix1.v);
+    printf("le bleu du pixel %d \n", pix1.b);
+    if(moyr >=255)
+    {
+        res.r = 255;
+    }else{
+        if(moyr <= 0)
+        {
+            res.r = 0;
+        }else {res.r = moyr;}
+        }
 
-    res.r = moyr;
-    res.v = moyv;
-    res.b = moyb;
+    if (moyv >=255)
+    {
+        res.v = 255;
+    }else{
+        if(moyv <= 0)
+        {
+            res.v = 0;
+        }else {res.v = moyv;}
+        }
+
+    if (moyb >=255)
+    {
+        res.b = 255;
+    } else{
+        if(moyb <= 0)
+        {
+            res.b = 0;
+        }else {res.b = moyb;}
+        }
+    printf("lamoyenne : \n");
+    printf("le rouge du pixel %d \n", moyr);
+    printf("le vert du pixel %d \n", moyv);
+    printf("le bleu du pixel %d \n", moyb);
+    printf("\n");
 
     return res;
 }
@@ -1390,14 +1463,46 @@ pixel moy6pixc (pixel pix1, pixel pix2, pixel pix3, pixel pix4, pixel pix5, pixe
 //fonction qui renvoi un pixel avec la moyenne de 5 autres.
 pixel moy9pixc (pixel pix1, pixel pix2, pixel pix3, pixel pix4, pixel pix5, pixel pix6, pixel pix7, pixel pix8, pixel pix9){
     pixel res;
-    unsigned char moyr = (pix1.r + pix2.r + pix3.r + pix4.r + pix5.r + pix6.r + pix7.r + pix8.r + pix9.r)/9;
-    unsigned char moyv = (pix1.v + pix2.v + pix3.v + pix4.v + pix5.v + pix6.v + pix7.v + pix8.v + pix9.v)/9; 
-    unsigned char moyb = (pix1.b + pix2.b + pix3.b + pix4.b + pix5.b + pix6.b + pix7.b + pix8.b + pix9.b)/9;
+    unsigned char moyr = ((5 * pix1.r) + ((-0.5) * pix2.r) + ((-0.5) * pix3.r) + ((-0.5) * pix4.r) + ((-0.5) * pix5.r) + ((-0.5) * pix6.r) + ((-0.5) * pix7.r) + ((-0.5) * pix8.r) + ((-0.5) * pix9.r))/9;
+    unsigned char moyv = ((5 * pix1.v) + ((-0.5) * pix2.v) + ((-0.5) * pix3.v) + ((-0.5) * pix4.v) + ((-0.5) * pix5.v) + ((-0.5) * pix6.v) + ((-0.5) * pix7.v) + ((-0.5) * pix8.v) + ((-0.5) * pix9.v))/9; 
+    unsigned char moyb = ((5 * pix1.b) + ((-0.5) * pix2.b) + ((-0.5) * pix3.b) + ((-0.5) * pix4.b) + ((-0.5) * pix5.b) + ((-0.5) * pix6.b) + ((-0.5) * pix7.b) + ((-0.5) * pix8.b) + ((-0.5) * pix9.b))/9;
+    printf("le rouge du pixel %d \n", pix1.r);
+    printf("le vert du pixel %d \n", pix1.v);
+    printf("le bleu du pixel %d \n", pix1.b);
+    if(moyr >=255)
+    {
+        res.r = 255;
+    }else{
+        if(moyr <= 0)
+        {
+            res.r = 0;
+        }else {res.r = moyr;}
+        }
 
-    res.r = moyr;
-    res.v = moyv;
-    res.b = moyb;
+    if (moyv >=255)
+    {
+        res.v = 255;
+    }else{
+        if(moyv <= 0)
+        {
+            res.v = 0;
+        }else {res.v = moyv;}
+        }
 
+    if (moyb >=255)
+    {
+        res.b = 255;
+    } else{
+        if(moyb <= 0)
+        {
+            res.b = 0;
+        }else {res.b = moyb;}
+        }
+    printf("lamoyenne : \n");
+    printf("le rouge du pixel %d \n", moyr);
+    printf("le vert du pixel %d \n", moyv);
+    printf("le bleu du pixel %d \n", moyb);
+    printf("\n");
     return res;
 }
 
@@ -1521,21 +1626,21 @@ int contours (char *name,char *newname){
                     //le pix1
                     imglisse.img[i][j] = moy4pixc(pix1,pix2,pix5,pix4);
                     //le pix2
-                    imglisse.img[i][j+1] = moy6pixc(pix1,pix2,pix3,pix4,pix5,pix6);
+                    imglisse.img[i][j+1] = moy6pixc(pix2,pix1,pix3,pix4,pix5,pix6);
                     //le pix3
-                    imglisse.img[i][j+2] = moy6pixc(pix2,pix3,pix5,pix6,pixAlpha,pixBeta);
+                    imglisse.img[i][j+2] = moy6pixc(pix3,pix2,pix5,pix6,pixAlpha,pixBeta);
                     //le pix4
-                    imglisse.img[i+1][j] = moy6pixc(pix1,pix2,pix4,pix5,pix7,pix8);
+                    imglisse.img[i+1][j] = moy6pixc(pix4,pix2,pix1,pix5,pix7,pix8);
                     //le pix5
-                    imglisse.img[i+1][j+1] = moy9pixc(pix1,pix2,pix3,pix4,pix5,pix6,pix7,pix8,pix9);
+                    imglisse.img[i+1][j+1] = moy9pixc(pix5,pix2,pix3,pix4,pix1,pix6,pix7,pix8,pix9);
                     //le pix6
-                    imglisse.img[i+1][j+2] = moy9pixc(pix2,pix3,pix5,pix6,pixAlpha,pixBeta,pix8,pix9,pixGama);
+                    imglisse.img[i+1][j+2] = moy9pixc(pix6,pix3,pix5,pix2,pixAlpha,pixBeta,pix8,pix9,pixGama);
                     //le pix7
-                    imglisse.img[i+2][j] = moy6pixc(pix4,pix5,pix7,pix8,pixDelta,pixEpsilon);
+                    imglisse.img[i+2][j] = moy6pixc(pix7,pix5,pix4,pix8,pixDelta,pixEpsilon);
                     //le pix8
-                    imglisse.img[i+2][j+1] = moy9pixc(pix4,pix5,pix6,pix7,pix8,pix9,pixDelta,pixEpsilon,pixZeta);
+                    imglisse.img[i+2][j+1] = moy9pixc(pix8,pix5,pix6,pix7,pix4,pix9,pixDelta,pixEpsilon,pixZeta);
                     //le pix9
-                    imglisse.img[i+2][j+2] = moy9pixc(pix5,pix6,pix8,pix9,pixGama,pixBeta,pixEpsilon,pixZeta,pixEta);
+                    imglisse.img[i+2][j+2] = moy9pixc(pix9,pix6,pix8,pix5,pixGama,pixBeta,pixEpsilon,pixZeta,pixEta);
  
                 }
                  //si on est au bord de droite
@@ -1612,21 +1717,21 @@ int contours (char *name,char *newname){
                     //le pix1
                     imglisse.img[i][j] = moy6pixc(pix1,pix2,pix4,pix5,pixAlpha,pixBeta);
                     //le pix2
-                    imglisse.img[i][j+1] = moy6pixc(pix1,pix2,pix3,pix4,pix5,pix6);
+                    imglisse.img[i][j+1] = moy6pixc(pix2,pix1,pix3,pix4,pix5,pix6);
                     //le pix3
-                    imglisse.img[i][j+2] = moy4pixc(pix2,pix3,pix5,pix6);
+                    imglisse.img[i][j+2] = moy4pixc(pix3,pix2,pix5,pix6);
                     //le pix4
-                    imglisse.img[i+1][j] = moy9pixc(pix1,pix2,pix4,pix5,pix7,pix8,pixAlpha,pixBeta,pixGama);
+                    imglisse.img[i+1][j] = moy9pixc(pix4,pix2,pix1,pix5,pix7,pix8,pixAlpha,pixBeta,pixGama);
                     //le pix5
-                    imglisse.img[i+1][j+1] = moy9pixc(pix1,pix2,pix3,pix4,pix5,pix6,pix7,pix8,pix9);
+                    imglisse.img[i+1][j+1] = moy9pixc(pix5,pix2,pix3,pix4,pix1,pix6,pix7,pix8,pix9);
                     //le pix6
-                    imglisse.img[i+1][j+2] = moy6pixc(pix2,pix3,pix5,pix6,pix8,pix9);
+                    imglisse.img[i+1][j+2] = moy6pixc(pix6,pix3,pix5,pix2,pix8,pix9);
                     //le pix7
-                    imglisse.img[i+2][j] = moy9pixc(pix4,pix5,pix7,pix8,pixDelta,pixEpsilon,pixBeta,pixGama,pixEta);
+                    imglisse.img[i+2][j] = moy9pixc(pix7,pix5,pix4,pix8,pixDelta,pixEpsilon,pixBeta,pixGama,pixEta);
                     //le pix8
-                    imglisse.img[i+2][j+1] = moy9pixc(pix4,pix5,pix6,pix7,pix8,pix9,pixDelta,pixEpsilon,pixZeta);
+                    imglisse.img[i+2][j+1] = moy9pixc(pix8,pix5,pix6,pix7,pix4,pix9,pixDelta,pixEpsilon,pixZeta);
                     //le pix9
-                    imglisse.img[i+2][j+2] = moy6pixc(pix5,pix6,pix8,pix9,pixEpsilon,pixZeta);
+                    imglisse.img[i+2][j+2] = moy6pixc(pix9,pix6,pix8,pix5,pixEpsilon,pixZeta);
  
                 }
                  //sinon on est juste en haut
@@ -1720,21 +1825,21 @@ int contours (char *name,char *newname){
                     //le pix1
                     imglisse.img[i][j] = moy6pixc(pix1,pix2,pix5,pix4,pixLambda,pixKappa);
                     //le pix2
-                    imglisse.img[i][j+1] = moy6pixc(pix1,pix2,pix3,pix4,pix5,pix6);
+                    imglisse.img[i][j+1] = moy6pixc(pix2,pix1,pix3,pix4,pix5,pix6);
                     //le pix3
-                    imglisse.img[i][j+2] = moy6pixc(pix2,pix3,pix5,pix6,pixAlpha,pixBeta);
+                    imglisse.img[i][j+2] = moy6pixc(pix3,pix2,pix5,pix6,pixAlpha,pixBeta);
                     //le pix4
-                    imglisse.img[i+1][j] = moy9pixc(pix1,pix2,pix4,pix5,pix7,pix8,pixLambda,pixKappa,pixIota);
+                    imglisse.img[i+1][j] = moy9pixc(pix4,pix2,pix1,pix5,pix7,pix8,pixLambda,pixKappa,pixIota);
                     //le pix5
-                    imglisse.img[i+1][j+1] = moy9pixc(pix1,pix2,pix3,pix4,pix5,pix6,pix7,pix8,pix9);
+                    imglisse.img[i+1][j+1] = moy9pixc(pix5,pix2,pix3,pix4,pix1,pix6,pix7,pix8,pix9);
                     //le pix6
-                    imglisse.img[i+1][j+2] = moy9pixc(pix2,pix3,pix5,pix6,pixAlpha,pixBeta,pix8,pix9,pixGama);
+                    imglisse.img[i+1][j+2] = moy9pixc(pix6,pix3,pix5,pix2,pixAlpha,pixBeta,pix8,pix9,pixGama);
                     //le pix7
-                    imglisse.img[i+2][j] = moy9pixc(pix4,pix5,pix7,pix8,pixDelta,pixEpsilon,pixKappa,pixTheta,pixIota);
+                    imglisse.img[i+2][j] = moy9pixc(pix7,pix5,pix4,pix8,pixDelta,pixEpsilon,pixKappa,pixTheta,pixIota);
                     //le pix8
-                    imglisse.img[i+2][j+1] = moy9pixc(pix4,pix5,pix6,pix7,pix8,pix9,pixDelta,pixEpsilon,pixZeta);
+                    imglisse.img[i+2][j+1] = moy9pixc(pix8,pix5,pix6,pix7,pix4,pix9,pixDelta,pixEpsilon,pixZeta);
                     //le pix9
-                    imglisse.img[i+2][j+2] = moy9pixc(pix5,pix6,pix8,pix9,pixGama,pixBeta,pixEpsilon,pixZeta,pixEta);
+                    imglisse.img[i+2][j+2] = moy9pixc(pix9,pix6,pix8,pix5,pixGama,pixBeta,pixEpsilon,pixZeta,pixEta);
                 }
             }
             
@@ -1815,21 +1920,21 @@ int contours (char *name,char *newname){
                     //le pix1
                     imglisse.img[i][j] = moy6pixc(pix1,pix2,pix4,pix5,pixDelta,pixEpsilon);
                     //le pix2
-                    imglisse.img[i][j+1] = moy9pixc(pix4,pix5,pix6,pix1,pix2,pix3,pixDelta,pixEpsilon,pixZeta);
+                    imglisse.img[i][j+1] = moy9pixc(pix2,pix5,pix6,pix1,pix4,pix3,pixDelta,pixEpsilon,pixZeta);
                     //le pix3
-                    imglisse.img[i][j+2] = moy9pixc(pix5,pix6,pix2,pix3,pixAlpha,pixBeta,pixEpsilon,pixZeta,pixEta);
+                    imglisse.img[i][j+2] = moy9pixc(pix3,pix6,pix2,pix5,pixAlpha,pixBeta,pixEpsilon,pixZeta,pixEta);
                     //le pix4
-                    imglisse.img[i+1][j] = moy6pixc(pix1,pix2,pix4,pix5,pix7,pix8);
+                    imglisse.img[i+1][j] = moy6pixc(pix4,pix2,pix1,pix5,pix7,pix8);
                     //le pix5
-                    imglisse.img[i+1][j+1] = moy9pixc(pix1,pix2,pix3,pix4,pix5,pix6,pix7,pix8,pix9);
+                    imglisse.img[i+1][j+1] = moy9pixc(pix5,pix2,pix3,pix4,pix1,pix6,pix7,pix8,pix9);
                     //le pix6
-                    imglisse.img[i+1][j+2] = moy9pixc(pix2,pix3,pix5,pix6,pixAlpha,pixBeta,pix8,pix9,pixGama);
+                    imglisse.img[i+1][j+2] = moy9pixc(pix6,pix3,pix5,pix2,pixAlpha,pixBeta,pix8,pix9,pixGama);
                     //le pix7
-                    imglisse.img[i+2][j] = moy4pixc(pix4,pix5,pix7,pix8);
+                    imglisse.img[i+2][j] = moy4pixc(pix7,pix5,pix4,pix8);
                     //le pix8
-                    imglisse.img[i+2][j+1] = moy6pixc(pix4,pix5,pix6,pix7,pix8,pix9);
+                    imglisse.img[i+2][j+1] = moy6pixc(pix8,pix5,pix6,pix7,pix4,pix9);
                     //le pix9
-                    imglisse.img[i+2][j+2] = moy6pixc(pix5,pix6,pix8,pix9,pixGama,pixBeta);
+                    imglisse.img[i+2][j+2] = moy6pixc(pix9,pix6,pix8,pix5,pixGama,pixBeta);
 
                     
                 }
@@ -1907,21 +2012,21 @@ int contours (char *name,char *newname){
                     //le pix1
                     imglisse.img[i][j] = moy9pixc(pix1,pix2,pix4,pix5,pixAlpha,pixBeta,pixEpsilon,pixEta,pixDelta);
                     //le pix2
-                    imglisse.img[i][j+1] = moy9pixc(pix1,pix2,pix3,pix4,pix5,pix6,pixDelta,pixEpsilon,pixZeta);
+                    imglisse.img[i][j+1] = moy9pixc(pix2,pix1,pix3,pix4,pix5,pix6,pixDelta,pixEpsilon,pixZeta);
                     //le pix3
-                    imglisse.img[i][j+2] = moy6pixc(pix2,pix3,pix5,pix6,pixEpsilon,pixZeta);
+                    imglisse.img[i][j+2] = moy6pixc(pix3,pix2,pix5,pix6,pixEpsilon,pixZeta);
                     //le pix4
-                    imglisse.img[i+1][j] = moy9pixc(pix1,pix2,pix4,pix5,pix7,pix8,pixAlpha,pixBeta,pixGama);
+                    imglisse.img[i+1][j] = moy9pixc(pix4,pix2,pix1,pix5,pix7,pix8,pixAlpha,pixBeta,pixGama);
                     //le pix5
-                    imglisse.img[i+1][j+1] = moy9pixc(pix1,pix2,pix3,pix4,pix5,pix6,pix7,pix8,pix9);
+                    imglisse.img[i+1][j+1] = moy9pixc(pix5,pix2,pix3,pix4,pix1,pix6,pix7,pix8,pix9);
                     //le pix6
-                    imglisse.img[i+1][j+2] = moy6pixc(pix2,pix3,pix5,pix6,pix8,pix9);
+                    imglisse.img[i+1][j+2] = moy6pixc(pix6,pix3,pix5,pix2,pix8,pix9);
                     //le pix7
-                    imglisse.img[i+2][j] = moy6pixc(pix4,pix5,pix7,pix8,pixBeta,pixGama);
+                    imglisse.img[i+2][j] = moy6pixc(pix7,pix5,pix4,pix8,pixBeta,pixGama);
                     //le pix8
-                    imglisse.img[i+2][j+1] = moy6pixc(pix4,pix5,pix6,pix7,pix8,pix9);
+                    imglisse.img[i+2][j+1] = moy6pixc(pix8,pix5,pix6,pix7,pix4,pix9);
                     //le pix9
-                    imglisse.img[i+2][j+2] = moy4pixc(pix5,pix6,pix8,pix9);                    
+                    imglisse.img[i+2][j+2] = moy4pixc(pix9,pix6,pix8,pix5);                    
                 }
                  //sinon on est juste en bas
                 else{
@@ -2013,21 +2118,21 @@ int contours (char *name,char *newname){
                     //le pix1
                     imglisse.img[i][j] = moy9pixc(pix1,pix2,pix5,pix4,pixLambda,pixKappa,pixTheta,pixDelta,pixEpsilon);
                     //le pix2
-                    imglisse.img[i][j+1] = moy9pixc(pix1,pix2,pix3,pix4,pix5,pix6,pixDelta,pixEpsilon,pixZeta);
+                    imglisse.img[i][j+1] = moy9pixc(pix2,pix1,pix3,pix4,pix5,pix6,pixDelta,pixEpsilon,pixZeta);
                     //le pix3
-                    imglisse.img[i][j+2] = moy9pixc(pix2,pix3,pix5,pix6,pixAlpha,pixBeta,pixEpsilon,pixZeta,pixEta);
+                    imglisse.img[i][j+2] = moy9pixc(pix3,pix2,pix5,pix6,pixAlpha,pixBeta,pixEpsilon,pixZeta,pixEta);
                     //le pix4
-                    imglisse.img[i+1][j] = moy9pixc(pix1,pix2,pix4,pix5,pix7,pix8,pixLambda,pixKappa,pixIota);
+                    imglisse.img[i+1][j] = moy9pixc(pix4,pix2,pix1,pix5,pix7,pix8,pixLambda,pixKappa,pixIota);
                     //le pix5
-                    imglisse.img[i+1][j+1] = moy9pixc(pix1,pix2,pix3,pix4,pix5,pix6,pix7,pix8,pix9);
+                    imglisse.img[i+1][j+1] = moy9pixc(pix5,pix2,pix3,pix4,pix1,pix6,pix7,pix8,pix9);
                     //le pix6
-                    imglisse.img[i+1][j+2] = moy9pixc(pix2,pix3,pix5,pix6,pixAlpha,pixBeta,pix8,pix9,pixGama);
+                    imglisse.img[i+1][j+2] = moy9pixc(pix6,pix3,pix5,pix2,pixAlpha,pixBeta,pix8,pix9,pixGama);
                     //le pix7
-                    imglisse.img[i+2][j] = moy6pixc(pix4,pix5,pix7,pix8,pixKappa,pixIota);
+                    imglisse.img[i+2][j] = moy6pixc(pix7,pix5,pix4,pix8,pixKappa,pixIota);
                     //le pix8
-                    imglisse.img[i+2][j+1] = moy6pixc(pix4,pix5,pix6,pix7,pix8,pix9);
+                    imglisse.img[i+2][j+1] = moy6pixc(pix8,pix5,pix6,pix7,pix4,pix9);
                     //le pix9
-                    imglisse.img[i+2][j+2] = moy6pixc(pix5,pix6,pix8,pix9,pixGama,pixBeta);
+                    imglisse.img[i+2][j+2] = moy6pixc(pix9,pix6,pix8,pix5,pixGama,pixBeta);
                 }
             }else{
                 //si on est juste a gauche
@@ -2119,21 +2224,21 @@ int contours (char *name,char *newname){
                     //le pix1
                     imglisse.img[i][j] = moy6pixc(pix1,pix2,pix5,pix4,pixDelta,pixEpsilon);
                     //le pix2
-                    imglisse.img[i][j+1] = moy9pixc(pix1,pix2,pix3,pix4,pix5,pix6,pixDelta,pixEpsilon,pixZeta);
+                    imglisse.img[i][j+1] = moy9pixc(pix2,pix1,pix3,pix4,pix5,pix6,pixDelta,pixEpsilon,pixZeta);
                     //le pix3
-                    imglisse.img[i][j+2] = moy9pixc(pix2,pix3,pix5,pix6,pixAlpha,pixBeta,pixEpsilon,pixZeta,pixEta);
+                    imglisse.img[i][j+2] = moy9pixc(pix3,pix2,pix5,pix6,pixAlpha,pixBeta,pixEpsilon,pixZeta,pixEta);
                     //le pix4
-                    imglisse.img[i+1][j] = moy6pixc(pix1,pix2,pix4,pix5,pix7,pix8);
+                    imglisse.img[i+1][j] = moy6pixc(pix4,pix2,pix1,pix5,pix7,pix8);
                     //le pix5
-                    imglisse.img[i+1][j+1] = moy9pixc(pix1,pix2,pix3,pix4,pix5,pix6,pix7,pix8,pix9);
+                    imglisse.img[i+1][j+1] = moy9pixc(pix5,pix2,pix3,pix4,pix1,pix6,pix7,pix8,pix9);
                     //le pix6
-                    imglisse.img[i+1][j+2] = moy9pixc(pix2,pix3,pix5,pix6,pixAlpha,pixBeta,pix8,pix9,pixGama);
+                    imglisse.img[i+1][j+2] = moy9pixc(pix6,pix3,pix5,pix2,pixAlpha,pixBeta,pix8,pix9,pixGama);
                     //le pix7
-                    imglisse.img[i+2][j] = moy6pixc(pix4,pix5,pix7,pix8,pixTheta,pixLambda);
+                    imglisse.img[i+2][j] = moy6pixc(pix7,pix5,pix4,pix8,pixTheta,pixLambda);
                     //le pix8
-                    imglisse.img[i+2][j+1] = moy9pixc(pix4,pix5,pix6,pix7,pix8,pix9,pixTheta,pixLambda,pixKappa);
+                    imglisse.img[i+2][j+1] = moy9pixc(pix8,pix5,pix6,pix7,pix4,pix9,pixTheta,pixLambda,pixKappa);
                     //le pix9
-                    imglisse.img[i+2][j+2] = moy9pixc(pix5,pix6,pix8,pix9,pixGama,pixBeta,pixLambda,pixKappa,pixIota);
+                    imglisse.img[i+2][j+2] = moy9pixc(pix9,pix6,pix8,pix5,pixGama,pixBeta,pixLambda,pixKappa,pixIota);
                 }
                 //si on est juste a droite
                 if(i != 0 && i != y-3 && j == x-3){
@@ -2222,21 +2327,21 @@ int contours (char *name,char *newname){
                     //le pix1
                     imglisse.img[i][j] = moy9pixc(pix1,pix2,pix5,pix4,pixDelta,pixEpsilon,pixAlpha,pixBeta,pixEta);
                     //le pix2
-                    imglisse.img[i][j+1] = moy9pixc(pix1,pix2,pix3,pix4,pix5,pix6,pixDelta,pixEpsilon,pixZeta);
+                    imglisse.img[i][j+1] = moy9pixc(pix2,pix1,pix3,pix4,pix5,pix6,pixDelta,pixEpsilon,pixZeta);
                     //le pix3
-                    imglisse.img[i][j+2] = moy6pixc(pix2,pix3,pix5,pix6,pixEpsilon,pixZeta);
+                    imglisse.img[i][j+2] = moy6pixc(pix3,pix2,pix5,pix6,pixEpsilon,pixZeta);
                     //le pix4
-                    imglisse.img[i+1][j] = moy9pixc(pix1,pix2,pix4,pix5,pix7,pix8,pixAlpha,pixBeta,pixGama);
+                    imglisse.img[i+1][j] = moy9pixc(pix4,pix2,pix1,pix5,pix7,pix8,pixAlpha,pixBeta,pixGama);
                     //le pix5
-                    imglisse.img[i+1][j+1] = moy9pixc(pix1,pix2,pix3,pix4,pix5,pix6,pix7,pix8,pix9);
+                    imglisse.img[i+1][j+1] = moy9pixc(pix5,pix2,pix3,pix4,pix1,pix6,pix7,pix8,pix9);
                     //le pix6
-                    imglisse.img[i+1][j+2] = moy6pixc(pix2,pix3,pix5,pix6,pix8,pix9);
+                    imglisse.img[i+1][j+2] = moy6pixc(pix6,pix3,pix5,pix2,pix8,pix9);
                     //le pix7
-                    imglisse.img[i+2][j] = moy9pixc(pix4,pix5,pix7,pix8,pixTheta,pixLambda,pixBeta,pixGama,pixIota);
+                    imglisse.img[i+2][j] = moy9pixc(pix7,pix5,pix4,pix8,pixTheta,pixLambda,pixBeta,pixGama,pixIota);
                     //le pix8
-                    imglisse.img[i+2][j+1] = moy9pixc(pix4,pix5,pix6,pix7,pix8,pix9,pixTheta,pixLambda,pixKappa);
+                    imglisse.img[i+2][j+1] = moy9pixc(pix8,pix5,pix6,pix7,pix4,pix9,pixTheta,pixLambda,pixKappa);
                     //le pix9
-                    imglisse.img[i+2][j+2] = moy6pixc(pix5,pix6,pix8,pix9,pixLambda,pixKappa);
+                    imglisse.img[i+2][j+2] = moy6pixc(pix9,pix6,pix8,pix5,pixLambda,pixKappa);
 
                 }
                 //sinon on est juste au milieu
@@ -2346,21 +2451,21 @@ int contours (char *name,char *newname){
                     //le pix1
                     imglisse.img[i][j] = moy9pixc(pix1,pix2,pix5,pix4,pixDelta,pixEpsilon,pixAlpha,pixBeta,pixEta);
                     //le pix2
-                    imglisse.img[i][j+1] = moy9pixc(pix1,pix2,pix3,pix4,pix5,pix6,pixDelta,pixEpsilon,pixZeta);
+                    imglisse.img[i][j+1] = moy9pixc(pix2,pix1,pix3,pix4,pix5,pix6,pixDelta,pixEpsilon,pixZeta);
                     //le pix3
-                    imglisse.img[i][j+2] = moy9pixc(pix2,pix3,pix5,pix6,pixEpsilon,pixZeta,pixMu,pixNu,pixXi);
+                    imglisse.img[i][j+2] = moy9pixc(pix3,pix2,pix5,pix6,pixEpsilon,pixZeta,pixMu,pixNu,pixXi);
                     //le pix4
-                    imglisse.img[i+1][j] = moy9pixc(pix1,pix2,pix4,pix5,pix7,pix8,pixAlpha,pixBeta,pixGama);
+                    imglisse.img[i+1][j] = moy9pixc(pix4,pix2,pix1,pix5,pix7,pix8,pixAlpha,pixBeta,pixGama);
                     //le pix5
-                    imglisse.img[i+1][j+1] = moy9pixc(pix1,pix2,pix3,pix4,pix5,pix6,pix7,pix8,pix9);
+                    imglisse.img[i+1][j+1] = moy9pixc(pix5,pix2,pix3,pix4,pix1,pix6,pix7,pix8,pix9);
                     //le pix6
-                    imglisse.img[i+1][j+2] = moy9pixc(pix2,pix3,pix5,pix6,pix8,pix9,pixNu,pixXi,pixPi);
+                    imglisse.img[i+1][j+2] = moy9pixc(pix6,pix3,pix5,pix2,pix8,pix9,pixNu,pixXi,pixPi);
                     //le pix7
-                    imglisse.img[i+2][j] = moy9pixc(pix4,pix5,pix7,pix8,pixTheta,pixLambda,pixBeta,pixGama,pixIota);
+                    imglisse.img[i+2][j] = moy9pixc(pix7,pix5,pix4,pix8,pixTheta,pixLambda,pixBeta,pixGama,pixIota);
                     //le pix8
-                    imglisse.img[i+2][j+1] = moy9pixc(pix4,pix5,pix6,pix7,pix8,pix9,pixTheta,pixLambda,pixKappa);
+                    imglisse.img[i+2][j+1] = moy9pixc(pix8,pix5,pix6,pix7,pix4,pix9,pixTheta,pixLambda,pixKappa);
                     //le pix9
-                    imglisse.img[i+2][j+2] = moy9pixc(pix5,pix6,pix8,pix9,pixLambda,pixKappa,pixXi,pixPi,pixRho);
+                    imglisse.img[i+2][j+2] = moy9pixc(pix9,pix6,pix8,pix5,pixLambda,pixKappa,pixXi,pixPi,pixRho);
 
                 }
             }
@@ -2372,7 +2477,6 @@ int contours (char *name,char *newname){
     return 0;
 
 }
-
 
 
 

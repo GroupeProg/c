@@ -37,7 +37,7 @@ int lissage(char *name,char *newname, int niveau);
 pixel moy4pixc (pixel pix1, pixel pix2, pixel pix3, pixel pix4);
 pixel moy6pixc (pixel pix1, pixel pix2, pixel pix3, pixel pix4, pixel pix5, pixel pix6);
 pixel moy9pixc (pixel pix1, pixel pix2, pixel pix3, pixel pix4, pixel pix5, pixel pix6, pixel pix7, pixel pix8, pixel pix9);
-
+int contours (char *name,char *newname);
 
 
 
