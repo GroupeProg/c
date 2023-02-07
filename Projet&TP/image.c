@@ -8,25 +8,25 @@ int save(image img, char* nomFichier)
     int y = img.sizeY;
 
     FILE* fichier = NULL;
-    fichier = fopen(nomFichier, "r+");
+    fichier = fopen(nomFichier, "w");
 
     if (fichier != NULL)
     {
-        // On peut lire et écrire dans le fichier
+        // On peut lire et Ã©crire dans le fichier
         fprintf(fichier,"P3\n%d %d\n255\n",x,y);
 
-        for(int i=0;i<x;i++) //on recup les couleurs via dans le tab 2 dimensions
+        for(int i=0;i<y;i++) //on recup les couleurs via dans le tab 2 dimensions
         {
-            for(int u=0;u<y;u++)
+            for(int u=0;u<x;u++)
             {
                 unsigned char r = img.tab[i][u].r;
                 unsigned char v = img.tab[i][u].v;
                 unsigned char b = img.tab[i][u].b;
-                fprintf(fichier,"%d\t%d\t%d\n",r,v,b);//on écrit les couleurs r g b = 0 0 0 = 1 pixel
+                fprintf(fichier,"%d %d %d\n",r,v,b);//on Ã©crit les couleurs r g b = 0 0 0 = 1 pixel
             }
             fprintf(fichier,"\n");
         }
-        fclose(fichier); // On ferme le fichier qui a été ouvert
+        fclose(fichier); // On ferme le fichier qui a Ã©tÃ© ouvert
     }
     else
     {
@@ -51,11 +51,12 @@ image init(int sizeX,int sizeY)
         img.tab[i] = malloc(sizeof(pixel)*sizeX);//alloue memoire pour colonne
     }
 
-    for(int i=0; i<sizeY;i++)
+    for(int i=0; i<sizeY;i++) 
     {
         for(int j=0; j<sizeX;j++)
         {
             pixel pix = initPixel();
+            //printf("b=%d v=%d r=%d\n",pix.b,pix.v,pix.r);
             img.tab[i][j] = pix;
 
         }
@@ -68,20 +69,50 @@ image init(int sizeX,int sizeY)
 
 pixel initPixel()
 {
-
+    pixel pix;
     int resR = rand() % 256;
     int resB = rand() % 256;
     int resV = rand() % 256;
 
-    pixel pix;
     pix.r = resR;
     pix.b = resB;
     pix.v = resV;
 
+
     return pix;
 }
 
+int nbCarac(char* nomFichier)
+{
+    FILE* fichier = NULL;
+    fichier = fopen(nomFichier, "r");
 
+    int nb_car = 0;
+    int lines = 0;
+    char f;
+
+    while ((f=fgetc(fichier))!= EOF)
+    {
+        nb_car++;
+
+        if (f == '\n' || f=='\0')
+        {
+            lines++;
+        }
+        if (lines == 1)
+        {
+            nb_car = 0;
+        }
+        else if (lines==3)
+        {
+            break;
+        }
+
+    }
+    fclose(fichier);
+
+    return nb_car;
+}
 
 image readImage(char* nomFichier)
 {
@@ -89,12 +120,12 @@ image readImage(char* nomFichier)
     int x;
     int y;
 
+
+
     FILE* fichier = NULL;
     fichier = fopen(nomFichier, "r");
 
-    int nb_car = 1;
-    char finPhrase = '\n';
-    char f;
+    int numberChar;
 
     if (fichier != NULL)
     {
@@ -105,6 +136,10 @@ image readImage(char* nomFichier)
         img.sizeX = x;
         img.sizeY = y;
 
+        numberChar = nbCarac(nomFichier); //nombre de caracteres a sauter
+
+        fseek(fichier, 15,SEEK_SET); // on se place a la quatrieme ligne
+
         img.tab = malloc(sizeof(pixel*)*y); // alloue memoire pour ligne
 
         for(int i=0; i<y;i++)
@@ -112,39 +147,40 @@ image readImage(char* nomFichier)
             img.tab[i] = malloc(sizeof(pixel)*x);//alloue memoire pour colonne
         }
 
-        while ((f=fgetc(fichier))!=finPhrase) // trouver nombre de caractere ligne 2
+        for(int i=0;i<img.sizeY;i++) //on recup les couleurs via dans le tab 2 dimensions
         {
-            nb_car++;
-        }
-        nb_car += 4;
-        fseek(fichier, nb_car,SEEK_SET); // on se place a la quatrieme ligne
-
-        for(int i=0;i<x;i++) //on recup les couleurs via dans le tab 2 dimensions
-        {
-            for(int u=0;u<y;u++)
+            // trouver pk y = 0 dans for mais pas dans le reste ^
+            for(int u=0;u<x;u++)
             {
-                unsigned char r;
-                unsigned char v;
+                unsigned char a;
                 unsigned char b;
-                fscanf(fichier,"%d %d %d",&r,&v,&b);
+                unsigned char c;
 
-                img.tab[i][u].r = r;
-                img.tab[i][u].v = v;
-                img.tab[i][u].b = b;
+                fscanf(fichier,"%d %d %d",&c,&b,&a);
+                img.tab[i][u].r = c;
+                //fscanf(fichier,"%d",&v);
+                //printf("v = %d",v);
+                img.tab[i][u].v = b;
+                //fscanf(fichier,"%d",&b);
+                //printf("b = %d",b);
+                img.tab[i][u].b = a;
+
+
+
+
             }
         }
 
-        fclose(fichier); // On ferme le fichier qui a été ouvert
+        fclose(fichier); // On ferme le fichier qui a Ã©tÃ© ouvert
     }
     else
     {
         // On affiche un message d'erreur si on veut
-        printf("Impossible d'ouvrir le fichier ""readimage""");
+        printf("Impossible d'ouvrir le fichier => readimage");
     }
 
     return img;
 }
-
 
 
 
