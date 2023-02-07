@@ -8,14 +8,14 @@
 
 int main(){
     
-    image randimage = init_image(9,9);
-    save (randimage, "mini_projet_kaez/test.ppm");
+    //image randimage = init_image(9,9);
+    //image img = load("mini_projet_kaez/Sailor.ppm");
 
     //image imageloaded = load("mini_projet_kaez/img.ppm");
-    //save(imageloaded, "mini_projet_kaez/img2.ppm");
-
-    contours("mini_projet_kaez/test.ppm","mini_projet_kaez/testcontours.ppm");
-
+    //save(img, "mini_projet_kaez/SailorSaved.ppm");
+    //sepia ("mini_projet_kaez/SailorSaved.ppm","mini_projet_kaez/SailorSepia.ppm");
+    //contours("mini_projet_kaez/House2.ppm","mini_projet_kaez/House2Contours2.ppm");
+    lissage("mini_projet_kaez/SailorSaved.ppm","mini_projet_kaez/SailorLissage.ppm", 3);
 
     return 0;
 }

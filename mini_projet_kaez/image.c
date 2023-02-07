@@ -16,7 +16,6 @@ pixel init_pixel(unsigned char rouge, unsigned char vert, unsigned char bleu){
     return pix; //on renvoi le pixel.
 }
 
-
 //fonction qui initalise un pixel avec des valeurs aleatoires.
 pixel random_pixel(){
     int tab_of_colors[3]; //on cree un tableau avec 3 cases pour y stocker la valeur de r, v et b.
@@ -34,7 +33,6 @@ pixel random_pixel(){
 
     return pix; //on renvoi le pixel.
 }
-
 
 //fonction qui initialise une image avec des pixels de couleur aleatoire en lui donnant les dimensions de sa hauteur et sa largeur.
 image init_image(int sx, int sy){
@@ -62,7 +60,6 @@ image init_image(int sx, int sy){
     
     return img1; //on renvoi l'image
 }
-
 
 //Fonction qui ecrit dans fichier une image de pixels au format .ppm.
 int save(image img2, char *name){
@@ -212,7 +209,6 @@ int levels (char *name,char *newname, char *level){
     save(img1, newname);
     return 0;
 }
-
 
 //Fonction qui transforme une image en noir et blanc
 int greymoy (char *name,char *newname){
@@ -382,7 +378,6 @@ pixel moy9pixl (pixel pix1, pixel pix2, pixel pix3, pixel pix4, pixel pix5, pixe
 
     return res;
 }
-
 
 //Fonction qui lisse une image
 int lissage_aux(char *name,char *newname){
@@ -1363,52 +1358,52 @@ int lissage(char *name,char *newname, int niveau){
     }
 }
 
-
 //fonction qui renvoi un pixel avec la moyenne de 3 autres.
 pixel moy4pixc (pixel pix1, pixel pix2, pixel pix3, pixel pix4){
     pixel res;
 
-    unsigned char moyr = ((5 * pix1.r) + ((-0.5) * pix2.r) + ((-0.5) * pix3.r) + ((-0.5) * pix4.r))/4;
-    unsigned char moyv = ((5 * pix1.v) + ((-0.5) * pix2.v) + ((-0.5) * pix3.v) + ((-0.5) * pix4.v))/4;
-    unsigned char moyb = ((5 * pix1.b) + ((-0.5) * pix2.b) + ((-0.5) * pix3.b) + ((-0.5) * pix4.b))/4;
-    printf("le rouge du pixel %d \n", pix1.r);
-    printf("le vert du pixel %d \n", pix1.v);
-    printf("le bleu du pixel %d \n", pix1.b);
-    if(moyr >=255)
+    unsigned char moyr = ((5 * pix1.r) + ((-1.33) * pix2.r) + ((-1.33) * pix3.r) + ((-1.33) * pix4.r))/4;
+    unsigned char moyv = ((5 * pix1.v) + ((-1.33) * pix2.v) + ((-1.33) * pix3.v) + ((-1.33) * pix4.v))/4;
+    unsigned char moyb = ((5 * pix1.b) + ((-1.33) * pix2.b) + ((-1.33) * pix3.b) + ((-1.33) * pix4.b))/4;
+
+    int a1,b1,c1;
+    a1 = moyr;
+    b1 = moyv;
+    c1 = moyb;
+
+    unsigned char max,min;
+    max = 255;
+    min = 0;
+
+    if(a1 >=255)
     {
-        res.r = 255;
+        res.r = max;
     }else{
-        if(moyr <= 0)
+        if(a1 <= 0)
         {
-            res.r = 0;
+            res.r = min;
         }else {res.r = moyr;}
         }
 
-    if (moyv >=255)
+    if (b1 >=255)
     {
-        res.v = 255;
+        res.v = max;
     }else{
-        if(moyv <= 0)
+        if(b1 <= 0)
         {
-            res.v = 0;
+            res.v = min;
         }else {res.v = moyv;}
         }
 
-    if (moyb >=255)
+    if (c1 >=255)
     {
-        res.b = 255;
+        res.b = max;
     } else{
-        if(moyb <= 0)
+        if(c1 <= 0)
         {
-            res.b = 0;
+            res.b = min;
         }else {res.b = moyb;}
         }
-    printf("lamoyenne : \n");
-    printf("le rouge du pixel %d \n", moyr);
-    printf("le vert du pixel %d \n", moyv);
-    printf("le bleu du pixel %d \n", moyb);
-    printf("\n");
-
 
     return res;
 }
@@ -1416,46 +1411,48 @@ pixel moy4pixc (pixel pix1, pixel pix2, pixel pix3, pixel pix4){
 //fonction qui renvoi un pixel avec la moyenne de 6 autres.
 pixel moy6pixc (pixel pix1, pixel pix2, pixel pix3, pixel pix4, pixel pix5, pixel pix6){
     pixel res;
-    unsigned char moyr = ((5 * pix1.r) + ((-0.5) * pix2.r) + ((-0.5) * pix3.r) + ((-0.5) * pix4.r) + ((-0.5) * pix5.r) + ((-0.5) * pix6.r))/6;
-    unsigned char moyv = ((5 * pix1.v) + ((-0.5) * pix2.v) + ((-0.5) * pix3.v) + ((-0.5) * pix4.v) + ((-0.5) * pix5.v) + ((-0.5) * pix6.v))/6; 
-    unsigned char moyb = ((5 * pix1.b) + ((-0.5) * pix2.b) + ((-0.5) * pix3.b) + ((-0.5) * pix4.b) + ((-0.5) * pix5.b) + ((-0.5) * pix6.b))/6;
-    printf("le rouge du pixel %d \n", pix1.r);
-    printf("le vert du pixel %d \n", pix1.v);
-    printf("le bleu du pixel %d \n", pix1.b);
-    if(moyr >=255)
+    unsigned char moyr = ((5 * pix1.r) + ((-0.8) * pix2.r) + ((-0.8) * pix3.r) + ((-0.8) * pix4.r) + ((-0.8) * pix5.r) + ((-0.8) * pix6.r))/6;
+    unsigned char moyv = ((5 * pix1.v) + ((-0.8) * pix2.v) + ((-0.8) * pix3.v) + ((-0.8) * pix4.v) + ((-0.8) * pix5.v) + ((-0.8) * pix6.v))/6; 
+    unsigned char moyb = ((5 * pix1.b) + ((-0.8) * pix2.b) + ((-0.8) * pix3.b) + ((-0.8) * pix4.b) + ((-0.8) * pix5.b) + ((-0.8) * pix6.b))/6;
+
+    int a1,b1,c1;
+    a1 = moyr;
+    b1 = moyv;
+    c1 = moyb;
+
+    unsigned char max,min;
+    max = 255;
+    min = 0;
+
+    if(a1 >=255)
     {
-        res.r = 255;
+        res.r = max;
     }else{
-        if(moyr <= 0)
+        if(a1 <= 0)
         {
-            res.r = 0;
+            res.r = min;
         }else {res.r = moyr;}
         }
 
-    if (moyv >=255)
+    if (b1 >=255)
     {
-        res.v = 255;
+        res.v = max;
     }else{
-        if(moyv <= 0)
+        if(b1 <= 0)
         {
-            res.v = 0;
+            res.v = min;
         }else {res.v = moyv;}
         }
 
-    if (moyb >=255)
+    if (c1 >=255)
     {
-        res.b = 255;
+        res.b = max;
     } else{
-        if(moyb <= 0)
+        if(c1 <= 0)
         {
-            res.b = 0;
+            res.b = min;
         }else {res.b = moyb;}
         }
-    printf("lamoyenne : \n");
-    printf("le rouge du pixel %d \n", moyr);
-    printf("le vert du pixel %d \n", moyv);
-    printf("le bleu du pixel %d \n", moyb);
-    printf("\n");
 
     return res;
 }
@@ -1466,46 +1463,48 @@ pixel moy9pixc (pixel pix1, pixel pix2, pixel pix3, pixel pix4, pixel pix5, pixe
     unsigned char moyr = ((5 * pix1.r) + ((-0.5) * pix2.r) + ((-0.5) * pix3.r) + ((-0.5) * pix4.r) + ((-0.5) * pix5.r) + ((-0.5) * pix6.r) + ((-0.5) * pix7.r) + ((-0.5) * pix8.r) + ((-0.5) * pix9.r))/9;
     unsigned char moyv = ((5 * pix1.v) + ((-0.5) * pix2.v) + ((-0.5) * pix3.v) + ((-0.5) * pix4.v) + ((-0.5) * pix5.v) + ((-0.5) * pix6.v) + ((-0.5) * pix7.v) + ((-0.5) * pix8.v) + ((-0.5) * pix9.v))/9; 
     unsigned char moyb = ((5 * pix1.b) + ((-0.5) * pix2.b) + ((-0.5) * pix3.b) + ((-0.5) * pix4.b) + ((-0.5) * pix5.b) + ((-0.5) * pix6.b) + ((-0.5) * pix7.b) + ((-0.5) * pix8.b) + ((-0.5) * pix9.b))/9;
-    printf("le rouge du pixel %d \n", pix1.r);
-    printf("le vert du pixel %d \n", pix1.v);
-    printf("le bleu du pixel %d \n", pix1.b);
-    if(moyr >=255)
+
+    int a1,b1,c1;
+    a1 = moyr;
+    b1 = moyv;
+    c1 = moyb;
+
+    unsigned char max,min;
+    max = 255;
+    min = 0;
+
+    if(a1 >=255)
     {
-        res.r = 255;
+        res.r = max;
     }else{
-        if(moyr <= 0)
+        if(a1 <= 0)
         {
-            res.r = 0;
+            res.r = min;
         }else {res.r = moyr;}
         }
 
-    if (moyv >=255)
+    if (b1 >=255)
     {
-        res.v = 255;
+        res.v = max;
     }else{
-        if(moyv <= 0)
+        if(b1 <= 0)
         {
-            res.v = 0;
+            res.v = min;
         }else {res.v = moyv;}
         }
 
-    if (moyb >=255)
+    if (c1 >=255)
     {
-        res.b = 255;
+        res.b = max;
     } else{
-        if(moyb <= 0)
+        if(c1 <= 0)
         {
-            res.b = 0;
+            res.b = min;
         }else {res.b = moyb;}
         }
-    printf("lamoyenne : \n");
-    printf("le rouge du pixel %d \n", moyr);
-    printf("le vert du pixel %d \n", moyv);
-    printf("le bleu du pixel %d \n", moyb);
-    printf("\n");
+
     return res;
 }
-
 
 //Fonction qui fait ressortir les contours d'une image
 int contours (char *name,char *newname){
