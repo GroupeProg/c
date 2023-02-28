@@ -17,13 +17,17 @@ pixel init_pix();
 
 image init_image(int x, int y);
 void save(image img, char* f);
-image load(char *i);
+image load(char *name);
 image changetored(image img);
 image changetoblue(image img);
 image changetogreen(image img);
 image changetogrey(image img);
 image changetogreymax(image img);
-image changetosepia(image img);
+image changetosepia(image img1);
+
+image lissage(image img);
+image lissageangles(image img, image res);
+image contour(image img);
 
 
 #endif // MINIPROJET_IMAGES_H_INCLUDED
