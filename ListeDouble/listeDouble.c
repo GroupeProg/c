@@ -4,7 +4,7 @@
 #include "listeDouble.h"
 
 
-//initListe ne fait pas de malloc, juste une initialisation à NULL du pointeur de liste
+//initListe ne fait pas de malloc, juste une initialisation Ã  NULL du pointeur de liste
 void initListe(T_liste *l){
 *l=NULL;
 }
@@ -14,13 +14,35 @@ bool listeVide( T_liste l){
     return (l==NULL);
 };
 
-//affiche la liste passée en parametre
+//affiche la liste passÃ©e en parametre
 void afficheListeV1( T_liste l){
     T_liste p = l;
     while (p!=NULL){
         printf(" %d ", *(p->pdata));
         p=p->suiv;
     }
+}
+
+//dans cette version "l" est un pointeur sur le pointeur de la 1ere cellule.
+void ajoutEnTetePtr2Ptr(T_liste *l, int mydata){
+    T_liste nouv = (T_liste)malloc(sizeof(struct T_cell));
+    //struct T_cell * nouv = (struct T_cell *)malloc(sizeof(struct T_cell))  //equivalent
+    nouv->pdata = (int*)malloc(sizeof(int));
+    *(nouv->pdata)=mydata;
+
+    if (*l==NULL) // on cree en fait la premiere cellule de la liste
+    {
+        nouv->suiv = NULL;
+        nouv->prec = NULL;
+    }
+    else  // la lste n'etait pas vide, on doit donc faire les branchements
+    {
+        nouv->suiv = *l;
+        nouv->prec = NULL;
+        (*l)->prec = nouv;
+    }
+    //on modifie l'adresse de la tï¿½te de la liste, soit le contenu pointï¿½ par l
+    *l=nouv;
 }
 
 //ajoute une valeur passee en parametre au debut de la liste
@@ -71,8 +93,8 @@ T_liste ajoutEnFin(T_liste l, int mydata){
 }
 
 //ajoute une valeur a la place N dans la liste
-//si cette place est (<=1) alors ajout a la première place
-//si la valeur est supérieure à la longueur de la liste alors ajout à la fin
+//si cette place est (<=1) alors ajout a la premiÃ¨re place
+//si la valeur est supÃ©rieure Ã  la longueur de la liste alors ajout Ã  la fin
 T_liste ajoutEnN(T_liste l, int pos, int mydata){
     T_liste liste=l;
     T_liste nouv=(T_liste)malloc(sizeof(struct T_cell));
@@ -209,6 +231,7 @@ T_liste getptrNextCell(T_liste l){
     return ptr;
 }
 
+//renvoie un pointeur sur la cellule precedente de la liste
 T_liste getptrPrevCell(T_liste l){
     if(l==NULL){
         return NULL;
@@ -219,6 +242,7 @@ T_liste getptrPrevCell(T_liste l){
     }
 }
 
+//renvoie un pointeur sur la valeur contenu dans le champ pdata
 int* getPtrData(T_liste l){
     if(l==NULL){
         return NULL;
@@ -229,6 +253,7 @@ int* getPtrData(T_liste l){
     }
 }
 
+//echange les valeurs de deux champs pdata
 void swapPtrData( T_liste source, T_liste destination ){
     int *p1=getPtrData(source), *p2=getPtrData(destination);
     printf("pointeur 1 : %d, pointeur 2 : %d", *p1, *p2);
@@ -238,6 +263,7 @@ void swapPtrData( T_liste source, T_liste destination ){
     printf("\npointeur 1 : %d, pointeur 2 : %d \n", *p1, *p2);
 }
 
+//donne le nombre de cellules de la liste
 int getNbreCell(T_liste l){
     int res=0;
     while(l!=NULL){
@@ -247,12 +273,15 @@ int getNbreCell(T_liste l){
     return res;
 }
 
+//renvoie la taille en bits d'une liste
 int getSizeBytes(T_liste l){
     int len=getNbreCell(l);
     int res=len*sizeof(struct T_cell);
     return res;
 }
 
+//renvoie une nouvelle liste cree a partir de deux liste mise l'une derriere l'autre;
+//les liste d'origine ne sont pas modifiees
 T_liste creatNewListeFromFusion(T_liste l1, T_liste l2){
     T_liste res;
     initListe(&res);
@@ -275,6 +304,7 @@ T_liste creatNewListeFromFusion(T_liste l1, T_liste l2){
     return res;
 }
 
+//renvoie la premiere liste avec la deuxieme liste rajoutee a la premiere
 T_liste addBehind(T_liste debut, T_liste suite){
     T_cellule *ptr=debut;
     T_cellule *p=suite;
@@ -284,6 +314,7 @@ T_liste addBehind(T_liste debut, T_liste suite){
     return debut;
 }
 
+//trouve la premiere cellule qui contient la valeur data dans son champ pdata
 T_liste findCell(T_liste l, int data){
     T_cellule *ptr=l;
     T_liste res=NULL;
@@ -299,6 +330,22 @@ T_liste findCell(T_liste l, int data){
     return res;
 }
 
+//renvoie le nombre de fois que data est present dans la liste
 int getOccurences(T_liste l, int data){
+    T_cellule *ptr=getptrFirstCell(l);
+    int *p=getPtrData(ptr);
+    int res=0;
+    int len=getNbreCell(ptr);
+    for(int i=0; i<len; i++){
+        if(*p==data){
+            res=res+1;
+        }
+        ptr=getptrNextCell(ptr);
+        p=getPtrData(ptr);
+    }
 
+    return res;
 }
+/*
+//affiche la liste grace Ã  ??
+void afficheListeV2( T_liste l){}*/
