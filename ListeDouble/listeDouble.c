@@ -45,18 +45,20 @@ T_liste ajoutEnTete(T_liste l, int mydata){
 
 //ajoute une valeur passe en parametre a la fin de la liste
 T_liste ajoutEnFin(T_liste l, int mydata){
-    T_liste res=l;
-    T_liste nouv=(T_liste)malloc(sizeof(struct T_cell));
-    nouv->pdata=(int *)malloc(sizeof(int));
-    *(nouv->pdata)=mydata;
-
-    if(res==NULL)
+    if(l==NULL)
     {
-        nouv->suiv=NULL;
-        nouv->prec=NULL;
+        l=(T_liste)malloc(sizeof(struct T_cell));
+        l->pdata=(int *)malloc(sizeof(int));
+        l->prec=NULL;
+        l->suiv=NULL;
+        *(l->pdata)=mydata;
     }
     else
     {
+        T_liste res=l;
+        T_liste nouv=(T_liste)malloc(sizeof(struct T_cell));
+        nouv->pdata=(int *)malloc(sizeof(int));
+        *(nouv->pdata)=mydata;
         nouv->suiv=NULL;
         while(res->suiv!=NULL)
         {
@@ -77,10 +79,13 @@ T_liste ajoutEnN(T_liste l, int pos, int mydata){
     nouv->pdata=(int *)malloc(sizeof(int));
     *(nouv->pdata)=mydata;
 
-    if(liste==NULL)
+    if(l==NULL)
     {
-        nouv->suiv=NULL;
-        nouv->prec=NULL;
+        l=(T_liste)malloc(sizeof(struct T_cell));
+        l->pdata=(int *)malloc(sizeof(int));
+        l->prec=NULL;
+        l->suiv=NULL;
+        *(l->pdata)=mydata;
     }
     else if(pos<=1)
     {
@@ -161,6 +166,139 @@ T_liste suppEnN(T_liste l, int pos){
     return l;
 }
 
+//renvoie un pointeur sur la premiere cellule de la liste
 T_liste getptrFirstCell(T_liste l){
-    T_liste *ptr=
+    T_cellule *ptr;
+    if(l==NULL){
+        ptr=NULL;
+    }
+    else
+    {
+        ptr=l;
+    }
+    return ptr;
+}
+
+//renvoie un pointeur sur la derniere cellule de la liste
+T_liste getptrLastCell(T_liste l){
+    T_cellule *ptr;
+    if(l==NULL){
+        ptr=NULL;
+    }
+    else
+    {
+        while((l->suiv)!=NULL){
+                l=l->suiv;
+        }
+        ptr=l;
+    }
+    return ptr;
+}
+
+//renvoie un pointeur sur la cellule suivante de la liste
+T_liste getptrNextCell(T_liste l){
+    T_cellule *ptr;
+    if(l==NULL){
+        ptr=NULL;
+    }
+    else
+    {
+        l=l->suiv;
+        ptr=l;
+    }
+    return ptr;
+}
+
+T_liste getptrPrevCell(T_liste l){
+    if(l==NULL){
+        return NULL;
+    }
+    else
+    {
+        return l->prec;
+    }
+}
+
+int* getPtrData(T_liste l){
+    if(l==NULL){
+        return NULL;
+    }
+    else
+    {
+        return l->pdata;
+    }
+}
+
+void swapPtrData( T_liste source, T_liste destination ){
+    int *p1=getPtrData(source), *p2=getPtrData(destination);
+    printf("pointeur 1 : %d, pointeur 2 : %d", *p1, *p2);
+    int tmp = *p1;
+    *p1=*p2;
+    *p2=tmp;
+    printf("\npointeur 1 : %d, pointeur 2 : %d \n", *p1, *p2);
+}
+
+int getNbreCell(T_liste l){
+    int res=0;
+    while(l!=NULL){
+        l=l->suiv;
+        res=res+1;
+    }
+    return res;
+}
+
+int getSizeBytes(T_liste l){
+    int len=getNbreCell(l);
+    int res=len*sizeof(struct T_cell);
+    return res;
+}
+
+T_liste creatNewListeFromFusion(T_liste l1, T_liste l2){
+    T_liste res;
+    initListe(&res);
+    int len=getNbreCell(l1);
+    T_cellule *p=getptrFirstCell(l1);
+    int *ptr=getPtrData(p);
+    for(int i=0; i<len; i++){
+        res=ajoutEnFin(res,*ptr);
+        p=getptrNextCell(p);
+        ptr=getPtrData(p);
+    }
+    len=getNbreCell(l2);
+    p=getptrFirstCell(l2);
+    ptr=getPtrData(p);
+    for(int i=0; i<len; i++){
+        res=ajoutEnFin(res,*ptr);
+        p=getptrNextCell(p);
+        ptr=getPtrData(p);
+    }
+    return res;
+}
+
+T_liste addBehind(T_liste debut, T_liste suite){
+    T_cellule *ptr=debut;
+    T_cellule *p=suite;
+    ptr=getptrLastCell(ptr);
+    ptr->suiv=p;
+    p->prec=ptr;
+    return debut;
+}
+
+T_liste findCell(T_liste l, int data){
+    T_cellule *ptr=l;
+    T_liste res=NULL;
+    int *p=getPtrData(ptr);
+    while(*p!=data && ptr->suiv!=NULL){
+        ptr=getptrNextCell(ptr);
+        p=getPtrData(ptr);
+    }
+    if(*p==data){
+        res=ptr;
+    }
+    else printf("valeur pas dans la liste");
+    return res;
+}
+
+int getOccurences(T_liste l, int data){
+
 }

@@ -32,7 +32,7 @@ T_liste getptrLastCell(T_liste l);
 T_liste getptrNextCell(T_liste l);
 T_liste getptrPrevCell(T_liste l);
 
-int* getPtrData(T_liste l, int mydata);
+int* getPtrData(T_liste l);
 void swapPtrData( T_liste source, T_liste destination );
 
 int getNbreCell(T_liste l);
