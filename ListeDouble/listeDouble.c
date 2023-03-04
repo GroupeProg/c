@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 #include "listeDouble.h"
 
@@ -346,6 +347,24 @@ int getOccurences(T_liste l, int data){
 
     return res;
 }
+
 /*
 //affiche la liste grace à ??
-void afficheListeV2( T_liste l){}*/
+void afficheListeV2( T_liste l){
+    int len=getNbreCell()
+}*/
+
+//*******************************
+//***********etape 2 ************
+//*******************************
+
+T_liste listeNbrAlea(int n){
+    T_liste l;
+    initListe(&l);
+    srand(time(NULL));
+    for(int i=0; i<n; i++){
+        l=ajoutEnFin(l, (rand()%100));
+    }
+    return l;
+}
+int *tabfromliste
