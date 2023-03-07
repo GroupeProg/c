@@ -115,7 +115,7 @@ int main()
     //*******************Etape 2***********************
     //*************************************************
 
-
+/*
     int len=50000;
     l=listeNbrAlea(len);
     printf("\nListe avec nombres aleatoires : ");
@@ -141,12 +141,23 @@ int main()
     l=triliste(l);
     time_t apres =time(NULL);
     printf("Effectue en %.2f seconde(s) ! \n", difftime(apres,now));
-    afficheListeV1(l);
+    afficheListeV1(l);*/
 
     //**************************************************
     //******************Etape 3*************************
     //**************************************************
 
+    int len=10;
+    l=listeNbrAlea(len);
+    printf("\nListe avec nombres aleatoires : ");
+    afficheListeV1(l);
+
+    time_t now = time(NULL);
+    printf("\nTri liste : ");
+    tri_selection_liste(l);
+    afficheListeV1(l);
+    time_t apres =time(NULL);
+    printf("\nEffectue en %.2f seconde(s) ! \n", difftime(apres,now));
 
 
 

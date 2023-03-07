@@ -64,6 +64,12 @@ void tri_selection(int *tableau, int taille);
 
 T_liste triliste(T_liste l);
 
+//**************************************************
+//******************Etape 3*************************
+//**************************************************
+
+void tri_selection_liste(T_liste l);
+
 
 
 #endif // LISTEDOUBLE_H_INCLUDED

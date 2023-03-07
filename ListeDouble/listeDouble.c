@@ -265,11 +265,9 @@ int* getPtrData(T_liste l){
 //echange les valeurs de deux champs pdata
 void swapPtrData( T_liste source, T_liste destination ){
     int *p1=getPtrData(source), *p2=getPtrData(destination);
-    printf("pointeur 1 : %d, pointeur 2 : %d", *p1, *p2);
     int tmp = *p1;
     *p1=*p2;
     *p2=tmp;
-    printf("\npointeur 1 : %d, pointeur 2 : %d \n", *p1, *p2);
 }
 
 //donne le nombre de cellules de la liste
@@ -435,18 +433,20 @@ T_liste tabintoliste(int *tab, int len){
     return res;
 }
 
-void tri_selection(int *tableau, int taille){
+void tri_selection(int *tableau, int taille)
+{
+
     int en_cours, plus_petit, j, temp;
 
-    for(en_cours = 0; en_cours<taille-1; en_cours++){
+    for(en_cours = 0; en_cours<taille-1; en_cours++)
+    {
         plus_petit=en_cours;
-        for(j = en_cours; j<taille; j++){
+        for(j = en_cours; j<taille; j++)
             if(tableau[j]<tableau[plus_petit])
                 plus_petit=j;
-            temp=tableau[en_cours];
-            tableau[en_cours]=tableau[plus_petit];
-            tableau[plus_petit]=temp;
-        }
+        temp=tableau[en_cours];
+        tableau[en_cours]=tableau[plus_petit];
+        tableau[plus_petit]=temp;
     }
 }
 
@@ -465,19 +465,35 @@ T_liste triliste(T_liste l){
 
 void tri_selection_liste(T_liste l)
 {
-    T_cellule *p;
-    T_cellule *j;
-    int *tmp, plus_petit, grand, temp;
-    for (p=getptrFirstCell(l); (p->suiv)==NULL; p->suiv)
+    int *petit, *grand;
+
+    for(T_liste p=l; (p->suiv)!=NULL; p=p->suiv)
     {
-        plus_petit = getPtrData(p);
-        for (j=getptrNextCell(p); (j->suiv)==NULL; j->suiv)
-            if (< tableau[plus_petit])
-            plus_petit = j;
-        temp = tableau[en_cours];
-        tableau[en_cours] = tableau[plus_petit];
-        tableau[plus_petit] = temp;
+        petit=getPtrData(p);
+        for(T_liste j=l; (j->suiv)!=NULL; j=j->suiv)
+        {
+            grand=getPtrData(j);
+            if((*grand)>(*petit))
+                swapPtrData(p,j);
+        }
+
     }
+    T_cellule *ptr=getptrFirstCell(l);
+    petit=getPtrData(getptrLastCell(l));
+    int len=getNbreCell(l);
+    grand=getPtrData(ptr);
+    for(int i=0; i<len; i++){
+        if(*petit<=*grand){
+            ajoutEnN(l, i+1, *petit);
+            suppEnFin(l);
+            break;
+        }
+        ptr=getptrNextCell(ptr);
+        grand=getPtrData(ptr);
+
+    }
+
+
 }
 
 
