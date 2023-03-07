@@ -18,6 +18,7 @@ bool listeVide( T_liste l);
 void afficheListeV1( T_liste l);
 //Pour "AfficheListeV1" Vous avez le droit de lire directement dans la structure de données
 //Utile pour afficher et debuguer les fonctions ci-dessous
+void ajoutEnTetePtr2Ptr(T_liste *l, int mydata);
 
 T_liste ajoutEnTete(T_liste l, int mydata); //Bien mettre à NULL les champs suiv et prec non utilisés s'il y en a
 T_liste ajoutEnFin(T_liste l, int mydata);
@@ -46,6 +47,22 @@ int getOccurences(T_liste l, int data);  //nbre de fois que data est présent dan
 
 void afficheListeV2( T_liste l);
 //Pour "AfficheListeV2", vous devez utiliser uniquement les fonctions écrites ci-dessus (interdiction de passer directement par les champs ptr de la SD)
+
+
+//*********************************************************
+//***************fonctions etapes 2************************
+//*********************************************************
+
+T_liste listeNbrAlea(int n);
+void affichetab(int *tab, int len);
+
+int *converttab(T_liste l, int taille);
+int *converttabfree(T_liste l, int taille);
+
+T_liste tabintoliste(int *tab, int len);
+void tri_selection(int *tableau, int taille);
+
+T_liste triliste(T_liste l);
 
 
 

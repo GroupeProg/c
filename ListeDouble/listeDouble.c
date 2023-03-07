@@ -463,4 +463,21 @@ T_liste triliste(T_liste l){
 //******************Etape 3*************************
 //**************************************************
 
+void tri_selection_liste(T_liste l)
+{
+    T_cellule *p;
+    T_cellule *j;
+    int *tmp, plus_petit, grand, temp;
+    for (p=getptrFirstCell(l); (p->suiv)==NULL; p->suiv)
+    {
+        plus_petit = getPtrData(p);
+        for (j=getptrNextCell(p); (j->suiv)==NULL; j->suiv)
+            if (< tableau[plus_petit])
+            plus_petit = j;
+        temp = tableau[en_cours];
+        tableau[en_cours] = tableau[plus_petit];
+        tableau[plus_petit] = temp;
+    }
+}
+
 
