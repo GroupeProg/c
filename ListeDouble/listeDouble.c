@@ -140,8 +140,12 @@ T_liste ajoutEnN(T_liste l, int pos, int mydata){
 
 //supprime la premiere valeur de la liste
 T_liste suppEnTete(T_liste l){
-    T_liste res=l->suiv;
+    T_liste res;
+    initListe(&res);
+    res=l->suiv;
     res->prec=NULL;
+    free(l->pdata);
+    free(l);
     return res;
 }
 
@@ -155,6 +159,8 @@ T_liste suppEnFin(T_liste l){
     T_liste l2=(res->suiv);
     res->suiv=NULL;
     l2->prec=NULL;
+    free(l2->pdata);
+    free(l2);
     return l;
 }
 
@@ -182,6 +188,8 @@ T_liste suppEnN(T_liste l, int pos){
         {
             T_liste suite=(res->suiv);
             T_liste precedent=(res->prec);
+            free(res->pdata);
+            free(res);
             suite->prec=precedent;
             precedent->suiv=suite;
         }
@@ -307,11 +315,9 @@ T_liste creatNewListeFromFusion(T_liste l1, T_liste l2){
 
 //renvoie la premiere liste avec la deuxieme liste rajoutee a la premiere
 T_liste addBehind(T_liste debut, T_liste suite){
-    T_cellule *ptr=debut;
-    T_cellule *p=suite;
-    ptr=getptrLastCell(ptr);
-    ptr->suiv=p;
-    p->prec=ptr;
+    T_cellule *ptr=getptrLastCell(debut);
+    ptr->suiv=suite;
+    suite->prec=ptr;
     return debut;
 }
 
@@ -348,11 +354,18 @@ int getOccurences(T_liste l, int data){
     return res;
 }
 
-/*
+
 //affiche la liste grace à ??
 void afficheListeV2( T_liste l){
-    int len=getNbreCell()
-}*/
+    int *ptr=getPtrData(l);
+    T_cellule *p=getptrFirstCell(l);
+    int len=getNbreCell(l);
+    for(int i=0; i<len; i++){
+        printf("%d ", *ptr);
+        p=getptrNextCell(p);
+        ptr=getPtrData(p);
+    }
+}
 
 //*******************************
 //***********etape 2 ************
@@ -367,4 +380,87 @@ T_liste listeNbrAlea(int n){
     }
     return l;
 }
-int *tabfromliste
+
+
+void affichetab(int *tab, int len){
+    for(int i=0; i<len; i++){
+        printf("%d ", tab[i]);
+    }
+}
+
+
+int *converttab(T_liste l, int taille){
+    T_cellule *p=getptrFirstCell(l);
+    int *val=getPtrData(p);
+    int *tab=(int *)malloc(sizeof(int)*taille);
+    for(int i=0; i<taille; i++){
+        tab[i]=*val;
+        p=getptrNextCell(p);
+        val=getPtrData(p);
+    }
+    return tab;
+}
+
+int *converttabfree(T_liste l, int taille){
+    T_cellule *p=getptrFirstCell(l);
+    int *val=getPtrData(p);
+    int *tab=(int *)malloc(sizeof(int)*taille);
+    for(int i=0; i<taille; i++){
+        tab[i]=*val;
+        p=getptrNextCell(p);
+        val=getPtrData(p);
+    }
+    p=getptrFirstCell(l);
+    val=getPtrData(p);
+    T_cellule *p2=getptrNextCell(p);
+    int *val2=getPtrData(p2);
+    for(int i=0; i<taille; i++){
+        free(val);
+        free(p);
+        p=p2;
+        val=val2;
+        p2=getptrNextCell(p);
+        val2=getPtrData(p2);
+    }
+    return tab;
+}
+
+T_liste tabintoliste(int *tab, int len){
+    T_liste res;
+    initListe(&res);
+    for(int i=0; i<len; i++){
+        int val=tab[i];
+        res=ajoutEnFin(res, val);
+    }
+    return res;
+}
+
+void tri_selection(int *tableau, int taille){
+    int en_cours, plus_petit, j, temp;
+
+    for(en_cours = 0; en_cours<taille-1; en_cours++){
+        plus_petit=en_cours;
+        for(j = en_cours; j<taille; j++){
+            if(tableau[j]<tableau[plus_petit])
+                plus_petit=j;
+            temp=tableau[en_cours];
+            tableau[en_cours]=tableau[plus_petit];
+            tableau[plus_petit]=temp;
+        }
+    }
+}
+
+T_liste triliste(T_liste l){
+    int len=getNbreCell(l);
+    int *tab=(int *)malloc(sizeof(int)*len);
+    tab=converttab(l, len);
+    tri_selection(tab, len);
+    T_liste res=tabintoliste(tab, len);
+    return res;
+}
+
+//**************************************************
+//******************Etape 3*************************
+//**************************************************
+
+
