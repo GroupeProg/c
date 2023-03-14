@@ -3,6 +3,8 @@
 #include <time.h>
 
 #include "listeDouble.h"
+#include "types.h"
+
 
 
 //initListe ne fait pas de malloc, juste une initialisation à NULL du pointeur de liste
@@ -19,16 +21,16 @@ bool listeVide( T_liste l){
 void afficheListeV1( T_liste l){
     T_liste p = l;
     while (p!=NULL){
-        printf(" %d ", *(p->pdata));
+        print(*(p->pdata));
         p=p->suiv;
     }
 }
 
 //dans cette version "l" est un pointeur sur le pointeur de la 1ere cellule.
-void ajoutEnTetePtr2Ptr(T_liste *l, int mydata){
+void ajoutEnTetePtr2Ptr(T_liste *l, T_personne mydata){
     T_liste nouv = (T_liste)malloc(sizeof(struct T_cell));
     //struct T_cell * nouv = (struct T_cell *)malloc(sizeof(struct T_cell))  //equivalent
-    nouv->pdata = (int*)malloc(sizeof(int));
+    nouv->pdata = (T_personne*)malloc(sizeof(T_personne));
     *(nouv->pdata)=mydata;
 
     if (*l==NULL) // on cree en fait la premiere cellule de la liste
@@ -47,9 +49,9 @@ void ajoutEnTetePtr2Ptr(T_liste *l, int mydata){
 }
 
 //ajoute une valeur passee en parametre au debut de la liste
-T_liste ajoutEnTete(T_liste l, int mydata){
+T_liste ajoutEnTete(T_liste l, T_personne mydata){
     T_liste nouveau=(T_liste)malloc(sizeof(struct T_cell));
-    nouveau->pdata=(int *)malloc(sizeof(int));
+    nouveau->pdata=(T_personne*)malloc(sizeof(T_personne));
     *(nouveau->pdata)=mydata;
 
     if (l==NULL)
@@ -67,11 +69,11 @@ T_liste ajoutEnTete(T_liste l, int mydata){
 }
 
 //ajoute une valeur passe en parametre a la fin de la liste
-T_liste ajoutEnFin(T_liste l, int mydata){
+T_liste ajoutEnFin(T_liste l, T_personne mydata){
     if(l==NULL)
     {
         l=(T_liste)malloc(sizeof(struct T_cell));
-        l->pdata=(int *)malloc(sizeof(int));
+        l->pdata=(T_personne *)malloc(sizeof(T_personne));
         l->prec=NULL;
         l->suiv=NULL;
         *(l->pdata)=mydata;
@@ -80,7 +82,7 @@ T_liste ajoutEnFin(T_liste l, int mydata){
     {
         T_liste res=l;
         T_liste nouv=(T_liste)malloc(sizeof(struct T_cell));
-        nouv->pdata=(int *)malloc(sizeof(int));
+        nouv->pdata=(T_personne *)malloc(sizeof(T_personne));
         *(nouv->pdata)=mydata;
         nouv->suiv=NULL;
         while(res->suiv!=NULL)
@@ -96,16 +98,16 @@ T_liste ajoutEnFin(T_liste l, int mydata){
 //ajoute une valeur a la place N dans la liste
 //si cette place est (<=1) alors ajout a la première place
 //si la valeur est supérieure à la longueur de la liste alors ajout à la fin
-T_liste ajoutEnN(T_liste l, int pos, int mydata){
+T_liste ajoutEnN(T_liste l, int pos, T_personne mydata){
     T_liste liste=l;
     T_liste nouv=(T_liste)malloc(sizeof(struct T_cell));
-    nouv->pdata=(int *)malloc(sizeof(int));
+    nouv->pdata=(T_personne *)malloc(sizeof(T_personne));
     *(nouv->pdata)=mydata;
 
     if(l==NULL)
     {
         l=(T_liste)malloc(sizeof(struct T_cell));
-        l->pdata=(int *)malloc(sizeof(int));
+        l->pdata=(T_personne *)malloc(sizeof(T_personne));
         l->prec=NULL;
         l->suiv=NULL;
         *(l->pdata)=mydata;
@@ -252,7 +254,7 @@ T_liste getptrPrevCell(T_liste l){
 }
 
 //renvoie un pointeur sur la valeur contenu dans le champ pdata
-int* getPtrData(T_liste l){
+T_personne* getPtrData(T_liste l){
     if(l==NULL){
         return NULL;
     }
@@ -264,8 +266,8 @@ int* getPtrData(T_liste l){
 
 //echange les valeurs de deux champs pdata
 void swapPtrData( T_liste source, T_liste destination ){
-    int *p1=getPtrData(source), *p2=getPtrData(destination);
-    int tmp = *p1;
+    T_personne *p1=getPtrData(source), *p2=getPtrData(destination);
+    T_personne tmp = *p1;
     *p1=*p2;
     *p2=tmp;
 }
@@ -294,7 +296,7 @@ T_liste creatNewListeFromFusion(T_liste l1, T_liste l2){
     initListe(&res);
     int len=getNbreCell(l1);
     T_cellule *p=getptrFirstCell(l1);
-    int *ptr=getPtrData(p);
+    T_personne *ptr=getPtrData(p);
     for(int i=0; i<len; i++){
         res=ajoutEnFin(res,*ptr);
         p=getptrNextCell(p);
@@ -320,11 +322,11 @@ T_liste addBehind(T_liste debut, T_liste suite){
 }
 
 //trouve la premiere cellule qui contient la valeur data dans son champ pdata
-T_liste findCell(T_liste l, int data){
+T_liste findCell(T_liste l, T_personne data, bool (*fcomp)(T_personne a, T_personne b) ){
     T_cellule *ptr=l;
     T_liste res=NULL;
-    int *p=getPtrData(ptr);
-    while(*p!=data && ptr->suiv!=NULL){
+    T_personne *p=getPtrData(ptr);
+    while((*fcomp)!=true && ptr->suiv!=NULL){
         ptr=getptrNextCell(ptr);
         p=getPtrData(ptr);
     }
@@ -335,6 +337,9 @@ T_liste findCell(T_liste l, int data){
     return res;
 }
 
+
+
+/*
 //renvoie le nombre de fois que data est present dans la liste
 int getOccurences(T_liste l, int data){
     T_cellule *ptr=getptrFirstCell(l);
@@ -351,15 +356,15 @@ int getOccurences(T_liste l, int data){
 
     return res;
 }
-
+*/
 
 //affiche la liste grace à ??
 void afficheListeV2( T_liste l){
-    int *ptr=getPtrData(l);
+    T_personne *ptr=getPtrData(l);
     T_cellule *p=getptrFirstCell(l);
     int len=getNbreCell(l);
     for(int i=0; i<len; i++){
-        printf("%d ", *ptr);
+        print(*ptr);
         p=getptrNextCell(p);
         ptr=getPtrData(p);
     }
@@ -374,7 +379,7 @@ T_liste listeNbrAlea(int n){
     initListe(&l);
     srand(time(NULL));
     for(int i=0; i<n; i++){
-        l=ajoutEnFin(l, (rand()%100));
+        l=ajoutEnFin(l, getPersAlea(i));
     }
     return l;
 }
@@ -387,10 +392,10 @@ void affichetab(int *tab, int len){
 }
 
 
-int *converttab(T_liste l, int taille){
+T_personne *converttab(T_liste l, int taille){
     T_cellule *p=getptrFirstCell(l);
-    int *val=getPtrData(p);
-    int *tab=(int *)malloc(sizeof(int)*taille);
+    T_personne *val=getPtrData(p);
+    T_personne *tab=(T_personne *)malloc(sizeof(T_personne)*taille);
     for(int i=0; i<taille; i++){
         tab[i]=*val;
         p=getptrNextCell(p);
@@ -399,10 +404,10 @@ int *converttab(T_liste l, int taille){
     return tab;
 }
 
-int *converttabfree(T_liste l, int taille){
+T_personne *converttabfree(T_liste l, int taille){
     T_cellule *p=getptrFirstCell(l);
-    int *val=getPtrData(p);
-    int *tab=(int *)malloc(sizeof(int)*taille);
+    T_personne *val=getPtrData(p);
+    T_personne *tab=(T_personne *)malloc(sizeof(T_personne)*taille);
     for(int i=0; i<taille; i++){
         tab[i]=*val;
         p=getptrNextCell(p);
@@ -411,7 +416,7 @@ int *converttabfree(T_liste l, int taille){
     p=getptrFirstCell(l);
     val=getPtrData(p);
     T_cellule *p2=getptrNextCell(p);
-    int *val2=getPtrData(p2);
+    T_personne *val2=getPtrData(p2);
     for(int i=0; i<taille; i++){
         free(val);
         free(p);
@@ -423,17 +428,18 @@ int *converttabfree(T_liste l, int taille){
     return tab;
 }
 
-T_liste tabintoliste(int *tab, int len){
+T_liste tabintoliste(T_personne *tab, int len){
     T_liste res;
     initListe(&res);
     for(int i=0; i<len; i++){
-        int val=tab[i];
+        T_personne val=tab[i];
         res=ajoutEnFin(res, val);
     }
     return res;
 }
 
-void tri_selection(int *tableau, int taille)
+/*
+void tri_selection(T_personne *tableau, int taille)
 {
 
     int en_cours, plus_petit, j, temp;
@@ -452,17 +458,19 @@ void tri_selection(int *tableau, int taille)
 
 T_liste triliste(T_liste l){
     int len=getNbreCell(l);
-    int *tab=(int *)malloc(sizeof(int)*len);
+    T_personne *tab=(T_personne *)malloc(sizeof(T_personne)*len);
     tab=converttab(l, len);
     tri_selection(tab, len);
     T_liste res=tabintoliste(tab, len);
     return res;
 }
+*/
 
 //**************************************************
 //******************Etape 3*************************
 //**************************************************
 
+/*
 void tri_selection_liste(T_liste l)
 {
     int *petit, *grand;
@@ -494,6 +502,19 @@ void tri_selection_liste(T_liste l)
     }
 
 
+}
+*/
+
+//**************************************************
+//******************Etape 4*************************
+//**************************************************
+
+T_liste creerListeNElem(int taille){
+    T_liste res;
+    for(int i=0; i<taille; i++){
+        res=ajoutEnFin(res,getPersAlea(i));
+    }
+    return res;
 }
 
 

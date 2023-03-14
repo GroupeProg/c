@@ -13,19 +13,47 @@
 	<stdbool.h>
 	"listeDouble.h"
 
-1678198746 source:c:\users\abonn\desktop\cours c\etape1 listedouble\listedouble\main.c
+1678622286 source:c:\users\abonn\desktop\cours c\etape1 listedouble\listedouble\main.c
 	<stdio.h>
 	<stdlib.h>
 	<stdbool.h>
 	<time.h>
 	"listeDouble.h"
 
-1678195111 c:\users\abonn\desktop\cours c\etape1 listedouble\listedouble\listedouble.h
+1678802042 c:\users\abonn\desktop\cours c\etape1 listedouble\listedouble\listedouble.h
 	<stdbool.h>
+	"types.h"
 
-1678201005 source:c:\users\abonn\desktop\cours c\etape1 listedouble\listedouble\listedouble.c
+1678452052 source:c:\users\abonn\desktop\cours c\etape1 listedouble\listedouble\listedouble.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
 	"listeDouble.h"
+	"types.h"
+
+1678209000 c:\users\abonn\desktop\cours c\etape1 listedouble\listedouble\types.h
+	<stdbool.h>
+
+1678209000 c:\users\abonn\desktop\cours c\etape1 listedouble\listedouble\types.c
+	<stdlib.h>
+	<stdio.h>
+	<stdbool.h>
+	<string.h>
+	"types.h"
+	"utils.h"
+
+1678209000 c:\users\abonn\desktop\cours c\etape1 listedouble\listedouble\utils.h
+
+1678209000 source:c:\users\abonn\desktop\cours c\etape1 listedouble\listedouble\types.c
+	<stdlib.h>
+	<stdio.h>
+	<stdbool.h>
+	<string.h>
+	"types.h"
+	"utils.h"
+
+1678209000 source:c:\users\abonn\desktop\cours c\etape1 listedouble\listedouble\utils.c
+	<stdlib.h>
+	<stdio.h>
+	<stdbool.h>
 

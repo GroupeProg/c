@@ -146,7 +146,7 @@ int main()
     //**************************************************
     //******************Etape 3*************************
     //**************************************************
-
+/*
     int len=10;
     l=listeNbrAlea(len);
     printf("\nListe avec nombres aleatoires : ");
@@ -158,7 +158,14 @@ int main()
     afficheListeV1(l);
     time_t apres =time(NULL);
     printf("\nEffectue en %.2f seconde(s) ! \n", difftime(apres,now));
+*/
+    //**************************************************
+    //******************Etape 4*************************
+    //**************************************************
 
+
+    l=creerListeNElem(6);
+    afficheListeV1(l);
 
 
     return 0;
