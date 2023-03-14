@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1678726201 source:c:\users\abonn\desktop\cours c\sauvegarde\listedouble.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"listeDouble.h"
+
+1678726201 c:\users\abonn\desktop\cours c\sauvegarde\listedouble.h
+	<stdbool.h>
+
+1678726252 source:c:\users\abonn\desktop\cours c\sauvegarde\main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+	<time.h>
+	"listeDouble.h"
+
